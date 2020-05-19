@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.DataDictMapper" >
+
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.DataDict" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="parent_id" property="parentId" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="status" property="status"/>
+    <result column="del_flag" property="delFlag" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="creator_id" property="creatorId" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="updator" property="updator" jdbcType="VARCHAR" />
+    <result column="updator_id" property="updatorId" jdbcType="CHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, parent_id, name, code, keyword, sort, description, status, del_flag, creator, creator_id, create_time, 
+    updator, updator_id, update_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_data
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.DataDict" >
+    insert into base_data (id, parent_id, name, code, 
+      keyword, sort, description, 
+      status, creator, creator_id, del_flag, 
+      create_time, updator, updator_id, 
+      update_time)
+    values (#{id,jdbcType=CHAR}, #{parentId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{keyword,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
+      #{status}, #{creator,jdbcType=VARCHAR}, #{creatorId,jdbcType=CHAR}, #{delFlag,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updator,jdbcType=VARCHAR}, #{updatorId,jdbcType=CHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <!-- 添加字典 -->
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.DataDict" >
+    insert into base_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updator != null" >
+        updator,
+      </if>
+      <if test="updatorId != null" >
+        updator_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null" >
+        #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatorId != null" >
+        #{updatorId,jdbcType=CHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 修改接口 -->
+  <!-- 删除接口 -->
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.DataDict" >
+    update base_data
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null" >
+        updator = #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatorId != null" >
+        updator_id = #{updatorId,jdbcType=CHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.DataDict" >
+    update base_data
+    set parent_id = #{parentId,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status},
+      del_flag = #{delFlag,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updator = #{updator,jdbcType=VARCHAR},
+      updator_id = #{updatorId,jdbcType=CHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  
+  <!-- 列表接口（当前页 pageNum，pageSize 分页大小，字典名称 keyword） -->
+  <select id="findDataDictByPage" resultMap="BaseResultMap" parameterType="cn.szag.oms.manager.common.domain.manager.DataDict">
+    SELECT base.id,base.name,base.code,base.parent_id,base.keyword,base.sort,base.description,base.status,base.del_flag,
+    base.creator,base.creator_id,base.create_time,base.updator,base.updator_id,base.update_time
+    FROM base_data base
+    WHERE base.del_flag=0
+    AND base.parent_id = '0'
+    <if test="dd.keyword != null and dd.keyword!='' ">
+    AND base.keyword LIKE "%"#{dd.keyword}"%"
+    </if>
+    order by base.sort asc
+  </select>
+  
+  <!-- 根据 id 查询 -->
+  <select id="findDataDictById" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT base.id,base.name,base.code,base.parent_id,base.keyword,base.sort,base.description,base.status,base.del_flag,
+    base.creator,base.creator_id,base.create_time,base.updator,base.updator_id,base.update_time
+    FROM base_data base
+    WHERE base.del_flag=0
+    AND base.id = #{id}
+  </select>
+  
+  <!-- 查看详情接口（查询子项） -->
+  <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_data
+    where parent_id = #{parentId,jdbcType=CHAR}
+  </select>
+  
+  <!-- 根据父 id 统计有多少子项 -->
+  <select id="childCount" resultType="java.lang.Integer"
+    parameterType="DataDict">
+    SELECT
+    count(*) FROM base_data t WHERE
+    t.parent_id=#{parentId}
+  </select>
+  
+  <!-- 删除子项（根据 parentId，逻辑删除） -->
+  <update id="delByParentId" parameterType="cn.szag.oms.manager.common.domain.manager.DataDict">
+    update base_data
+    <set>
+      <if test="dd.delFlag != null" >
+        del_flag = #{dd.delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="dd.updator != null" >
+        updator = #{dd.updator,jdbcType=VARCHAR},
+      </if>
+      <if test="dd.updatorId != null" >
+        updator_id = #{dd.updatorId,jdbcType=CHAR},
+      </if>
+      <if test="dd.updateTime != null" >
+        update_time = #{dd.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    WHERE parent_id=#{dd.id}
+  </update>
+  
+  <!-- 根据 name 查询（目前用于：套餐创建 - 新增 - 下拉框）-->
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_data
+    where del_flag = 0 and parent_id in (select id from base_data where name = #{name,jdbcType=VARCHAR})
+  </select>
+  
+  <!-- 根据 name、parentId 查询（目前用于：判断新增的字典名称是否重复） -->
+  <select id="selectByNameAndParentId" resultMap="BaseResultMap" parameterType="cn.szag.oms.manager.common.domain.manager.DataDict">
+    select 
+    <include refid="Base_Column_List" />
+    from base_data base
+    where del_flag = 0
+    <if test="dd.name != null and dd.name!='' ">
+    and base.name = #{dd.name,jdbcType=VARCHAR}
+    </if>
+    <if test="dd.parentId != null and dd.parentId!='' ">
+    and base.parent_id = #{dd.parentId,jdbcType=CHAR}
+    </if>
+  </select>
+  
+    <!-- 获取列表 -->
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="cn.szag.oms.manager.common.domain.manager.DataDict">
+    SELECT base.id,base.name,base.code,base.parent_id,base.keyword,base.sort,base.description,base.status,base.del_flag,
+    base.creator,base.creator_id,base.create_time,base.updator,base.updator_id,base.update_time
+    FROM base_data base
+    WHERE base.del_flag=0
+     <if test="dd.parentId != null and  dd.parentId!= '' ">
+    AND base.parent_id = #{dd.parentId}
+    </if>
+      <if test="dd.id != null and  dd.id != '' ">
+    AND base.id = #{dd.id}
+    </if>
+     <if test="dd.keyword != null and dd.keyword!='' ">
+    AND base.keyword LIKE "%"#{dd.keyword}"%"
+    </if>
+    <if test="dd.keyword != null and dd.keyword!='' ">
+    AND base.keyword LIKE "%"#{dd.keyword}"%"
+    </if>
+    order by base.sort asc
+   <!--<if test="page != null">
+      LIMIT #{page.index},#{page.pageSize}
+    </if>   -->
+  </select>
+  
+  <!-- 查询 parentId 为 0、delFlag 为 0 的记录数（该方法不适用） -->
+  <select id="countByDelFlag" resultType="java.lang.Integer">
+    select count(*) from base_data where del_flag = 0 and parent_id = 0
+  </select>
+  
+</mapper>

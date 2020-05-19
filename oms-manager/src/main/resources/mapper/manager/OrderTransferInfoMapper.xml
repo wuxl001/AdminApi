@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.OrderTransferInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderTransferInfo" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="plocation" property="plocation" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="container_id" property="containerId" jdbcType="VARCHAR" />
+    <result column="containerlocation" property="containerlocation" jdbcType="VARCHAR" />
+    <result column="seattle" property="seattle" jdbcType="VARCHAR" />
+    <result column="hoverporttitle" property="hoverporttitle" jdbcType="VARCHAR" />
+    <result column="transferNo" property="transferno" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="updater_id" property="updaterId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="dispatchingState" property="dispatchingstate" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.szag.oms.manager.common.domain.manager.OrderTransferInfo" extends="BaseResultMap" >
+    <result column="abnormal_remark" property="abnormalRemark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, createtime, status, plocation, telephone, container_id, containerlocation, 
+    seattle, hoverporttitle, transferNo, del_flag, updater_id, update_time, dispatchingState
+  </sql>
+  <sql id="Blob_Column_List" >
+    abnormal_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_transfer_info
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_transfer_info
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.OrderTransferInfo" >
+    insert into order_transfer_info (id, order_id, createtime, 
+      status, plocation, telephone, 
+      container_id, containerlocation, seattle, 
+      hoverporttitle, transferNo, del_flag, 
+      updater_id, update_time, dispatchingState, 
+      abnormal_remark)
+    values (#{id,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{plocation,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{containerId,jdbcType=VARCHAR}, #{containerlocation,jdbcType=VARCHAR}, #{seattle,jdbcType=VARCHAR}, 
+      #{hoverporttitle,jdbcType=VARCHAR}, #{transferno,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, 
+      #{updaterId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{dispatchingstate,jdbcType=INTEGER}, 
+      #{abnormalRemark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderTransferInfo" >
+    insert into order_transfer_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="plocation != null" >
+        plocation,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="containerId != null" >
+        container_id,
+      </if>
+      <if test="containerlocation != null" >
+        containerlocation,
+      </if>
+      <if test="seattle != null" >
+        seattle,
+      </if>
+      <if test="hoverporttitle != null" >
+        hoverporttitle,
+      </if>
+      <if test="transferno != null" >
+        transferNo,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="updaterId != null" >
+        updater_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="dispatchingstate != null" >
+        dispatchingState,
+      </if>
+      <if test="abnormalRemark != null" >
+        abnormal_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="plocation != null" >
+        #{plocation,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="containerId != null" >
+        #{containerId,jdbcType=VARCHAR},
+      </if>
+      <if test="containerlocation != null" >
+        #{containerlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="seattle != null" >
+        #{seattle,jdbcType=VARCHAR},
+      </if>
+      <if test="hoverporttitle != null" >
+        #{hoverporttitle,jdbcType=VARCHAR},
+      </if>
+      <if test="transferno != null" >
+        #{transferno,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="updaterId != null" >
+        #{updaterId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchingstate != null" >
+        #{dispatchingstate,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalRemark != null" >
+        #{abnormalRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderTransferInfo" >
+    update order_transfer_info
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="plocation != null" >
+        plocation = #{plocation,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="containerId != null" >
+        container_id = #{containerId,jdbcType=VARCHAR},
+      </if>
+      <if test="containerlocation != null" >
+        containerlocation = #{containerlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="seattle != null" >
+        seattle = #{seattle,jdbcType=VARCHAR},
+      </if>
+      <if test="hoverporttitle != null" >
+        hoverporttitle = #{hoverporttitle,jdbcType=VARCHAR},
+      </if>
+      <if test="transferno != null" >
+        transferNo = #{transferno,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="updaterId != null" >
+        updater_id = #{updaterId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchingstate != null" >
+        dispatchingState = #{dispatchingstate,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalRemark != null" >
+        abnormal_remark = #{abnormalRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.szag.oms.manager.common.domain.manager.OrderTransferInfo" >
+    update order_transfer_info
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      plocation = #{plocation,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      container_id = #{containerId,jdbcType=VARCHAR},
+      containerlocation = #{containerlocation,jdbcType=VARCHAR},
+      seattle = #{seattle,jdbcType=VARCHAR},
+      hoverporttitle = #{hoverporttitle,jdbcType=VARCHAR},
+      transferNo = #{transferno,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      updater_id = #{updaterId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      dispatchingState = #{dispatchingstate,jdbcType=INTEGER},
+      abnormal_remark = #{abnormalRemark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.OrderTransferInfo" >
+    update order_transfer_info
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      plocation = #{plocation,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      container_id = #{containerId,jdbcType=VARCHAR},
+      containerlocation = #{containerlocation,jdbcType=VARCHAR},
+      seattle = #{seattle,jdbcType=VARCHAR},
+      hoverporttitle = #{hoverporttitle,jdbcType=VARCHAR},
+      transferNo = #{transferno,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      updater_id = #{updaterId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      dispatchingState = #{dispatchingstate,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="select" resultMap="ResultMapWithBLOBs">
+    SELECT  oti.id, oti.order_id, oti.createtime, odo.status, oti.plocation, oti.telephone, oti.container_id, oti.containerlocation, 
+    		oti.seattle, oti.hoverporttitle, oti.transferNo, oti.del_flag, oti.updater_id, oti.update_time, oti.dispatchingState FROM  order_transfer_info oti
+    LEFT JOIN order_dispatch_order odo ON oti.id = odo.transferID AND odo.end_place = oti.plocation
+	WHERE oti.container_id = #{containerId,jdbcType=VARCHAR} AND oti.order_id = #{orderId,jdbcType=VARCHAR}
+	GROUP BY oti.id
+	LIMIT 1
+  </select>
+</mapper>

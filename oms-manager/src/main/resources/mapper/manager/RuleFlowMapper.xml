@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.RuleFlowMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.RuleFlow" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="flow_configuration_id" property="flowConfigurationId" jdbcType="VARCHAR" />
+    <result column="flow_name" property="flowName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="current_task_node" property="currentTaskNode" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="flow_code" property="flowCode" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, flow_configuration_id, flow_name, status, current_task_node, create_date, 
+    update_date, order_id, title, flow_code, del_flag, order_no
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rule_flow
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rule_flow
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.RuleFlow" >
+    insert into rule_flow (id, flow_configuration_id, flow_name, 
+      status, current_task_node, create_date, 
+      update_date, order_id, title, 
+      flow_code, del_flag, order_no
+      )
+    values (#{id,jdbcType=CHAR}, #{flowConfigurationId,jdbcType=VARCHAR}, #{flowName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{currentTaskNode,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{orderId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{flowCode,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.RuleFlow" >
+    insert into rule_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="flowConfigurationId != null" >
+        flow_configuration_id,
+      </if>
+      <if test="flowName != null" >
+        flow_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="currentTaskNode != null" >
+        current_task_node,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="flowCode != null" >
+        flow_code,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="flowConfigurationId != null" >
+        #{flowConfigurationId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null" >
+        #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="currentTaskNode != null" >
+        #{currentTaskNode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCode != null" >
+        #{flowCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.RuleFlow" >
+    update rule_flow
+    <set >
+      <if test="flowConfigurationId != null" >
+        flow_configuration_id = #{flowConfigurationId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null" >
+        flow_name = #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="currentTaskNode != null" >
+        current_task_node = #{currentTaskNode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCode != null" >
+        flow_code = #{flowCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.RuleFlow" >
+    update rule_flow
+    set flow_configuration_id = #{flowConfigurationId,jdbcType=VARCHAR},
+      flow_name = #{flowName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      current_task_node = #{currentTaskNode,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      flow_code = #{flowCode,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

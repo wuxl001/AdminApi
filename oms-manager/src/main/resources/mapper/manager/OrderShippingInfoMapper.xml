@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.OrderShippingInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderShippingInfo" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="domestic_consignee" property="domesticConsignee" jdbcType="VARCHAR" />
+    <result column="overseas_shipper" property="overseasShipper" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="dest_country" property="destCountry" jdbcType="VARCHAR" />
+    <result column="departure_port" property="departurePort" jdbcType="VARCHAR" />
+    <result column="dest_port" property="destPort" jdbcType="VARCHAR" />
+    <result column="extract_order_no" property="extractOrderNo" jdbcType="VARCHAR" />
+    <result column="ship_info" property="shipInfo" jdbcType="VARCHAR" />
+    <result column="transfer_ship_info" property="transferShipInfo" jdbcType="VARCHAR" />
+    <result column="shipowning_company" property="shipowningCompany" jdbcType="VARCHAR" />
+    <result column="expect_arrive_time" property="expectArriveTime" jdbcType="TIMESTAMP" />
+    <result column="arrive_time" property="arriveTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="updater_id" property="updaterId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="origin_country_id" property="originCountryId" jdbcType="VARCHAR" />
+    <result column="dest_country_id" property="destCountryId" jdbcType="VARCHAR" />
+    <result column="consumer_org_id" property="consumerOrgId" jdbcType="VARCHAR" />
+    <result column="departurePortName" property="departurePortName" jdbcType="VARCHAR" />
+    <result column="departurePortEname" property="departurePortEname" jdbcType="VARCHAR" />
+    <result column="destPortName" property="destPortName" jdbcType="VARCHAR" />
+    <result column="destPortEname" property="destPortEname" jdbcType="VARCHAR" />
+    <result column="destCountryName" property="destCountryName" jdbcType="VARCHAR" />
+    <result column="destCountryEname" property="destCountryEname" jdbcType="VARCHAR" />
+    <result column="domesticConsigneeName" property="domesticConsigneeName" jdbcType="VARCHAR" />
+    <result column="domesticConsigneeEname" property="domesticConsigneeEname" jdbcType="VARCHAR" />
+    <result column="shipowningCompanyName" property="shipowningCompanyName" jdbcType="VARCHAR" />
+    <result column="shipowningCompanyEname" property="shipowningCompanyEname" jdbcType="VARCHAR" />
+    <result column="consumerOrgName" property="consumerOrgName" jdbcType="VARCHAR" />
+    <result column="consumerOrgEname" property="consumerOrgEname" jdbcType="VARCHAR" />
+    <result column="overseasShipperName" property="overseasShipperName" jdbcType="VARCHAR" />
+    <result column="overseasShipperEname" property="overseasShipperEname" jdbcType="VARCHAR" />
+    <result column="entryPortName" property="entryPortName" jdbcType="VARCHAR" />
+    <result column="entryPortEname" property="entryPortEname" jdbcType="VARCHAR" />
+    <result column="originCountryName" property="originCountryName" jdbcType="VARCHAR" />
+    <result column="originCountryEname" property="originCountryEname" jdbcType="VARCHAR" />
+    <result column="box_no" property="boxNo" jdbcType="VARCHAR" />
+    <result column="dock" property="dock" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="DateResultMap" type="cn.szag.oms.manager.common.domain.manager.ShippinInfoDate" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="arrive_time" property="arriveTime" jdbcType="TIMESTAMP" />
+    <result column="ship_unload_time" property="shipUnloadTime" jdbcType="TIMESTAMP" />
+    <result column="outdate" property="outdate" jdbcType="TIMESTAMP" />
+    <result column="outdate2" property="outdate2" jdbcType="TIMESTAMP" />
+    <result column="empty_time" property="emptyTime" jdbcType="TIMESTAMP" />
+    <result column="returnbox_time" property="returnboxTime" jdbcType="TIMESTAMP" />
+    <result column="depart_time" property="departTime" jdbcType="TIMESTAMP" />
+    <result column="arrival_date" property="arrivalDate" jdbcType="TIMESTAMP" />
+    <result column="cus_advice_date" property="cusAdviceDate" jdbcType="TIMESTAMP" />
+    <result column="afffirm_date" property="afffirmDate" jdbcType="TIMESTAMP" />
+    <result column="cusEmpty_time" property="cusEmptyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, domestic_consignee, overseas_shipper, currency, dest_country, departure_port, 
+    dest_port, extract_order_no, ship_info, transfer_ship_info, shipowning_company, expect_arrive_time, 
+    arrive_time, del_flag, updater_id, update_time, origin_country_id, dest_country_id, 
+    consumer_org_id, entry_port_id,dock
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_shipping_info
+    where id = #{id,jdbcType=CHAR} AND del_flag = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_shipping_info
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.OrderShippingInfo" >
+    insert into order_shipping_info (id, order_id, domestic_consignee, 
+      overseas_shipper, currency, dest_country, 
+      departure_port, dest_port, extract_order_no, 
+      ship_info, transfer_ship_info, shipowning_company, 
+      expect_arrive_time, arrive_time, del_flag, 
+      updater_id, update_time, origin_country_id, 
+      dest_country_id, consumer_org_id, entry_port_id,dock
+      )
+    values (#{id,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR}, #{domesticConsignee,jdbcType=VARCHAR}, 
+      #{overseasShipper,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, #{destCountry,jdbcType=VARCHAR}, 
+      #{departurePort,jdbcType=VARCHAR}, #{destPort,jdbcType=VARCHAR}, #{extractOrderNo,jdbcType=VARCHAR}, 
+      #{shipInfo,jdbcType=VARCHAR}, #{transferShipInfo,jdbcType=VARCHAR}, #{shipowningCompany,jdbcType=VARCHAR}, 
+      #{expectArriveTime,jdbcType=TIMESTAMP}, #{arriveTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER}, 
+      #{updaterId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{originCountryId,jdbcType=VARCHAR}, 
+      #{destCountryId,jdbcType=VARCHAR}, #{consumerOrgId,jdbcType=VARCHAR}, #{entryPortId,jdbcType=VARCHAR},#{dock,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderShippingInfo" >
+    insert into order_shipping_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="domesticConsignee != null" >
+        domestic_consignee,
+      </if>
+      <if test="overseasShipper != null" >
+        overseas_shipper,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="destCountry != null" >
+        dest_country,
+      </if>
+      <if test="departurePort != null" >
+        departure_port,
+      </if>
+      <if test="destPort != null" >
+        dest_port,
+      </if>
+      <if test="extractOrderNo != null" >
+        extract_order_no,
+      </if>
+      <if test="shipInfo != null" >
+        ship_info,
+      </if>
+      <if test="transferShipInfo != null" >
+        transfer_ship_info,
+      </if>
+      <if test="shipowningCompany != null" >
+        shipowning_company,
+      </if>
+      <if test="expectArriveTime != null" >
+        expect_arrive_time,
+      </if>
+      <if test="arriveTime != null" >
+        arrive_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="updaterId != null" >
+        updater_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="originCountryId != null" >
+        origin_country_id,
+      </if>
+      <if test="destCountryId != null" >
+        dest_country_id,
+      </if>
+      <if test="consumerOrgId != null" >
+        consumer_org_id,
+      </if>
+      <if test="entryPortId != null" >
+        entry_port_id,
+      </if>
+      <if test="dock != null" >
+        dock,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="domesticConsignee != null" >
+        #{domesticConsignee,jdbcType=VARCHAR},
+      </if>
+      <if test="overseasShipper != null" >
+        #{overseasShipper,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="destCountry != null" >
+        #{destCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="departurePort != null" >
+        #{departurePort,jdbcType=VARCHAR},
+      </if>
+      <if test="destPort != null" >
+        #{destPort,jdbcType=VARCHAR},
+      </if>
+      <if test="extractOrderNo != null" >
+        #{extractOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipInfo != null" >
+        #{shipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="transferShipInfo != null" >
+        #{transferShipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipowningCompany != null" >
+        #{shipowningCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="expectArriveTime != null" >
+        #{expectArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveTime != null" >
+        #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="updaterId != null" >
+        #{updaterId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originCountryId != null" >
+        #{originCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="destCountryId != null" >
+        #{destCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="consumerOrgId != null" >
+        #{consumerOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="entryPortId != null" >
+        #{entryPortId,jdbcType=VARCHAR},
+      </if>
+      <if test="dock != null" >
+        #{dock,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderShippingInfo" >
+    update order_shipping_info
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="domesticConsignee != null" >
+        domestic_consignee = #{domesticConsignee,jdbcType=VARCHAR},
+      </if>
+      <if test="overseasShipper != null" >
+        overseas_shipper = #{overseasShipper,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="destCountry != null" >
+        dest_country = #{destCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="departurePort != null" >
+        departure_port = #{departurePort,jdbcType=VARCHAR},
+      </if>
+      <if test="destPort != null" >
+        dest_port = #{destPort,jdbcType=VARCHAR},
+      </if>
+      <if test="extractOrderNo != null" >
+        extract_order_no = #{extractOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipInfo != null" >
+        ship_info = #{shipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="transferShipInfo != null" >
+        transfer_ship_info = #{transferShipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipowningCompany != null" >
+        shipowning_company = #{shipowningCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="expectArriveTime != null" >
+        expect_arrive_time = #{expectArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveTime != null" >
+        arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="updaterId != null" >
+        updater_id = #{updaterId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originCountryId != null" >
+        origin_country_id = #{originCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="destCountryId != null" >
+        dest_country_id = #{destCountryId,jdbcType=VARCHAR},
+      </if>
+      <if test="consumerOrgId != null" >
+        consumer_org_id = #{consumerOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="entryPortId != null" >
+        entry_port_id = #{entryPortId,jdbcType=VARCHAR},
+      </if>
+      <if test="dock != null" >
+        dock = #{dock,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.OrderShippingInfo" >
+    update order_shipping_info
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      domestic_consignee = #{domesticConsignee,jdbcType=VARCHAR},
+      overseas_shipper = #{overseasShipper,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      dest_country = #{destCountry,jdbcType=VARCHAR},
+      departure_port = #{departurePort,jdbcType=VARCHAR},
+      dest_port = #{destPort,jdbcType=VARCHAR},
+      extract_order_no = #{extractOrderNo,jdbcType=VARCHAR},
+      ship_info = #{shipInfo,jdbcType=VARCHAR},
+      transfer_ship_info = #{transferShipInfo,jdbcType=VARCHAR},
+      shipowning_company = #{shipowningCompany,jdbcType=VARCHAR},
+      expect_arrive_time = #{expectArriveTime,jdbcType=TIMESTAMP},
+      arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      updater_id = #{updaterId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      origin_country_id = #{originCountryId,jdbcType=VARCHAR},
+      dest_country_id = #{destCountryId,jdbcType=VARCHAR},
+      consumer_org_id = #{consumerOrgId,jdbcType=VARCHAR},
+      dock = #{dock,jdbcType=INTEGER},
+      entry_port_id = #{entryPortId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="selectByOrderId" resultMap="BaseResultMap">
+    SELECT  
+    	o_s_i.id,
+		o_s_i.extract_order_no,
+		o_s_i.expect_arrive_time,
+		o_s_i.ship_info,
+		o_s_i.transfer_ship_info,
+		o_w_s.product,
+		o_w_s.quantity,
+		o_w_s.box_no,
+		bp.`name` AS departurePortName,
+		bp.`ename` AS departurePortEName,
+		bp2.`name` AS destPortName,
+		bp2.`ename` AS destPortEName,
+		bc.`name` AS destCountryName,
+		bc.`ename` AS destCountryEName,
+		bc2.`name` AS domesticConsigneeName,
+		bc2.`ename` AS domesticConsigneeEname,
+		bc3.`name` AS shipowningCompanyName,
+		bc3.`ename` AS shipowningCompanyEname,
+		bc4.`name` AS consumerOrgName,
+		bc4.`ename` AS consumerOrgEname,
+		bc5.`name` AS overseasShipperName,
+		bc5.`ename` AS overseasShipperEname,
+		bc6.`name_cn` AS originCountryName,
+		bc6.`name_en` AS originCountryEname,
+		bc7.`name` AS entryPortName,
+		bc7.`ename` AS entryPortEname
+		FROM order_shipping_info o_s_i
+		INNER JOIN order_worklist_status o_w_s ON o_w_s.order_shipping_info_id=o_s_i.id
+		LEFT JOIN base_port bp ON bp.id = o_s_i.departure_port
+		LEFT JOIN base_port bp2 ON bp2.id = o_s_i.dest_port
+		LEFT JOIN base_country bc ON bc.id = o_s_i.dest_country
+		LEFT JOIN base_customer bc2 ON bc2.id = o_s_i.domestic_consignee
+		LEFT JOIN base_customer bc3 ON bc3.id = o_s_i.shipowning_company
+		LEFT JOIN base_customer bc4 ON bc4.id = o_s_i.consumer_org_id
+		LEFT JOIN base_customer bc5 ON bc5.id = o_s_i.overseas_shipper
+		LEFT JOIN base_code_nationality bc6 ON bc6.id = o_s_i.origin_country_id
+		LEFT JOIN base_customer bc7 ON bc7.id = o_s_i.entry_port_id
+	WHERE o_s_i.order_id = #{orderId,jdbcType=VARCHAR} AND o_w_s.id = #{containerId,jdbcType=VARCHAR} AND o_s_i.del_flag = 0
+  </select>
+  <select id="select" resultMap="DateResultMap">
+    SELECT o_i.cus_advice_date,
+    	   o_i.afffirm_date,
+    	   o_s_i.arrive_time,
+    	   o_w_s.ship_unload_time,
+    	   o_w_s.outdate,
+    	   o_w_s.arrival_date,
+    	   o_w_s.outdate2,
+    	   o_w_s.depart_time,
+    	   o_w_s.empty_time,
+    	   o_w_s.cusEmpty_time,
+    	   o_r_c_i.returnbox_time AS returnbox_time,
+    	   (SELECT count(dest_port) from order_shipping_info where dest_port=33 and order_id= #{orderId,jdbcType=VARCHAR}) as status 
+    	   FROM order_shipping_info o_s_i
+	INNER JOIN order_import o_i ON o_i.id = o_s_i.order_id
+	LEFT JOIN order_clearance_info o_c_i ON o_c_i.order_id = o_s_i.order_id
+	LEFT JOIN order_transfer_info o_t_i ON o_t_i.order_id = o_s_i.order_id
+	LEFT JOIN order_return_container_info o_r_c_i ON o_r_c_i.order_id = o_s_i.order_id
+	LEFT JOIN order_worklist_status o_w_s ON o_w_s.order_id = o_s_i.order_id
+	WHERE o_s_i.order_id = #{orderId,jdbcType=VARCHAR} 
+	AND o_w_s.type = #{type,jdbcType=INTEGER} AND o_w_s.id = #{id,jdbcType=CHAR}
+	GROUP BY o_s_i.id
+  </select>
+</mapper>

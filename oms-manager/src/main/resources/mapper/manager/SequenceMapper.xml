@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.SequenceDao">
+	<resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.Sequence">
+		<result column="seqName" property="seqname" jdbcType="VARCHAR" />
+		<result column="seqValue" property="seqvalue" jdbcType="INTEGER" />
+		<result column="cacheSize" property="cachesize" jdbcType="INTEGER" />
+		<result column="lastUpdateTime" property="lastupdatetime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="findSequence" resultMap="BaseResultMap">
+		SELECT * FROM base_sequence
+		WHERE seqName LIKE
+		CONCAT('%',#{seqname},'%')
+	</select>
+
+	<insert id="insert" parameterType="cn.szag.oms.manager.common.domain.Sequence">
+		insert into base_sequence (seqName, seqValue, cacheSize,
+		lastUpdateTime)
+		values (#{seqname,jdbcType=VARCHAR}, #{seqvalue,jdbcType=INTEGER},
+		#{cachesize,jdbcType=INTEGER},
+		#{lastupdatetime,jdbcType=TIMESTAMP})
+	</insert>
+
+	<update id="update" parameterType="cn.szag.oms.manager.common.domain.Sequence">
+		UPDATE base_sequence SET
+		seqValue=seqvalue+cacheSize,lastUpdateTime=#{lastupdatetime}
+		WHERE
+		seqName=#{seqname}
+	</update>
+
+	<update id="updateSeq" parameterType="cn.szag.oms.manager.common.domain.Sequence">
+		UPDATE base_sequence SET
+		seqValue=#{seqvalue},lastUpdateTime=#{lastupdatetime}
+		WHERE
+		seqName=#{seqname}
+	</update>
+</mapper>

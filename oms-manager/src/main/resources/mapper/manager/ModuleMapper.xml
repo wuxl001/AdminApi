@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.ModuleMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.Module" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="publishat" property="publishat" jdbcType="TIMESTAMP" />
+    <result column="linktype" property="linktype" jdbcType="INTEGER" />
+    <result column="linkurl" property="linkurl" jdbcType="VARCHAR" />
+    <result column="parentid" property="parentid" jdbcType="VARCHAR" />
+    <result column="idpath" property="idpath" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="btnId" property="btnid" jdbcType="VARCHAR" />
+    <result column="btnFun" property="btnfun" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, publishat, linktype, linkurl, parentid, idpath, status, sort, product_id, 
+    icon, type, description, btnId, btnFun, source
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_module
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_module
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.Module" >
+    insert into base_module (id, name, publishat, 
+      linktype, linkurl, parentid, 
+      idpath, status, sort, 
+      product_id, icon, type, 
+      description, btnId, btnFun, 
+      source)
+    values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{publishat,jdbcType=TIMESTAMP}, 
+      #{linktype,jdbcType=INTEGER}, #{linkurl,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, 
+      #{idpath,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{sort,jdbcType=VARCHAR}, 
+      #{productId,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{btnid,jdbcType=VARCHAR}, #{btnfun,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.Module" >
+    insert into base_module
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="publishat != null" >
+        publishat,
+      </if>
+      <if test="linktype != null" >
+        linktype,
+      </if>
+      <if test="linkurl != null" >
+        linkurl,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="idpath != null" >
+        idpath,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="btnid != null" >
+        btnId,
+      </if>
+      <if test="btnfun != null" >
+        btnFun,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="publishat != null" >
+        #{publishat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linktype != null" >
+        #{linktype,jdbcType=INTEGER},
+      </if>
+      <if test="linkurl != null" >
+        #{linkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="idpath != null" >
+        #{idpath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="btnid != null" >
+        #{btnid,jdbcType=VARCHAR},
+      </if>
+      <if test="btnfun != null" >
+        #{btnfun,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.Module" >
+    update base_module
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="publishat != null" >
+        publishat = #{publishat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linktype != null" >
+        linktype = #{linktype,jdbcType=INTEGER},
+      </if>
+      <if test="linkurl != null" >
+        linkurl = #{linkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="idpath != null" >
+        idpath = #{idpath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="btnid != null" >
+        btnId = #{btnid,jdbcType=VARCHAR},
+      </if>
+      <if test="btnfun != null" >
+        btnFun = #{btnfun,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+       del_flag = #{delFlag,jdbcType=VARCHAR},
+    </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.Module" >
+    update base_module
+    set name = #{name,jdbcType=VARCHAR},
+      publishat = #{publishat,jdbcType=TIMESTAMP},
+      linktype = #{linktype,jdbcType=INTEGER},
+      linkurl = #{linkurl,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=VARCHAR},
+      idpath = #{idpath,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      btnId = #{btnid,jdbcType=VARCHAR},
+      btnFun = #{btnfun,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+  <!--菜单管理查询-->
+  <select id="findByPage" resultMap="BaseResultMap">
+    SELECT
+    bm.*
+    FROM base_module bm where bm.status = 0 AND bm.parentid &lt;&gt; ""
+    <if test="module.id != null" >
+      and bm.id = #{module.id,jdbcType=VARCHAR}
+    </if>
+    <if test="module.name != null" >
+      and bm.name = #{module.name,jdbcType=VARCHAR}
+    </if>
+    <if test="module.publishat != null" >
+      and bm.publishat = #{module.publishat,jdbcType=TIMESTAMP}
+    </if>
+    <if test="module.linktype != null" >
+      and bm.linktype = #{module.linktype,jdbcType=INTEGER}
+    </if>
+    <if test="module.linkurl != null" >
+      and bm.linkurl = #{module.linkurl,jdbcType=VARCHAR}
+    </if>
+    <if test="module.parentid != null" >
+      and bm.parentid = #{module.parentid,jdbcType=VARCHAR}
+    </if>
+    <if test="module.idpath != null" >
+      and bm.idpath = #{module.idpath,jdbcType=VARCHAR}
+    </if>
+    <if test="module.sort != null" >
+      and bm.sort = #{module.sort,jdbcType=VARCHAR}
+    </if>
+    <if test="module.productId != null" >
+      and bm.product_id = #{module.productId,jdbcType=VARCHAR}
+    </if>
+    <if test="module.icon != null" >
+      and bm.icon = #{module.icon,jdbcType=VARCHAR}
+    </if>
+    <if test="module.type != null" >
+      and bm.type = #{module.type,jdbcType=VARCHAR}
+    </if>
+    <if test="module.description != null" >
+      and bm.description = #{module.description,jdbcType=VARCHAR}
+    </if>
+    <if test="module.btnid != null" >
+      and bm.btnId = #{module.btnid,jdbcType=VARCHAR}
+    </if>
+    <if test="module.btnfun != null" >
+      and bm.btnFun = #{module.btnfun,jdbcType=VARCHAR}
+    </if>
+    <if test="module.source != null" >
+      and bm.source = #{module.source,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <!--同级菜单名称不能重复-->
+  <select id="findModuleByName" resultMap="BaseResultMap">
+  SELECT
+  <include refid="Base_Column_List" />
+  FROM base_module 
+  WHERE del_flag = 0
+    <if test="name != null">
+      AND name = #{name}
+    </if>
+    <if test="type != null">
+      AND type = #{type}
+    </if>
+  </select>
+  <!-- 返回用户当前权限菜单 -->
+ <select id="findBtn"  resultMap="BaseResultMap">
+	 SELECT * FROM base_module bm
+		INNER JOIN base_module_permission bmp ON bmp.module_id = bm.id
+		INNER JOIN base_rolemember br ON br.role_id = bmp.target_id
+		WHERE br.user_id = #{userId,jdbcType=VARCHAR} AND bm.type = #{type,jdbcType=VARCHAR}
+		AND bm.parentid = #{parentId,jdbcType=VARCHAR} AND bm.del_flag = 0
+ 		ORDER BY
+		bm.sort
+ </select>
+   <!-- 返回用户当前权限全部菜单 -->
+ <select id="findBtn2"  resultMap="BaseResultMap">
+	 SELECT * FROM base_module bm
+		INNER JOIN base_module_permission bmp ON bmp.module_id = bm.id
+		INNER JOIN base_rolemember br ON br.role_id = bmp.target_id
+		WHERE br.user_id = #{userId,jdbcType=VARCHAR} AND bm.type = #{type,jdbcType=VARCHAR}
+		AND  bm.del_flag = 0
+ 		ORDER BY
+		bm.sort
+ </select>
+ <!-- 查询用户权限菜单 -->
+ <select id="findMenu"  resultMap="BaseResultMap">
+	 SELECT * FROM base_module bm
+		INNER JOIN base_module_permission bmp ON bmp.module_id = bm.id
+		INNER JOIN base_rolemember br ON br.role_id = bmp.target_id
+		WHERE br.user_id = #{userId,jdbcType=VARCHAR} AND bm.del_flag = 0
+		AND bm.type not in("3","按钮") 
+		GROUP BY bm.id
+ 		ORDER BY
+		bm.sort
+ </select>
+ <!-- 根据角色查询菜单 -->
+ <select id="findRoleMus" resultType="java.lang.String">
+ 	SELECT * FROM base_module bm
+	INNER JOIN base_module_permission bmp ON bmp.module_id = bm.id 
+	WHERE bmp.target_id = #{roleId,jdbcType=VARCHAR} AND bm.del_flag = 0
+ </select>
+ <select id="findByName" resultType="int">
+ 	SELECT count(*) FROM base_module
+ 	WHERE del_flag = 0
+ 		<if test="id != null">
+ 			AND id !=  #{id,jdbcType=VARCHAR}
+ 		</if>
+ 		<if test="name != null">
+ 			AND name = #{name,jdbcType=VARCHAR}
+ 		</if>
+ 		<if test="type != null">
+ 			AND type = #{type,jdbcType=VARCHAR}
+ 		</if>
+ </select>
+</mapper>

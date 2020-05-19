@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.RuleTemplateMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.RuleTemplate" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="template_name" property="templateName" jdbcType="VARCHAR" />
+    <result column="xml" property="xml" jdbcType="VARCHAR" />
+    <result column="creator_time" property="creatorTime" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, template_name, xml, creator_time, creator, del_flag, is_enabled
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rule_template
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rule_template
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.RuleTemplate" >
+    insert into rule_template (id, template_name, xml, 
+      creator_time, creator, del_flag, 
+      is_enabled)
+    values (#{id,jdbcType=CHAR}, #{templateName,jdbcType=VARCHAR}, #{xml,jdbcType=VARCHAR}, 
+      #{creatorTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, 
+      #{isEnabled,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.RuleTemplate" >
+    insert into rule_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="templateName != null" >
+        template_name,
+      </if>
+      <if test="xml != null" >
+        xml,
+      </if>
+      <if test="creatorTime != null" >
+        creator_time,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="templateName != null" >
+        #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="xml != null" >
+        #{xml,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorTime != null" >
+        #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.RuleTemplate" >
+    update rule_template
+    <set >
+      <if test="templateName != null" >
+        template_name = #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="xml != null" >
+        xml = #{xml,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorTime != null" >
+        creator_time = #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.RuleTemplate" >
+    update rule_template
+    set template_name = #{templateName,jdbcType=VARCHAR},
+      xml = #{xml,jdbcType=VARCHAR},
+      creator_time = #{creatorTime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      is_enabled = #{isEnabled,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

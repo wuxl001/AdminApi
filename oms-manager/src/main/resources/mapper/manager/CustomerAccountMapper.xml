@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.CustomerAccountMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.szag.oms.manager.common.domain.manager.CustomerAccount">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="source" property="source" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="data_permission" property="dataPermission"
+			jdbcType="INTEGER" />
+		<result column="account_type" property="accountType" jdbcType="VARCHAR" />
+		<result column="customer_type" property="customerType"
+			jdbcType="VARCHAR" />
+		<result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+		<result column="timezone" property="timezone" jdbcType="VARCHAR" />
+		<result column="language" property="language" jdbcType="VARCHAR" />
+		<result column="jpush_id" property="jpushId" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="position" property="position" jdbcType="VARCHAR" />
+		<result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+		<result column="receive_mail_accountEn" property="receiveMailAccounten"
+			jdbcType="VARCHAR" />
+		<result column="second_level" property="secondLevel" jdbcType="VARCHAR" />
+		<result column="wechat_id" property="wechatId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, account, username, password, status, source,
+		description,
+		data_permission, account_type,
+		customer_type, customer_id,
+		company_id, timezone, language, jpush_id, tel, email,
+		position,
+		area_code, receive_mail_accountEn, second_level,wechat_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select bca.*,IFNULL(oda.`status`,0) AS pushStatus,wechat_id from base_customer_account bca
+		LEFT JOIN order_disturb_advice_manager oda ON oda.user_id = bca.id
+		where bca.id = #{id,jdbcType=CHAR}
+	</select>
+
+	<select id="select" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_customer_account
+		WHERE 1=1
+		<if test="cus.account != '' and cus.account != null">
+			AND account LIKE
+			CONCAT('%',#{cus.account},'%')
+		</if>
+		<if test="cus.username != '' and cus.username != null">
+			AND username LIKE CONCAT('%',#{cus.username},'%')
+		</if>
+		<if test="cus.status != null">
+			AND `status` = #{cus.status}
+		</if>
+		<if test="cus.id != '' and cus.id != null">
+			AND id = #{cus.id,jdbcType=CHAR}
+		</if>
+		<if test="cus.customerId != '' and cus.customerId != null">
+			AND customer_id = #{cus.customerId,jdbcType=CHAR}
+		</if>
+		<if test="cus.email != '' and cus.email != null">
+			AND email =  #{cus.email,jdbcType=CHAR}
+		</if>
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		base_customer_account
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="cn.szag.oms.manager.common.domain.manager.CustomerAccount">
+		insert into base_customer_account (id, account,
+		username,
+		password, status, source,
+		description, data_permission,
+		account_type,
+		customer_type, customer_id, company_id,
+		timezone,
+		language, jpush_id,
+		tel, email, position,
+		area_code,
+		receive_mail_accountEn, second_level,wechat_id
+		)
+		values (#{id,jdbcType=CHAR},
+		#{account,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+		#{source,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		#{dataPermission,jdbcType=INTEGER},
+		#{accountType,jdbcType=VARCHAR},
+		#{customerType,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR},
+		#{companyId,jdbcType=VARCHAR},
+		#{timezone,jdbcType=VARCHAR},
+		#{language,jdbcType=VARCHAR},
+		#{jpushId,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{position,jdbcType=VARCHAR},
+		#{areaCode,jdbcType=VARCHAR},
+		#{receiveMailAccounten,jdbcType=VARCHAR},
+		#{secondLevel,jdbcType=VARCHAR},#{wechatId,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="cn.szag.oms.manager.common.domain.manager.CustomerAccount">
+		insert into base_customer_account
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="source != null">
+				source,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="dataPermission != null">
+				data_permission,
+			</if>
+			<if test="accountType != null">
+				account_type,
+			</if>
+			<if test="customerType != null">
+				customer_type,
+			</if>
+			<if test="customerId != null">
+				customer_id,
+			</if>
+			<if test="companyId != null">
+				company_id,
+			</if>
+			<if test="timezone != null">
+				timezone,
+			</if>
+			<if test="language != null">
+				language,
+			</if>
+			<if test="jpushId != null">
+				jpush_id,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="position != null">
+				position,
+			</if>
+			<if test="areaCode != null">
+				area_code,
+			</if>
+			<if test="receiveMailAccounten != null">
+				receive_mail_accountEn,
+			</if>
+			<if test="secondLevel != null">
+				second_level,
+			</if>
+			<if test="wechatId != null">
+				wechat_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="source != null">
+				#{source,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="dataPermission != null">
+				#{dataPermission,jdbcType=INTEGER},
+			</if>
+			<if test="accountType != null">
+				#{accountType,jdbcType=VARCHAR},
+			</if>
+			<if test="customerType != null">
+				#{customerType,jdbcType=VARCHAR},
+			</if>
+			<if test="customerId != null">
+				#{customerId,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				#{companyId,jdbcType=VARCHAR},
+			</if>
+			<if test="timezone != null">
+				#{timezone,jdbcType=VARCHAR},
+			</if>
+			<if test="language != null">
+				#{language,jdbcType=VARCHAR},
+			</if>
+			<if test="jpushId != null">
+				#{jpushId,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				#{position,jdbcType=VARCHAR},
+			</if>
+			<if test="areaCode != null">
+				#{areaCode,jdbcType=VARCHAR},
+			</if>
+			<if test="receiveMailAccounten != null">
+				#{receiveMailAccounten,jdbcType=VARCHAR},
+			</if>
+			<if test="secondLevel != null">
+				#{secondLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatId != null">
+				#{wechatId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="cn.szag.oms.manager.common.domain.manager.CustomerAccount">
+		update base_customer_account
+		<set>
+			<if test="account != null">
+				account = #{account,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="source != null">
+				source = #{source,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="dataPermission != null">
+				data_permission = #{dataPermission,jdbcType=INTEGER},
+			</if>
+			<if test="accountType != null">
+				account_type = #{accountType,jdbcType=VARCHAR},
+			</if>
+			<if test="customerType != null">
+				customer_type = #{customerType,jdbcType=VARCHAR},
+			</if>
+			<if test="customerId != null">
+				customer_id = #{customerId,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				company_id = #{companyId,jdbcType=VARCHAR},
+			</if>
+			<if test="timezone != null">
+				timezone = #{timezone,jdbcType=VARCHAR},
+			</if>
+			<if test="language != null">
+				language = #{language,jdbcType=VARCHAR},
+			</if>
+			<if test="jpushId != null">
+				jpush_id = #{jpushId,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				position = #{position,jdbcType=VARCHAR},
+			</if>
+			<if test="areaCode != null">
+				area_code = #{areaCode,jdbcType=VARCHAR},
+			</if>
+			<if test="receiveMailAccounten != null">
+				receive_mail_accountEn =
+				#{receiveMailAccounten,jdbcType=VARCHAR},
+			</if>
+			<if test="secondLevel != null">
+				second_level = #{secondLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatId != null">
+				wechat_id = #{wechatId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="cn.szag.oms.manager.common.domain.manager.CustomerAccount">
+		update base_customer_account
+		set account =
+		#{account,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		status =
+		#{status,jdbcType=INTEGER},
+		source = #{source,jdbcType=VARCHAR},
+		description = #{description,jdbcType=VARCHAR},
+		data_permission =
+		#{dataPermission,jdbcType=INTEGER},
+		account_type =
+		#{accountType,jdbcType=VARCHAR},
+		customer_type =
+		#{customerType,jdbcType=VARCHAR},
+		customer_id =
+		#{customerId,jdbcType=VARCHAR},
+		company_id =
+		#{companyId,jdbcType=VARCHAR},
+		timezone = #{timezone,jdbcType=VARCHAR},
+		language = #{language,jdbcType=VARCHAR},
+		jpush_id =
+		#{jpushId,jdbcType=VARCHAR},
+		tel = #{tel,jdbcType=VARCHAR},
+		email =
+		#{email,jdbcType=VARCHAR},
+		position = #{position,jdbcType=VARCHAR},
+		area_code = #{areaCode,jdbcType=VARCHAR},
+		receive_mail_accountEn =
+		#{receiveMailAccounten,jdbcType=VARCHAR},
+		second_level =
+		#{secondLevel,jdbcType=VARCHAR},
+		wechat_id = #{wechatId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<select id="findByCustomerId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		SELECT bca.id,bca.email,bca.jpush_id,IFNULL(oda.`status`,0) AS `status`,bca.wechat_id FROM base_customer_account bca
+		LEFT JOIN order_disturb_advice_manager oda ON oda.user_id = bca.id
+		WHERE bca.customer_id = #{customerId,jdbcType=VARCHAR}
+		GROUP BY bca.id
+	</select>
+	<select id="selectList" resultType="int">
+		select
+		count(id)
+		from base_customer_account WHERE (account =#{cus.account,jdbcType=VARCHAR} 
+			<if test="cus.tel != '' and cus.tel != null">
+				OR tel =#{cus.tel,jdbcType=VARCHAR}
+			</if>
+			<if test="cus.email != '' and cus.email != null">
+				OR email =  #{cus.email,jdbcType=VARCHAR}
+			</if>
+		)
+		<if test="cus.id != '' and cus.id != null">
+			 AND id!=#{cus.id,jdbcType=CHAR}
+		</if>
+	</select>
+</mapper>

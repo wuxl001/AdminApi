@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.CountryMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.szag.oms.manager.common.domain.manager.Country">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="ename" property="ename" jdbcType="VARCHAR" />
+		<result column="region" property="region" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+		<result column="lastupdate" property="lastupdate" jdbcType="TIMESTAMP" />
+		<result column="creator" property="creator" jdbcType="VARCHAR" />
+		<result column="editor" property="editor" jdbcType="VARCHAR" />
+		<result column="delFlag" property="delflag" jdbcType="INTEGER" />
+		<result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, code, name, ename, region, remark, createdate,
+		lastupdate, creator,
+		editor, delFlag,
+		pic_url
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_country
+		where delFlag = '0'
+		<where>
+			<if test="id != null">
+				OR id = #{id,jdbcType=CHAR}
+			</if>
+
+			<if test="name != null">
+				OR name = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="ename != null">
+				OR ename = #{ename,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	<select id="selectList" resultMap="BaseResultMap"
+		parameterType="cn.szag.oms.manager.common.domain.manager.Country">
+		select
+		<include refid="Base_Column_List" />
+		from base_country
+		where delFlag = '0'
+		<if test="keyword != null and keyword != '' ">
+			AND `code` LIKE CONCAT('%',#{keyword},'%') OR `name`
+			LIKE
+			CONCAT('%',#{keyword},'%') OR
+			ename LIKE
+			CONCAT('%',#{keyword},'%')
+		</if>
+
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		base_country
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.Country">
+		insert into base_country (id,
+		code, name,
+		ename, region, remark,
+		createdate, lastupdate, creator,
+		editor, delFlag, pic_url
+		)
+		values (#{id,jdbcType=CHAR},
+		#{code,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{ename,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{createdate,jdbcType=TIMESTAMP},
+		#{lastupdate,jdbcType=TIMESTAMP},
+		#{creator,jdbcType=VARCHAR},
+		#{editor,jdbcType=VARCHAR}, #{delflag,jdbcType=INTEGER},
+		#{picUrl,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.Country">
+		insert into base_country
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="code != null">
+				code,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="ename != null">
+				ename,
+			</if>
+			<if test="region != null">
+				region,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="createdate != null">
+				createdate,
+			</if>
+			<if test="lastupdate != null">
+				lastupdate,
+			</if>
+			<if test="creator != null">
+				creator,
+			</if>
+			<if test="editor != null">
+				editor,
+			</if>
+			<if test="delflag != null">
+				delFlag,
+			</if>
+			<if test="picUrl != null">
+				pic_url,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="ename != null">
+				#{ename,jdbcType=VARCHAR},
+			</if>
+			<if test="region != null">
+				#{region,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				#{createdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastupdate != null">
+				#{lastupdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="editor != null">
+				#{editor,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				#{delflag,jdbcType=INTEGER},
+			</if>
+			<if test="picUrl != null">
+				#{picUrl,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.Country">
+		update base_country
+		<set>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="ename != null">
+				ename = #{ename,jdbcType=VARCHAR},
+			</if>
+			<if test="region != null">
+				region = #{region,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				createdate = #{createdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastupdate != null">
+				lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creator != null">
+				creator = #{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="editor != null">
+				editor = #{editor,jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				delFlag = #{delflag,jdbcType=INTEGER},
+			</if>
+			<if test="picUrl != null">
+				pic_url = #{picUrl,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.Country">
+		update
+		base_country
+		set code = #{code,jdbcType=VARCHAR},
+		name =
+		#{name,jdbcType=VARCHAR},
+		ename = #{ename,jdbcType=VARCHAR},
+		region =
+		#{region,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		createdate = #{createdate,jdbcType=TIMESTAMP},
+		lastupdate =
+		#{lastupdate,jdbcType=TIMESTAMP},
+		creator =
+		#{creator,jdbcType=VARCHAR},
+		editor = #{editor,jdbcType=VARCHAR},
+		delFlag = #{delflag,jdbcType=INTEGER},
+		pic_url =
+		#{picUrl,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<select id="find" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT * FROM base_country where delFlag = 0 AND id = #{id,jdbcType=CHAR}
+	</select>
+</mapper>

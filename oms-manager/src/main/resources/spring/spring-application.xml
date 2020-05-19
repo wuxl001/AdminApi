@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<description>Spring Configuration</description>
+
+	<!-- 启用注解 -->
+	<context:annotation-config />
+	<!-- 分页配置 -->
+	<bean id="pageInterector" class="cn.szag.oms.manager.common.page.PageInterceptor">
+		<property name="properties">
+			<props>
+				<prop key="databaseType">mysql</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描 -->
+	<context:component-scan base-package="cn.szag.oms.manager">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath*:*.properties" />
+	<import resource="classpath*:/spring/datasource-customer.xml" />
+	<import resource="classpath*:/spring/datasource-manager.xml" />
+	<!-- 本地登录 -->
+	<!-- <import resource="classpath*:/spring/spring-loginshiro.xml" /> -->
+	<import resource="classpath*:/spring/spring-redis.xml" />
+	<!-- 加载bean -->
+	<bean id="ldapConfig" class="cn.szag.oms.manager.common.ldap.LdapConfig">
+		<property name="url" value="${ldap.url}" />
+		<property name="user" value="${ldap.user}" />
+		<property name="pwd" value="${ldap.pwd}" />
+		<property name="base" value="${ldap.base}" />
+	</bean>
+	<bean id="omsApiUrl" class="cn.szag.oms.manager.common.utils.Url">
+		<property name="uggUrl" value="${url.ugg}" />
+		<property name="omsUrl" value="${url.oms}" />
+		<property name="cfsUrl" value="${url.cfs}" />
+		<property name="feiyongUrl" value="${url.feiyong}" />
+		<property name="imagesUrl" value="${url.images}" />
+		<property name="wechatUrl" value="${url.wechat}" />
+		<property name="wechatEUrl" value="${url.wechatE}" />
+		<property name="mqUrl" value="${url.mq}" />
+		<property name="carryOut" value="${url.carryOut}" />
+	</bean>
+	<bean id="ftpDataSource" class="cn.szag.oms.manager.common.domain.manager.FtpDataSource">
+		<property name="ip" value="${ftp.ip}" />
+		<property name="user" value="${ftp.user}" />
+		<property name="password" value="${ftp.password}" />
+		<property name="port" value="${ftp.port}" />
+		<property name="filePath" value="${ftp.filePath}" />
+	</bean>
+	<!-- 定义文件上传解析器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设定默认编码 -->
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<!-- 设定文件上传的最大值5MB，5*1024*1024 -->
+		<property name="maxUploadSize" value="5242880"></property>
+	</bean>
+
+</beans>

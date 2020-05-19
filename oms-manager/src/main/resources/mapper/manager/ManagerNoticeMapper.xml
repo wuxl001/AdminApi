@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.ManagerNoticeMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.szag.oms.manager.common.domain.manager.ManagerNotice">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="title_type" property="titleType" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="order_id" property="orderId" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="receiver_id" property="receiverId" jdbcType="VARCHAR" />
+		<result column="read_status" property="readStatus" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="readtime" property="readtime" jdbcType="TIMESTAMP" />
+		<result column="container_id" property="containerId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, title_type, title, order_id, content, receiver_id,
+		read_status,
+		createtime, readtime,
+		container_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from base_manager_notice
+		where id = #{id,jdbcType=CHAR}
+	</select>
+
+	<select id="selectInform" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		SELECT bmn.id,bmn.createtime,orh.remark AS content,a.username AS receiver_id,bmn.order_id FROM order_status_history orh 
+		INNER JOIN base_manager_notice bmn ON bmn.order_id = orh.order_id
+		LEFT JOIN base_customer_account AS a ON a.id=bmn.receiver_id
+		WHERE orh.order_id = #{orderId} AND orh.phase = "补料"
+		GROUP BY orh.id
+		ORDER BY bmn.createtime DESC
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		base_manager_notice
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="cn.szag.oms.manager.common.domain.manager.ManagerNotice">
+		insert into base_manager_notice (id, title_type, title,
+		order_id, content, receiver_id,
+		read_status, createtime, readtime,
+		container_id)
+		values (#{id,jdbcType=CHAR},
+		#{titleType,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{orderId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+		#{receiverId,jdbcType=VARCHAR},
+		#{readStatus,jdbcType=INTEGER},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{readtime,jdbcType=TIMESTAMP},
+		#{containerId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="cn.szag.oms.manager.common.domain.manager.ManagerNotice">
+		insert into base_manager_notice
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="titleType != null">
+				title_type,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="receiverId != null">
+				receiver_id,
+			</if>
+			<if test="readStatus != null">
+				read_status,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="readtime != null">
+				readtime,
+			</if>
+			<if test="containerId != null">
+				container_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="titleType != null">
+				#{titleType,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="receiverId != null">
+				#{receiverId,jdbcType=VARCHAR},
+			</if>
+			<if test="readStatus != null">
+				#{readStatus,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="readtime != null">
+				#{readtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="containerId != null">
+				#{containerId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="cn.szag.oms.manager.common.domain.manager.ManagerNotice">
+		update base_manager_notice
+		<set>
+			<if test="titleType != null">
+				title_type = #{titleType,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				order_id = #{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="receiverId != null">
+				receiver_id = #{receiverId,jdbcType=VARCHAR},
+			</if>
+			<if test="readStatus != null">
+				read_status = #{readStatus,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="readtime != null">
+				readtime = #{readtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="containerId != null">
+				container_id = #{containerId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="cn.szag.oms.manager.common.domain.manager.ManagerNotice">
+		update base_manager_notice
+		set title_type =
+		#{titleType,jdbcType=INTEGER},
+		title = #{title,jdbcType=VARCHAR},
+		order_id = #{orderId,jdbcType=VARCHAR},
+		content =
+		#{content,jdbcType=VARCHAR},
+		receiver_id =
+		#{receiverId,jdbcType=VARCHAR},
+		read_status =
+		#{readStatus,jdbcType=INTEGER},
+		createtime =
+		#{createtime,jdbcType=TIMESTAMP},
+		readtime =
+		#{readtime,jdbcType=TIMESTAMP},
+		container_id =
+		#{containerId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<select id="findByUserId" resultType="int" parameterType="java.lang.String">
+		select
+		COUNT(*)
+		from base_manager_notice
+		where read_status = 0 AND receiver_id
+		=
+		#{userId,jdbcType=VARCHAR}
+		ORDER BY createtime DESC
+	</select>
+	<select id="findByPage" resultMap="BaseResultMap">
+		select bmn.*,ows.box_no AS boxNo
+		from base_manager_notice bmn
+		LEFT JOIN order_import oi ON oi.id = bmn.order_id
+		LEFT JOIN order_export oe ON oe.id = bmn.order_id
+		LEFT JOIN order_worklist_status ows ON
+		FIND_IN_SET(ows.id,bmn.container_id)
+		<where>
+			<if test="m.keyWord != null and m.keyWord != ''">
+				AND (ows.worklist_no like concat('%',#{m.keyWord,jdbcType=VARCHAR},'%')
+				OR (oi.order_no like concat('%',#{m.keyWord,jdbcType=VARCHAR},'%') OR oe.order_no like concat('%',#{m.keyWord,jdbcType=VARCHAR},'%'))
+				OR ows.box_no like concat('%',#{m.keyWord,jdbcType=VARCHAR},'%'))
+			</if>
+			<if test="m.worklistNo != null and m.worklistNo != ''">
+				AND ows.worklist_no like
+				concat('%',#{m.worklistNo,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="m.orderNo != null and m.orderNo != ''">
+				AND (oi.order_no like concat('%',#{m.orderNo,jdbcType=VARCHAR},'%') OR
+					 oe.order_no like concat('%',#{m.orderNo,jdbcType=VARCHAR},'%'))
+			</if>
+			<if test="m.boxNo != null and m.boxNo != ''">
+				AND ows.box_no like
+				concat('%',#{m.boxNo,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="m.titleType != null">
+				AND bmn.title_type = #{m.titleType,jdbcType=INTEGER}
+			</if>
+			<if test="m.title != null">
+				AND bmn.title = #{m.title,jdbcType=INTEGER}
+			</if>
+			<if test="m.receiverId != null">
+				AND bmn.receiver_id = #{m.receiverId,jdbcType=VARCHAR}
+			</if>
+		</where>
+		GROUP BY bmn.id
+		ORDER BY createtime DESC
+	</select>
+	<select id="select" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_manager_notice
+		WHERE order_id = #{orderId,jdbcType=VARCHAR}
+		AND container_id like concat('%',#{containerId,jdbcType=VARCHAR},'%')
+		AND receiver_id = #{userId,jdbcType=VARCHAR}
+		ORDER BY createtime DESC
+	</select>
+	<update id="updateStatus"
+		parameterType="cn.szag.oms.manager.common.domain.manager.ManagerNotice">
+		update base_manager_notice
+		read_status = 1,
+		readtime =
+		NOW(),
+		container_id = #{containerId,jdbcType=VARCHAR}
+		where receiver_id
+		= #{userId,jdbcType=CHAR}
+	</update>
+</mapper>

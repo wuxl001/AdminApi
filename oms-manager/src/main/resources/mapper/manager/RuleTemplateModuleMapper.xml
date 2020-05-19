@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.RuleTemplateModuleMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.RuleTemplateModule" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="template_id" property="templateId" jdbcType="VARCHAR" />
+    <result column="node_name" property="nodeName" jdbcType="VARCHAR" />
+    <result column="movement" property="movement" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="father_node_id" property="fatherNodeId" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="node_id" property="nodeId" jdbcType="VARCHAR" />
+    <result column="the_next_node" property="theNextNode" jdbcType="VARCHAR" />
+    <result column="merger" property="merger" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="timer" property="timer" jdbcType="VARCHAR" />
+    <result column="auto" property="auto" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, template_id, node_name, movement, type, father_node_id, value, node_id, the_next_node, 
+    merger, sort, timer, auto
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rule_template_module
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rule_template_module
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.RuleTemplateModule" >
+    insert into rule_template_module (id, template_id, node_name, 
+      movement, type, father_node_id, 
+      value, node_id, the_next_node, 
+      merger, sort, timer, 
+      auto)
+    values (#{id,jdbcType=CHAR}, #{templateId,jdbcType=VARCHAR}, #{nodeName,jdbcType=VARCHAR}, 
+      #{movement,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{fatherNodeId,jdbcType=VARCHAR}, 
+      #{value,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, #{theNextNode,jdbcType=VARCHAR}, 
+      #{merger,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR}, #{timer,jdbcType=VARCHAR}, 
+      #{auto,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.RuleTemplateModule" >
+    insert into rule_template_module
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="nodeName != null" >
+        node_name,
+      </if>
+      <if test="movement != null" >
+        movement,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="fatherNodeId != null" >
+        father_node_id,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="nodeId != null" >
+        node_id,
+      </if>
+      <if test="theNextNode != null" >
+        the_next_node,
+      </if>
+      <if test="merger != null" >
+        merger,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="timer != null" >
+        timer,
+      </if>
+      <if test="auto != null" >
+        auto,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="movement != null" >
+        #{movement,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherNodeId != null" >
+        #{fatherNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="theNextNode != null" >
+        #{theNextNode,jdbcType=VARCHAR},
+      </if>
+      <if test="merger != null" >
+        #{merger,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="timer != null" >
+        #{timer,jdbcType=VARCHAR},
+      </if>
+      <if test="auto != null" >
+        #{auto,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.RuleTemplateModule" >
+    update rule_template_module
+    <set >
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        node_name = #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="movement != null" >
+        movement = #{movement,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherNodeId != null" >
+        father_node_id = #{fatherNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        node_id = #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="theNextNode != null" >
+        the_next_node = #{theNextNode,jdbcType=VARCHAR},
+      </if>
+      <if test="merger != null" >
+        merger = #{merger,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="timer != null" >
+        timer = #{timer,jdbcType=VARCHAR},
+      </if>
+      <if test="auto != null" >
+        auto = #{auto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.RuleTemplateModule" >
+    update rule_template_module
+    set template_id = #{templateId,jdbcType=VARCHAR},
+      node_name = #{nodeName,jdbcType=VARCHAR},
+      movement = #{movement,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      father_node_id = #{fatherNodeId,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      node_id = #{nodeId,jdbcType=VARCHAR},
+      the_next_node = #{theNextNode,jdbcType=VARCHAR},
+      merger = #{merger,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR},
+      timer = #{timer,jdbcType=VARCHAR},
+      auto = #{auto,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

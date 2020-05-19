@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.OrderReturnContainerInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderReturnContainerInfo" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="empty_time" property="emptyTime" jdbcType="TIMESTAMP" />
+    <result column="returnbox_time" property="returnboxTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="empty_place" property="emptyPlace" jdbcType="VARCHAR" />
+    <result column="check_site" property="checkSite" jdbcType="VARCHAR" />
+    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="containerId" property="containerId" jdbcType="VARCHAR" />
+    <result column="returnbox_place" property="returnboxPlace" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="creater_id" property="createrId" jdbcType="VARCHAR" />
+    <result column="updater_id" property="updaterId" jdbcType="VARCHAR" />
+    <result column="freedemurrageOverdueDays" property="freedemurrageoverduedays" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="boxfreeoverdueDays" property="boxfreeoverduedays" jdbcType="INTEGER" />
+    <result column="free_demurrage" property="freeDemurrage" jdbcType="VARCHAR" />
+    <result column="boxfree_period" property="boxfreePeriod" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.szag.oms.manager.common.domain.manager.OrderReturnContainerInfo" extends="BaseResultMap" >
+    <result column="abnormal_remark" property="abnormalRemark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, empty_time, returnbox_time, status, empty_place, check_site, check_time, 
+    containerId, returnbox_place, create_time, del_flag, creater_id, updater_id, freedemurrageOverdueDays, 
+    update_time, boxfreeoverdueDays
+  </sql>
+  <sql id="Blob_Column_List" >
+    abnormal_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_return_container_info
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_return_container_info
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.OrderReturnContainerInfo" >
+    insert into order_return_container_info (id, order_id, empty_time, 
+      returnbox_time, status, empty_place, 
+      check_site, check_time, containerId, 
+      returnbox_place, create_time, del_flag, 
+      creater_id, updater_id, freedemurrageOverdueDays, 
+      update_time, boxfreeoverdueDays, abnormal_remark
+      )
+    values (#{id,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR}, #{emptyTime,jdbcType=TIMESTAMP}, 
+      #{returnboxTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{emptyPlace,jdbcType=VARCHAR}, 
+      #{checkSite,jdbcType=VARCHAR}, #{checkTime,jdbcType=TIMESTAMP}, #{containerId,jdbcType=VARCHAR}, 
+      #{returnboxPlace,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER}, 
+      #{createrId,jdbcType=VARCHAR}, #{updaterId,jdbcType=VARCHAR}, #{freedemurrageoverduedays,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{boxfreeoverduedays,jdbcType=INTEGER}, #{abnormalRemark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderReturnContainerInfo" >
+    insert into order_return_container_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="emptyTime != null" >
+        empty_time,
+      </if>
+      <if test="returnboxTime != null" >
+        returnbox_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="emptyPlace != null" >
+        empty_place,
+      </if>
+      <if test="checkSite != null" >
+        check_site,
+      </if>
+      <if test="checkTime != null" >
+        check_time,
+      </if>
+      <if test="containerId != null" >
+        containerId,
+      </if>
+      <if test="returnboxPlace != null" >
+        returnbox_place,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="createrId != null" >
+        creater_id,
+      </if>
+      <if test="updaterId != null" >
+        updater_id,
+      </if>
+      <if test="freedemurrageoverduedays != null" >
+        freedemurrageOverdueDays,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="boxfreeoverduedays != null" >
+        boxfreeoverdueDays,
+      </if>
+      <if test="abnormalRemark != null" >
+        abnormal_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="emptyTime != null" >
+        #{emptyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnboxTime != null" >
+        #{returnboxTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="emptyPlace != null" >
+        #{emptyPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="checkSite != null" >
+        #{checkSite,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="containerId != null" >
+        #{containerId,jdbcType=VARCHAR},
+      </if>
+      <if test="returnboxPlace != null" >
+        #{returnboxPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createrId != null" >
+        #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="updaterId != null" >
+        #{updaterId,jdbcType=VARCHAR},
+      </if>
+      <if test="freedemurrageoverduedays != null" >
+        #{freedemurrageoverduedays,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="boxfreeoverduedays != null" >
+        #{boxfreeoverduedays,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalRemark != null" >
+        #{abnormalRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderReturnContainerInfo" >
+    update order_return_container_info
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="emptyTime != null" >
+        empty_time = #{emptyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnboxTime != null" >
+        returnbox_time = #{returnboxTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="emptyPlace != null" >
+        empty_place = #{emptyPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="checkSite != null" >
+        check_site = #{checkSite,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="containerId != null" >
+        containerId = #{containerId,jdbcType=VARCHAR},
+      </if>
+      <if test="returnboxPlace != null" >
+        returnbox_place = #{returnboxPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createrId != null" >
+        creater_id = #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="updaterId != null" >
+        updater_id = #{updaterId,jdbcType=VARCHAR},
+      </if>
+      <if test="freedemurrageoverduedays != null" >
+        freedemurrageOverdueDays = #{freedemurrageoverduedays,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="boxfreeoverduedays != null" >
+        boxfreeoverdueDays = #{boxfreeoverduedays,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalRemark != null" >
+        abnormal_remark = #{abnormalRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.szag.oms.manager.common.domain.manager.OrderReturnContainerInfo" >
+    update order_return_container_info
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      empty_time = #{emptyTime,jdbcType=TIMESTAMP},
+      returnbox_time = #{returnboxTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      empty_place = #{emptyPlace,jdbcType=VARCHAR},
+      check_site = #{checkSite,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      containerId = #{containerId,jdbcType=VARCHAR},
+      returnbox_place = #{returnboxPlace,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      creater_id = #{createrId,jdbcType=VARCHAR},
+      updater_id = #{updaterId,jdbcType=VARCHAR},
+      freedemurrageOverdueDays = #{freedemurrageoverduedays,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      boxfreeoverdueDays = #{boxfreeoverduedays,jdbcType=INTEGER},
+      abnormal_remark = #{abnormalRemark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.OrderReturnContainerInfo" >
+    update order_return_container_info
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      empty_time = #{emptyTime,jdbcType=TIMESTAMP},
+      returnbox_time = #{returnboxTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      empty_place = #{emptyPlace,jdbcType=VARCHAR},
+      check_site = #{checkSite,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      containerId = #{containerId,jdbcType=VARCHAR},
+      returnbox_place = #{returnboxPlace,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      creater_id = #{createrId,jdbcType=VARCHAR},
+      updater_id = #{updaterId,jdbcType=VARCHAR},
+      freedemurrageOverdueDays = #{freedemurrageoverduedays,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      boxfreeoverdueDays = #{boxfreeoverduedays,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="select" resultMap="ResultMapWithBLOBs">
+    select 
+    orci.id, 
+    orci.order_id, 
+    ows.cusEmpty_time AS cusEmptyTime,
+    ows.empty_time, 
+    orci.returnbox_time, 
+    IF(ows.type =1 ,IFNULL(orci.status,IF(ows.schedule_status = 7,1,0)),orci.status) AS `status`, 
+    orci.empty_place, 
+    orci.check_site,
+    orci.check_time, 
+    orci.containerId, 
+    orci.returnbox_place, 
+    if(DATEDIFF(NOW(),ows.free_demurrage)> 0 ,DATEDIFF(NOW(),ows.free_demurrage),0) as freedemurrageOverdueDays,
+    IF(ows.returnboxTime IS NULL ,DATEDIFF(NOW(),ows.boxfree_period),DATEDIFF(ows.returnboxTime,ows.boxfree_period)) AS boxfreeoverdueDays,
+    ows.free_demurrage,
+    ows.boxfree_period
+    from order_return_container_info orci 
+	RIGHT JOIN order_worklist_status ows  ON ows.id = orci.containerId
+    where ows.order_id = #{orderId,jdbcType=VARCHAR} AND ows.id = #{containerId,jdbcType=VARCHAR}
+  </select>
+</mapper>

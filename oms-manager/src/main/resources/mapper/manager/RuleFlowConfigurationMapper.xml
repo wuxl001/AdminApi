@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.RuleFlowConfigurationMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.RuleFlowConfiguration" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="flow_name" property="flowName" jdbcType="VARCHAR" />
+    <result column="at_template_id" property="atTemplateId" jdbcType="VARCHAR" />
+    <result column="calss_name" property="calssName" jdbcType="VARCHAR" />
+    <result column="subscription_name" property="subscriptionName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="template_id" property="templateId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, flow_name, at_template_id, calss_name, subscription_name, create_date, creator, 
+    del_flag, template_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rule_flow_configuration
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rule_flow_configuration
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.RuleFlowConfiguration" >
+    insert into rule_flow_configuration (id, flow_name, at_template_id, 
+      calss_name, subscription_name, create_date, 
+      creator, del_flag, template_id
+      )
+    values (#{id,jdbcType=CHAR}, #{flowName,jdbcType=VARCHAR}, #{atTemplateId,jdbcType=VARCHAR}, 
+      #{calssName,jdbcType=VARCHAR}, #{subscriptionName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, #{templateId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.RuleFlowConfiguration" >
+    insert into rule_flow_configuration
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="flowName != null" >
+        flow_name,
+      </if>
+      <if test="atTemplateId != null" >
+        at_template_id,
+      </if>
+      <if test="calssName != null" >
+        calss_name,
+      </if>
+      <if test="subscriptionName != null" >
+        subscription_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="flowName != null" >
+        #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="atTemplateId != null" >
+        #{atTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="calssName != null" >
+        #{calssName,jdbcType=VARCHAR},
+      </if>
+      <if test="subscriptionName != null" >
+        #{subscriptionName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.RuleFlowConfiguration" >
+    update rule_flow_configuration
+    <set >
+      <if test="flowName != null" >
+        flow_name = #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="atTemplateId != null" >
+        at_template_id = #{atTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="calssName != null" >
+        calss_name = #{calssName,jdbcType=VARCHAR},
+      </if>
+      <if test="subscriptionName != null" >
+        subscription_name = #{subscriptionName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.RuleFlowConfiguration" >
+    update rule_flow_configuration
+    set flow_name = #{flowName,jdbcType=VARCHAR},
+      at_template_id = #{atTemplateId,jdbcType=VARCHAR},
+      calss_name = #{calssName,jdbcType=VARCHAR},
+      subscription_name = #{subscriptionName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      template_id = #{templateId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

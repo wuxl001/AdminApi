@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.DispatchOrderMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.DispatchOrder" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="container_id" property="containerId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="no" property="no" jdbcType="VARCHAR" />
+    <result column="start_place" property="startPlace" jdbcType="VARCHAR" />
+    <result column="end_place" property="endPlace" jdbcType="VARCHAR" />
+    <result column="plate_no" property="plateNo" jdbcType="VARCHAR" />
+    <result column="driver_name" property="driverName" jdbcType="VARCHAR" />
+    <result column="driver_tel" property="driverTel" jdbcType="VARCHAR" />
+    <result column="dispatcher" property="dispatcher" jdbcType="VARCHAR" />
+    <result column="transferID" property="transferID" jdbcType="VARCHAR" />
+    <result column="arrival_time" property="arrivalTime" jdbcType="TIMESTAMP" />
+    <result column="departure_time" property="departureTime" jdbcType="TIMESTAMP" />
+    <result column="empty_time" property="emptyTime" jdbcType="TIMESTAMP" />
+    <result column="returnbox_time" property="returnboxTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, container_id, status, type, no, start_place, end_place, plate_no, driver_name, 
+    driver_tel, dispatcher, transferID, arrival_time, departure_time, empty_time, returnbox_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_dispatch_order
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_dispatch_order
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.DispatchOrder" >
+    insert into order_dispatch_order (id, container_id, status, 
+      type, no, start_place, 
+      end_place, plate_no, driver_name, 
+      driver_tel, dispatcher, transferID, 
+      arrival_time, departure_time, empty_time, 
+      returnbox_time)
+    values (#{id,jdbcType=CHAR}, #{containerId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{no,jdbcType=VARCHAR}, #{startPlace,jdbcType=VARCHAR}, 
+      #{endPlace,jdbcType=VARCHAR}, #{plateNo,jdbcType=VARCHAR}, #{driverName,jdbcType=VARCHAR}, 
+      #{driverTel,jdbcType=VARCHAR}, #{dispatcher,jdbcType=VARCHAR}, #{transferID,jdbcType=VARCHAR}, 
+      #{arrivalTime,jdbcType=TIMESTAMP}, #{departureTime,jdbcType=TIMESTAMP}, #{emptyTime,jdbcType=TIMESTAMP}, 
+      #{returnboxTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.DispatchOrder" >
+    insert into order_dispatch_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="containerId != null" >
+        container_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="no != null" >
+        no,
+      </if>
+      <if test="startPlace != null" >
+        start_place,
+      </if>
+      <if test="endPlace != null" >
+        end_place,
+      </if>
+      <if test="plateNo != null" >
+        plate_no,
+      </if>
+      <if test="driverName != null" >
+        driver_name,
+      </if>
+      <if test="driverTel != null" >
+        driver_tel,
+      </if>
+      <if test="dispatcher != null" >
+        dispatcher,
+      </if>
+      <if test="transferID != null" >
+        transferID,
+      </if>
+      <if test="arrivalTime != null" >
+        arrival_time,
+      </if>
+      <if test="departureTime != null" >
+        departure_time,
+      </if>
+      <if test="emptyTime != null" >
+        empty_time,
+      </if>
+      <if test="returnboxTime != null" >
+        returnbox_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="containerId != null" >
+        #{containerId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="startPlace != null" >
+        #{startPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="endPlace != null" >
+        #{endPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNo != null" >
+        #{plateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null" >
+        #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverTel != null" >
+        #{driverTel,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatcher != null" >
+        #{dispatcher,jdbcType=VARCHAR},
+      </if>
+      <if test="transferID != null" >
+        #{transferID,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalTime != null" >
+        #{arrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departureTime != null" >
+        #{departureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emptyTime != null" >
+        #{emptyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnboxTime != null" >
+        #{returnboxTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.DispatchOrder" >
+    update order_dispatch_order
+    <set >
+      <if test="containerId != null" >
+        container_id = #{containerId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        no = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="startPlace != null" >
+        start_place = #{startPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="endPlace != null" >
+        end_place = #{endPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNo != null" >
+        plate_no = #{plateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null" >
+        driver_name = #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverTel != null" >
+        driver_tel = #{driverTel,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatcher != null" >
+        dispatcher = #{dispatcher,jdbcType=VARCHAR},
+      </if>
+      <if test="transferID != null" >
+        transferID = #{transferID,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalTime != null" >
+        arrival_time = #{arrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departureTime != null" >
+        departure_time = #{departureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emptyTime != null" >
+        empty_time = #{emptyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnboxTime != null" >
+        returnbox_time = #{returnboxTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.DispatchOrder" >
+    update order_dispatch_order
+    set container_id = #{containerId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      no = #{no,jdbcType=VARCHAR},
+      start_place = #{startPlace,jdbcType=VARCHAR},
+      end_place = #{endPlace,jdbcType=VARCHAR},
+      plate_no = #{plateNo,jdbcType=VARCHAR},
+      driver_name = #{driverName,jdbcType=VARCHAR},
+      driver_tel = #{driverTel,jdbcType=VARCHAR},
+      dispatcher = #{dispatcher,jdbcType=VARCHAR},
+      transferID = #{transferID,jdbcType=VARCHAR},
+      arrival_time = #{arrivalTime,jdbcType=TIMESTAMP},
+      departure_time = #{departureTime,jdbcType=TIMESTAMP},
+      empty_time = #{emptyTime,jdbcType=TIMESTAMP},
+      returnbox_time = #{returnboxTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="select" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_dispatch_order
+    WHERE transferID =  #{transferID,jdbcType=CHAR}
+  </select>
+</mapper>

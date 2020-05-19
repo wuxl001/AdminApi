@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.OrderContainerAdviceMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderContainerAdvice" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="sponsor_id" property="sponsorId" jdbcType="VARCHAR" />
+    <result column="sponsor" property="sponsor" jdbcType="VARCHAR" />
+    <result column="adivce_time" property="adivceTime" jdbcType="TIMESTAMP" />
+    <result column="read_status" property="readStatus" jdbcType="INTEGER" />
+    <result column="dispatch_id" property="dispatchId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="schedule_status" property="scheduleStatus" jdbcType="VARCHAR" />
+    <result column="container_id" property="containerId" jdbcType="VARCHAR" />
+    <result column="dispatcher" property="dispatcher" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, sponsor_id, sponsor, adivce_time, read_status, dispatch_id ,container_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_return_container_advice
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_return_container_advice
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.OrderContainerAdvice" >
+    insert into order_return_container_advice (id, order_id, 
+      sponsor_id, sponsor, adivce_time, 
+      read_status, dispatch_id,container_id)
+    values (#{id,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR},
+      #{sponsorId,jdbcType=VARCHAR}, #{sponsor,jdbcType=VARCHAR}, #{adivceTime,jdbcType=TIMESTAMP}, 
+      #{readStatus,jdbcType=INTEGER}, #{dispatchId,jdbcType=VARCHAR}, #{containerId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderContainerAdvice" >
+    insert into order_return_container_advice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="sponsorId != null" >
+        sponsor_id,
+      </if>
+      <if test="sponsor != null" >
+        sponsor,
+      </if>
+      <if test="adivceTime != null" >
+        adivce_time,
+      </if>
+      <if test="readStatus != null" >
+        read_status,
+      </if>
+      <if test="dispatchId != null" >
+        dispatch_id,
+      </if>
+      <if test="containerId != null" >
+        container_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="sponsorId != null" >
+        #{sponsorId,jdbcType=VARCHAR},
+      </if>
+      <if test="sponsor != null" >
+        #{sponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="adivceTime != null" >
+        #{adivceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readStatus != null" >
+        #{readStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchId != null" >
+        #{dispatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="containerId != null" >
+         #{containerId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderContainerAdvice" >
+    update order_return_container_advice
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="sponsorId != null" >
+        sponsor_id = #{sponsorId,jdbcType=VARCHAR},
+      </if>
+      <if test="sponsor != null" >
+        sponsor = #{sponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="adivceTime != null" >
+        adivce_time = #{adivceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readStatus != null" >
+        read_status = #{readStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchId != null" >
+        dispatch_id = #{dispatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="containerId != null" >
+         container_id = #{containerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.OrderContainerAdvice" >
+    update order_return_container_advice
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      sponsor_id = #{sponsorId,jdbcType=VARCHAR},
+      sponsor = #{sponsor,jdbcType=VARCHAR},
+      adivce_time = #{adivceTime,jdbcType=TIMESTAMP},
+      read_status = #{readStatus,jdbcType=INTEGER},
+      container_id = #{containerId,jdbcType=VARCHAR},
+      dispatch_id = #{dispatchId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap">
+    SELECT 
+    o_r_c_a.*,
+    o_i.customer_name as customerName,
+    o_w_s.schedule_status AS schedulestatus,
+    o_w_s.dispatchId AS dispatcher,
+    o_i.order_no AS orderNo,
+    o_w_s.box_no AS boxNo,
+    orci.empty_place AS emptyPlace
+    FROM order_return_container_advice o_r_c_a
+	INNER JOIN order_import o_i ON o_i.id = o_r_c_a.order_id
+	INNER JOIN order_worklist_status o_w_s ON o_w_s.order_id = o_r_c_a.order_id
+	LEFT JOIN order_return_container_info orci ON orci.id = o_r_c_a.container_id
+	where o_i.del_flag=0
+		<!-- 报空人为当前用户 -->
+		<if test="advice.sponsorId != null and advice.sponsorId != ''">
+			AND o_r_c_a.sponsor_id = #{advice.sponsorId,jdbcType=VARCHAR}
+		</if>
+		<!-- 客户名称 -->
+		<if test="advice.customerName != null and advice.customerName != ''">
+			AND o_i.customer_name LIKE concat('%', #{advice.customerName,jdbcType=VARCHAR}, '%')
+		</if>
+		<!-- 柜号 -->
+		<if test="advice.boxNo != null and advice.boxNo != ''">
+			AND o_w_s.box_no LIKE concat('%', #{advice.boxNo,jdbcType=VARCHAR}, '%')
+		</if>
+		<!-- 报空时间开始时间 -->
+		<if test="advice.startTime != null and advice.startTime != ''">
+			AND o_r_c_a.adivce_time &gt; #{advice.startTime,jdbcType=VARCHAR}
+		</if>
+		<!-- 报空时间结束时间 -->
+		<if test="advice.endTime != null and advice.endTime != ''">
+			AND o_r_c_a.adivce_time &lt; #{advice.endTime,jdbcType=VARCHAR}
+		</if>
+		<!-- 调度单-->
+		<if test="advice.dispatchId != null and advice.dispatchId != ''">
+			AND o_r_c_a.dispatch_id LIKE concat('%', #{advice.dispatchId,jdbcType=VARCHAR}, '%')
+		</if>
+		<!-- 调度员-->
+		<if test="advice.dispatcher != null and advice.dispatcher != ''">
+			AND o_w_s.dispatchId LIKE concat('%', #{advice.dispatcher,jdbcType=VARCHAR}, '%')
+		</if>
+		<!-- 进度状态 -->
+		<if test="advice.scheduleStatus != null and advice.scheduleStatus != ''">
+			AND o_w_s.scheduleStatus = #{advice.scheduleStatus,jdbcType=VARCHAR}
+		</if>
+		<!-- 阅读状态 -->
+		<if test="advice.readStatus != null and advice.readStatus != ''">
+			AND o_r_c_a.read_status = #{advice.readStatus,jdbcType=VARCHAR}
+		</if>
+	GROUP BY o_r_c_a.id
+	ORDER BY adivce_time DESC
+  </select>
+  <select id="select" resultMap="BaseResultMap">
+  	SELECT * FROM order_return_container_advice WHERE 
+  	order_id = #{orderId,jdbcType=VARCHAR} AND sponsor_id = #{sponsorId,jdbcType=VARCHAR} AND container_id = #{containerId,jdbcType=VARCHAR}
+  	
+  </select>
+</mapper>

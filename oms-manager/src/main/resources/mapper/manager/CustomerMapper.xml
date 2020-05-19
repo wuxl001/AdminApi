@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.Customer" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="mnemonic" property="mnemonic" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ename" property="ename" jdbcType="VARCHAR" />
+    <result column="shortname" property="shortname" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="custType" property="custtype" jdbcType="INTEGER" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="eaddress" property="eaddress" jdbcType="VARCHAR" />
+    <result column="managePlace" property="manageplace" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="account_type" property="accountType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="second_level" property="secondLevel" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="salesman" property="salesman" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, mnemonic, name, ename, shortname, type, custType, contact, address, eaddress, 
+    managePlace, telephone, fax, email, account_type, status, second_level, del_flag, 
+    salesman
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_customer
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_customer
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.Customer" >
+    insert into base_customer (id, code, mnemonic, 
+      name, ename, shortname, 
+      type, custType, contact, 
+      address, eaddress, managePlace, 
+      telephone, fax, email, 
+      account_type, status, second_level, 
+      del_flag, salesman)
+    values (#{id,jdbcType=CHAR}, #{code,jdbcType=VARCHAR}, #{mnemonic,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{ename,jdbcType=VARCHAR}, #{shortname,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{custtype,jdbcType=INTEGER}, #{contact,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{eaddress,jdbcType=VARCHAR}, #{manageplace,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{accountType,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{secondLevel,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=INTEGER}, #{salesman,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.Customer" >
+    insert into base_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="mnemonic != null" >
+        mnemonic,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="ename != null" >
+        ename,
+      </if>
+      <if test="shortname != null" >
+        shortname,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="custtype != null" >
+        custType,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="eaddress != null" >
+        eaddress,
+      </if>
+      <if test="manageplace != null" >
+        managePlace,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="secondLevel != null" >
+        second_level,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="salesman != null" >
+        salesman,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="mnemonic != null" >
+        #{mnemonic,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null" >
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null" >
+        #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="custtype != null" >
+        #{custtype,jdbcType=INTEGER},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="eaddress != null" >
+        #{eaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="manageplace != null" >
+        #{manageplace,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevel != null" >
+        #{secondLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="salesman != null" >
+        #{salesman,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.Customer" >
+    update base_customer
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="mnemonic != null" >
+        mnemonic = #{mnemonic,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null" >
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null" >
+        shortname = #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="custtype != null" >
+        custType = #{custtype,jdbcType=INTEGER},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="eaddress != null" >
+        eaddress = #{eaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="manageplace != null" >
+        managePlace = #{manageplace,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevel != null" >
+        second_level = #{secondLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="salesman != null" >
+        salesman = #{salesman,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.Customer" >
+    update base_customer
+    set code = #{code,jdbcType=VARCHAR},
+      mnemonic = #{mnemonic,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      ename = #{ename,jdbcType=VARCHAR},
+      shortname = #{shortname,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      custType = #{custtype,jdbcType=INTEGER},
+      contact = #{contact,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      eaddress = #{eaddress,jdbcType=VARCHAR},
+      managePlace = #{manageplace,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      account_type = #{accountType,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      second_level = #{secondLevel,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      salesman = #{salesman,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_customer
+    where del_flag = 0
+     <!-- 客户代码 -->
+     <if test="customer.keyword !=null">
+     	AND (code like concat('%',#{customer.keyword,jdbcType=VARCHAR},'%') OR 
+     		 name like concat('%',#{customer.keyword,jdbcType=VARCHAR},'%') OR
+     		 ename like concat('%',#{customer.keyword,jdbcType=VARCHAR},'%'))
+     </if>
+     <if test="customer.code != null" >
+        AND code like concat('%',#{customer.code,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 助记码-->
+      <if test="customer.mnemonic != null" >
+        AND mnemonic like concat('%',#{customer.mnemonic,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 客户名称 -->
+      <if test="customer.name != null" >
+        AND name like concat('%',#{customer.name,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 客户英文名称 -->
+      <if test="customer.ename != null" >
+        AND ename like concat('%',#{customer.ename,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 客户简称 -->
+      <if test="customer.shortname != null" >
+        AND shortname like concat('%',#{customer.shortname,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 客户类型 -->
+      <if test="customer.type != null" >
+        AND type like concat('%',#{customer.type,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 联系人 -->
+      <if test="customer.contact != null" >
+        AND contact like concat('%',#{customer.contact,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 地址 -->
+      <if test="customer.address != null" >
+        AND address like concat('%',#{customer.address,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 英文地址 -->
+      <if test="customer.eaddress != null" >
+        AND eaddress like concat('%',#{customer.eaddress,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 管理地址 -->
+      <if test="customer.manageplace != null" >
+        AND managePlace like concat('%',#{customer.manageplace,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 联系电话 -->
+      <if test="customer.telephone != null" >
+        AND telephone like concat('%',#{customer.telephone,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 传真 -->
+      <if test="customer.fax != null" >
+        AND fax like concat('%',#{customer.fax,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 邮箱 -->
+      <if test="customer.email != null" >
+        AND email like concat('%',#{customer.email,jdbcType=VARCHAR},'%')
+      </if>
+      <!-- 账户类型 -->
+      <if test="customer.accountType != null" >
+        AND account_type like concat('%',#{customer.accountType,jdbcType=INTEGER},'%')
+      </if>
+      <!-- 所属业务员 -->
+      <if test="customer.salesman != null" >
+        AND salesman like concat('%',#{salesman,jdbcType=VARCHAR},'%')
+      </if>
+  </select>
+  <select id="selectList" resultType="int">
+    select 
+    count(id)
+    from base_customer
+    where del_flag = 0 AND (code =#{customer.code,jdbcType=VARCHAR}
+      <if test="customer.name != null">
+      	OR name =#{customer.name,jdbcType=VARCHAR}
+      </if>
+      )
+      <!-- 客户名称 -->
+      <if test="customer.id != null" >
+        AND id !=#{customer.id,jdbcType=VARCHAR}
+      </if>
+  </select>
+</mapper>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.AdvertisementMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.Advertisement" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="no" property="no" jdbcType="VARCHAR" />
+    <result column="picPath" property="picpath" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="isRedirect" property="isredirect" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="examineStatus" property="examinestatus" jdbcType="INTEGER" />
+    <result column="publicStatus" property="publicstatus" jdbcType="INTEGER" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="creatorId" property="creatorid" jdbcType="VARCHAR" />
+    <result column="updator" property="updator" jdbcType="VARCHAR" />
+    <result column="updatorId" property="updatorid" jdbcType="VARCHAR" />
+    <result column="publicPersonId" property="publicpersonid" jdbcType="VARCHAR" />
+    <result column="publicTime" property="publictime" jdbcType="TIMESTAMP" />
+    <result column="examinePersonId" property="examinepersonid" jdbcType="VARCHAR" />
+    <result column="examineTime" property="examinetime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="examinePerson" property="examineperson" jdbcType="VARCHAR" />
+    <result column="redirectUrl" property="redirecturl" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.szag.oms.manager.common.domain.manager.Advertisement" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, no, picPath, sort, isRedirect, source, examineStatus, publicStatus, creator, 
+    createTime, creatorId, updator, updatorId, publicPersonId, publicTime, examinePersonId, 
+    examineTime, del_flag, examinePerson, redirectUrl, updateTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from base_advertisement
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_advertisement
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.Advertisement" >
+    insert into base_advertisement (id, title, no, 
+      picPath, sort, isRedirect, 
+      source, examineStatus, publicStatus, 
+      creator, createTime, creatorId, 
+      updator, updatorId, publicPersonId, 
+      publicTime, examinePersonId, examineTime, 
+      del_flag, examinePerson, redirectUrl, 
+      updateTime, content)
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{no,jdbcType=VARCHAR}, 
+      #{picpath,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{isredirect,jdbcType=INTEGER}, 
+      #{source,jdbcType=VARCHAR}, #{examinestatus,jdbcType=INTEGER}, #{publicstatus,jdbcType=INTEGER}, 
+      #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{creatorid,jdbcType=VARCHAR}, 
+      #{updator,jdbcType=VARCHAR}, #{updatorid,jdbcType=VARCHAR}, #{publicpersonid,jdbcType=VARCHAR}, 
+      #{publictime,jdbcType=TIMESTAMP}, #{examinepersonid,jdbcType=VARCHAR}, #{examinetime,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=INTEGER}, #{examineperson,jdbcType=VARCHAR}, #{redirecturl,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.Advertisement" >
+    insert into base_advertisement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="no != null" >
+        no,
+      </if>
+      <if test="picpath != null" >
+        picPath,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="isredirect != null" >
+        isRedirect,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="examinestatus != null" >
+        examineStatus,
+      </if>
+      <if test="publicstatus != null" >
+        publicStatus,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="creatorid != null" >
+        creatorId,
+      </if>
+      <if test="updator != null" >
+        updator,
+      </if>
+      <if test="updatorid != null" >
+        updatorId,
+      </if>
+      <if test="publicpersonid != null" >
+        publicPersonId,
+      </if>
+      <if test="publictime != null" >
+        publicTime,
+      </if>
+      <if test="examinepersonid != null" >
+        examinePersonId,
+      </if>
+      <if test="examinetime != null" >
+        examineTime,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="examineperson != null" >
+        examinePerson,
+      </if>
+      <if test="redirecturl != null" >
+        redirectUrl,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="picpath != null" >
+        #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isredirect != null" >
+        #{isredirect,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="examinestatus != null" >
+        #{examinestatus,jdbcType=INTEGER},
+      </if>
+      <if test="publicstatus != null" >
+        #{publicstatus,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorid != null" >
+        #{creatorid,jdbcType=VARCHAR},
+      </if>
+      <if test="updator != null" >
+        #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatorid != null" >
+        #{updatorid,jdbcType=VARCHAR},
+      </if>
+      <if test="publicpersonid != null" >
+        #{publicpersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="publictime != null" >
+        #{publictime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examinepersonid != null" >
+        #{examinepersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="examinetime != null" >
+        #{examinetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="examineperson != null" >
+        #{examineperson,jdbcType=VARCHAR},
+      </if>
+      <if test="redirecturl != null" >
+        #{redirecturl,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.Advertisement" >
+    update base_advertisement
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        no = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="picpath != null" >
+        picPath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isredirect != null" >
+        isRedirect = #{isredirect,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="examinestatus != null" >
+        examineStatus = #{examinestatus,jdbcType=INTEGER},
+      </if>
+      <if test="publicstatus != null" >
+        publicStatus = #{publicstatus,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorid != null" >
+        creatorId = #{creatorid,jdbcType=VARCHAR},
+      </if>
+      <if test="updator != null" >
+        updator = #{updator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatorid != null" >
+        updatorId = #{updatorid,jdbcType=VARCHAR},
+      </if>
+      <if test="publicpersonid != null" >
+        publicPersonId = #{publicpersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="publictime != null" >
+        publicTime = #{publictime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examinepersonid != null" >
+        examinePersonId = #{examinepersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="examinetime != null" >
+        examineTime = #{examinetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="examineperson != null" >
+        examinePerson = #{examineperson,jdbcType=VARCHAR},
+      </if>
+      <if test="redirecturl != null" >
+        redirectUrl = #{redirecturl,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.szag.oms.manager.common.domain.manager.Advertisement" >
+    update base_advertisement
+    set title = #{title,jdbcType=VARCHAR},
+      no = #{no,jdbcType=VARCHAR},
+      picPath = #{picpath,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      isRedirect = #{isredirect,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      examineStatus = #{examinestatus,jdbcType=INTEGER},
+      publicStatus = #{publicstatus,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      creatorId = #{creatorid,jdbcType=VARCHAR},
+      updator = #{updator,jdbcType=VARCHAR},
+      updatorId = #{updatorid,jdbcType=VARCHAR},
+      publicPersonId = #{publicpersonid,jdbcType=VARCHAR},
+      publicTime = #{publictime,jdbcType=TIMESTAMP},
+      examinePersonId = #{examinepersonid,jdbcType=VARCHAR},
+      examineTime = #{examinetime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      examinePerson = #{examineperson,jdbcType=VARCHAR},
+      redirectUrl = #{redirecturl,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.Advertisement" >
+    update base_advertisement
+    set title = #{title,jdbcType=VARCHAR},
+      no = #{no,jdbcType=VARCHAR},
+      picPath = #{picpath,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      isRedirect = #{isredirect,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      examineStatus = #{examinestatus,jdbcType=INTEGER},
+      publicStatus = #{publicstatus,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      creatorId = #{creatorid,jdbcType=VARCHAR},
+      updator = #{updator,jdbcType=VARCHAR},
+      updatorId = #{updatorid,jdbcType=VARCHAR},
+      publicPersonId = #{publicpersonid,jdbcType=VARCHAR},
+      publicTime = #{publictime,jdbcType=TIMESTAMP},
+      examinePersonId = #{examinepersonid,jdbcType=VARCHAR},
+      examineTime = #{examinetime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      examinePerson = #{examineperson,jdbcType=VARCHAR},
+      redirectUrl = #{redirecturl,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getAdvList" resultMap="ResultMapWithBLOBs" parameterType="cn.szag.oms.manager.common.domain.manager.Advertisement">
+  	SELECT * FROM base_advertisement
+  	WHERE del_flag = 0
+  	<!-- 广告编号 -->
+  	<if test="adv.no !=null">
+  		AND no like  concat('%',#{adv.no,jdbcType=VARCHAR},'%')
+  	</if>
+  	<!-- 广告标题 -->
+  	<if test="adv.title !=null">
+  		AND title like  concat('%',#{adv.title,jdbcType=VARCHAR},'%')
+  	</if>
+  	<!-- 审核状态 -->
+  	<if test="adv.examinestatus !=null">
+  		AND examineStatus = #{adv.examinestatus,jdbcType=INTEGER}
+  	</if>
+  	<!-- 发布状态 -->
+  	<if test="adv.publicstatus !=null">
+  		AND publicStatus = #{adv.publicstatus,jdbcType=INTEGER}
+  	</if>
+  	<!-- 审核时间 -->
+  	<if test="adv.examinetime !=null">
+  		AND examineTime = #{examinetime,jdbcType=TIMESTAMP}
+  	</if>
+  	ORDER BY createTime DESC
+  </select>
+  <select id="findNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+  		SELECT * FROM base_advertisement WHERE no = #{no,jdbcType=VARCHAR}
+  </select>
+</mapper>

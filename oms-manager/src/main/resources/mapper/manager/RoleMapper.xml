@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.RoleMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.Role" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, status, name, description, source
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from base_role
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_role
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.Role" >
+    insert into base_role (id, status, name,
+      description, source)
+    values (#{id,jdbcType=CHAR}, #{status,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+      #{description,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.Role" >
+    insert into base_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.Role" >
+    update base_role
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.Role" >
+    update base_role
+    set status = #{status,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <!--分页根据条件查询-->
+  <select id="selectList" resultMap="BaseResultMap" >
+    select * from base_role where status = 0
+    <if test="role.id != null">
+      and id = #{role.id}
+    </if>
+    <if test="role.name != null">
+      and name = #{role.name}
+    </if>
+    <if test="role.description != null">
+      and description = #{role.description}
+    </if>
+  </select>
+  <select id="selectRoleList" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT b_r.* FROM base_role b_r
+  	INNER JOIN base_rolemember b_r_m ON b_r_m.role_id = b_r.id
+  	WHERE b_r_m.user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <!--提取-->
+  <resultMap type="cn.szag.oms.manager.common.domain.manager.Role" id="userBaseResultMap" extends="BaseResultMap">
+    <!--查询检查项数据-->
+    <collection property="modules" column="id" select="cn.szag.oms.manager.common.dao.manager.ModuleMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <select id="findByName" resultType="int" parameterType="java.lang.String">
+  	SELECT count(*) FROM base_role 
+  	<where>
+	  	<if test="id != null">
+	  		AND id != #{id,jdbcType=CHAR}
+	  	</if>
+	  	<if test="name != null">
+	  		AND name = #{name,jdbcType=VARCHAR}
+	  	</if>
+  	</where>
+  </select>
+</mapper>

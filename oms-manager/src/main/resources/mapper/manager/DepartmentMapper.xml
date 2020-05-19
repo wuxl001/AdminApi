@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.Department" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="dpname" property="dpname" jdbcType="VARCHAR" />
+    <result column="parentid" property="parentid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="manager" property="manager" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="dpproerty" property="dpproerty" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="editor" property="editor" jdbcType="VARCHAR" />
+    <result column="updatedate" property="updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.szag.oms.manager.common.domain.manager.Department" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dpname, parentid, status, manager, sort, source, description, unit, IFNULL(dpproerty,dpname) AS dpproerty, 
+    area, address, del_flag, code, creator, createdate, editor, updatedate
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    t.id, t.dpname, t.parentid, t.status, t.manager, t.sort, t.source, t.description, t.unit, IFNULL(jbr.dpname,t.dpname) AS dpproerty, 
+    t.area, t.address, t.code FROM base_department t
+	LEFT JOIN base_department jbr ON jbr.id=t.parentid
+	WHERE t.del_flag = 0 AND t.id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_department
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.Department" >
+    insert into base_department (id, dpname, parentid, 
+      status, manager, sort, 
+      source, description, unit, 
+      dpproerty, area, address, 
+      del_flag, code, creator, 
+      createdate, editor, updatedate, 
+      remark)
+    values (#{id,jdbcType=CHAR}, #{dpname,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{manager,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{dpproerty,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{editor,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.Department" >
+    insert into base_department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dpname != null" >
+        dpname,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="manager != null" >
+        manager,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="dpproerty != null" >
+        dpproerty,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="editor != null" >
+        editor,
+      </if>
+      <if test="updatedate != null" >
+        updatedate,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="dpname != null" >
+        #{dpname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="manager != null" >
+        #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="dpproerty != null" >
+        #{dpproerty,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.Department" >
+    update base_department
+    <set >
+      <if test="dpname != null" >
+        dpname = #{dpname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="manager != null" >
+        manager = #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="dpproerty != null" >
+        dpproerty = #{dpproerty,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        updatedate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.szag.oms.manager.common.domain.manager.Department" >
+    update base_department
+    set dpname = #{dpname,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      manager = #{manager,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      dpproerty = #{dpproerty,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      editor = #{editor,jdbcType=VARCHAR},
+      updatedate = #{updatedate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.Department" >
+    update base_department
+    set dpname = #{dpname,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      manager = #{manager,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      dpproerty = #{dpproerty,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      editor = #{editor,jdbcType=VARCHAR},
+      updatedate = #{updatedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="find" resultMap="ResultMapWithBLOBs">
+    SELECT IFNULL(jbr.dpname,t.dpname) AS dpproerty, 
+    t.id, 
+    t.dpname, 
+    t.parentid, 
+    t.status, 
+    t.manager, 
+    t.sort, 
+    t.source, 
+    t.description, 
+    t.unit,
+    t.area, 
+    t.address,
+    t.del_flag, 
+    t.code, 
+    t.creator, 
+    t.createdate, 
+    t.editor, 
+    t.updatedate FROM base_department t
+		LEFT JOIN
+		base_department jbr
+		ON jbr.id=t.parentid
+		WHERE t.del_flag = 0
+		<if test="department.parentid != null">
+			AND t.parentid = #{department.parentid,jdbcType=VARCHAR}
+		</if>
+    ORDER BY t.sort,t.code
+  </select>
+</mapper>

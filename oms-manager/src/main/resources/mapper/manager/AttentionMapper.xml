@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.AttentionMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.Attention" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="box_no" property="boxNo" jdbcType="VARCHAR" />
+    <result column="booking_no" property="bookingNo" jdbcType="VARCHAR" />
+    <result column="attention_date" property="attentionDate" jdbcType="TIMESTAMP" />
+    <result column="is_attention" property="isAttention" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="container_id" property="containerId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapTwo" type="cn.szag.oms.manager.common.domain.manager.Attention" extends="BaseResultMap">
+    	<result column="schedule_status" property="scheduleStatus" jdbcType="VARCHAR" />
+    	<result column="businessType" property="businessType" jdbcType="VARCHAR" />
+    	<result column="transport_way" property="transportWay" jdbcType="VARCHAR" />
+    	<result column="originCountryName" property="originCountryName" jdbcType="VARCHAR" />
+    	<result column="originCountryEName" property="originCountryEName" jdbcType="VARCHAR" />
+    	<result column="deliveryCountryName" property="deliveryCountryName" jdbcType="VARCHAR" />
+    	<result column="deliveryCountryEName" property="deliveryCountryEName" jdbcType="VARCHAR" />
+    	<result column="product" property="product" jdbcType="VARCHAR" />
+    	<result column="cert_status" property="certStatus" jdbcType="VARCHAR" />
+    	<result column="is_abnormal" property="isAbnormal" jdbcType="VARCHAR" />
+    	<result column="order_source" property="orderSource" jdbcType="VARCHAR" />
+    	<result column="isbill" property="isbill" jdbcType="VARCHAR" />
+    	<result column="arrive_time" property="arriveTime" jdbcType="TIMESTAMP" />
+    	<result column="cyDate" property="cyDate" jdbcType="TIMESTAMP" />
+    	<result column="quantity" property="quantity" jdbcType="VARCHAR" />
+    	<result column="customerName" property="customerName" jdbcType="VARCHAR" />
+    	<result column="customerEName" property="customerEName" jdbcType="VARCHAR" />
+    	<result column="is_evaluation" property="isEvaluation" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, box_no, booking_no, attention_date, is_attention, user_id, container_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_attention
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_attention
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.Attention" >
+    insert into order_attention (id, order_id, box_no, 
+      booking_no, attention_date, is_attention,user_id,container_id
+      )
+    values (#{id,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR}, #{boxNo,jdbcType=VARCHAR}, 
+      #{bookingNo,jdbcType=VARCHAR}, #{attentionDate,jdbcType=TIMESTAMP}, #{isAttention,jdbcType=INTEGER}
+      , #{userId,jdbcType=VARCHAR}, #{containerId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.Attention" >
+    insert into order_attention
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="boxNo != null" >
+        box_no,
+      </if>
+      <if test="bookingNo != null" >
+        booking_no,
+      </if>
+      <if test="attentionDate != null" >
+        attention_date,
+      </if>
+      <if test="isAttention != null" >
+        is_attention,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="containerId != null" >
+        container_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="boxNo != null" >
+        #{boxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingNo != null" >
+        #{bookingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionDate != null" >
+        #{attentionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAttention != null" >
+        #{isAttention,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="containerId != null" >
+         #{containerId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.Attention" >
+    update order_attention
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="boxNo != null" >
+        box_no = #{boxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingNo != null" >
+        booking_no = #{bookingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionDate != null" >
+        attention_date = #{attentionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAttention != null" >
+        is_attention = #{isAttention,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="containerId != null" >
+        container_id = #{containerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.Attention" >
+    update order_attention
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      box_no = #{boxNo,jdbcType=VARCHAR},
+      booking_no = #{bookingNo,jdbcType=VARCHAR},
+      attention_date = #{attentionDate,jdbcType=TIMESTAMP},
+      is_attention = #{isAttention,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
+      container_id = #{containerId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  
+    <select id="followNumber" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(*) from order_attention where
+     is_attention  = #{isAttention}  AND user_id = #{user.id}
+  </select>
+  <select id="followList" resultMap="BaseResultMapTwo">
+		select 
+			oa.id,
+			oa.id AS attentionId,
+			ows.order_id,
+			ows.schedule_status,
+			ows.type AS businessType,
+			oi.transport_way,
+			IF(ows.type=1,oi.order_source,oe.order_source) AS order_source,
+			ows.box_no,
+			ows.booking_no,
+			bcn.name_cn AS originCountryName,
+			bcn.name_en AS originCountryEName,
+			bc.`name` AS deliveryCountryName,
+			bc.`ename` AS deliveryCountryEName,
+			ows.product,
+			IF(ows.type=1,oi.cert_status,oe.cert_status) AS cert_status,
+			ows.is_abnormal,
+			ows.isbill,
+			ows.is_evaluation,
+			oa.is_attention,
+			osi.arrive_time,
+			oesi.cyDate,
+			ows.quantity,
+			bc2.`name` AS customerName,
+			bc2.ename AS customerEName,
+			ows.id AS containerId ,
+			(SELECT `name` from base_customer where id=oe.domestic_shipper) as domesticShipperName,
+    (SELECT `ename` from base_customer where id=oe.domestic_shipper) as domesticShipperEName,
+    (SELECT `name` from base_customer where id=oe.overseas_consignee) as overseasConsigneeName,
+    (SELECT `ename` from base_customer where id=oe.overseas_consignee) as overseasConsigneeEName
+			FROM order_attention oa 
+					INNER JOIN order_worklist_status ows ON ows.id =oa.container_id
+					LEFT JOIN order_shipping_info osi ON osi.order_id = oa.order_id
+					LEFT JOIN order_export_shipping_info oesi ON oesi.order_id = oa.order_id
+					LEFT JOIN order_import oi ON ows.order_id = oi.id
+					LEFT JOIN order_export oe ON ows.order_id = oe.id
+					LEFT JOIN base_customer bc2 ON bc2.id = IF(ows.type=1,oi.trueCustomerId,oe.customer_name)
+					LEFT JOIN base_code_nationality bcn ON bcn.id = IF(ows.type=1,oi.origin_country,oe.origin_country)
+			    LEFT JOIN base_country bc ON bc.id = IF(ows.type=1,oi.dest_country,oe.dest_country)
+					WHERE 
+					ows.del_flag = 0
+					AND oa.is_attention = 1  AND oa.user_id = #{user.id}
+		<if test="condition ==1 ">
+			AND oa.attention_date > DATE_SUB(NOW(),INTERVAL 5 DAY)
+		</if>
+		<if test="condition ==2 ">
+			AND oa.attention_date &lt; DATE_SUB(NOW(),INTERVAL 5 DAY)
+		</if>
+		GROUP BY ows.id
+		ORDER BY oa.attention_date DESC
+		
+	</select>
+	<select id="findByUserId" resultMap="BaseResultMap" parameterType="cn.szag.oms.manager.common.domain.manager.Attention">
+		SELECT * FROM order_attention WHERE order_id = #{orderId,jdbcType=VARCHAR} AND user_id = #{userId,jdbcType=VARCHAR} AND  container_id = #{containerId,jdbcType=VARCHAR}
+	</select>
+</mapper>

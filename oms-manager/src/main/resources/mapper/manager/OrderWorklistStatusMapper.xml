@@ -1,0 +1,1353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.OrderWorklistStatusMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderWorklistStatus" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="customs_clearance_status" property="customsClearanceStatus" jdbcType="INTEGER" />
+    <result column="box_no" property="boxNo" jdbcType="VARCHAR" />
+    <result column="booking_no" property="bookingNo" jdbcType="VARCHAR" />
+    <result column="worklist_no" property="worklistNo" jdbcType="VARCHAR" />
+    <result column="container_plan" property="containerPlan" jdbcType="VARCHAR" />
+    <result column="is_abnormal" property="isAbnormal" jdbcType="VARCHAR" />
+    <result column="schedule_status" property="scheduleStatus" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="finish_status" property="finishStatus" jdbcType="INTEGER" />
+    <result column="order_shipping_info_id" property="orderShippingInfoId" jdbcType="VARCHAR" />
+    <result column="order_export_shipping_info_id" property="orderExportShippingInfoId" jdbcType="VARCHAR" />
+    <result column="product" property="product" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="outdate" property="outdate" jdbcType="TIMESTAMP" />
+    <result column="outdate2" property="outdate2" jdbcType="TIMESTAMP" />
+    <result column="is_evaluation" property="isEvaluation" jdbcType="VARCHAR" />
+    <result column="booking_date" property="bookingDate" jdbcType="TIMESTAMP" />
+    <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
+    <result column="depart_time" property="departTime" jdbcType="TIMESTAMP" />
+    <result column="arrival_date" property="arrivalDate" jdbcType="TIMESTAMP" />
+    <result column="empty_time" property="emptyTime" jdbcType="TIMESTAMP" />
+    <result column="ship_unload_time" property="shipUnloadTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="boxfree_period" property="boxfreePeriod" jdbcType="VARCHAR" />
+    <result column="free_demurrage" property="freeDemurrage" jdbcType="VARCHAR" />
+    <result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
+    <result column="returnboxTime" property="returnboxtime" jdbcType="TIMESTAMP" />
+    <result column="dispatchId" property="dispatchid" jdbcType="VARCHAR" />
+    <result column="clearanceId" property="clearanceid" jdbcType="VARCHAR" />
+    <result column="isbill" property="isbill" jdbcType="INTEGER" />
+    <result column="isempty" property="isempty" jdbcType="INTEGER" />
+    <result column="isArrive" property="isArrive" jdbcType="INTEGER" />
+    <result column="cusEmpty_time" property="cusEmptyTime" jdbcType="TIMESTAMP" />
+    <result column="mention_ark_time" property="mentionArkTime" jdbcType="TIMESTAMP" />
+    <result column="businessType" property="businessType" jdbcType="VARCHAR" />
+    <result column="cyDate" property="cyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderWorklistStatus" extends="BaseResultMap" >
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="extract_order_num" property="extractOrderNum" jdbcType="VARCHAR" />
+    <result column="transport_way" property="transportWay" jdbcType="VARCHAR" />
+    <result column="origin_country" property="originCountry" jdbcType="VARCHAR" />
+    <result column="is_attention" property="isAttention" jdbcType="VARCHAR" />
+    <result column="attentionId" property="attentionId" jdbcType="VARCHAR" />
+    <result column="cusAdviceDate" property="cusAdviceDate" jdbcType="TIMESTAMP" />
+    <result column="order_source" property="orderSource" jdbcType="VARCHAR" />
+    <result column="customerName" property="customerName" jdbcType="VARCHAR" />
+    <result column="progressBar" property="progressBar" jdbcType="DOUBLE" />
+    <result column="order_placer" property="orderPlacer" jdbcType="VARCHAR" />
+    <result column="cert_status" property="certStatus" jdbcType="INTEGER" />
+    <result column="deliveryCountryName" property="deliveryCountryName" jdbcType="VARCHAR" />
+    <result column="deliveryCountryEName" property="deliveryCountryEName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseStatusResultMap" type="cn.szag.oms.manager.common.domain.manager.BaseBoxNoMessage">
+    <result column="container_id" property="containerId" jdbcType="VARCHAR" />
+    <result column="schedule_status" property="status" jdbcType="VARCHAR" />
+    <result column="hoverporttitleName" property="hoverporttitleName" jdbcType="VARCHAR" />
+    <result column="hoverporttitleEName" property="hoverporttitleEName" jdbcType="VARCHAR" />
+    <result column="containerlocationName" property="containerlocationName" jdbcType="VARCHAR" />
+    <result column="containerlocationEName" property="containerlocationEName" jdbcType="VARCHAR" />
+    <result column="plate_no" property="plateNo" jdbcType="VARCHAR" />
+    <result column="driver_name" property="driverName" jdbcType="VARCHAR" />
+    <result column="driver_tel" property="driverTel" jdbcType="VARCHAR" />
+    <result column="transport_way" property="type" jdbcType="VARCHAR" />
+    <result column="realTime" property="realTime" jdbcType="TIMESTAMP" />
+    <result column="destPortName" property="destPortName" jdbcType="VARCHAR" />
+    <result column="destPortEName" property="destPortEName" jdbcType="VARCHAR" />
+    <result column="sponsor" property="sponsor" jdbcType="VARCHAR" />
+    <result column="returnboxPlace" property="returnboxPlace" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="DateResultMap" type="cn.szag.oms.manager.common.domain.manager.EShippinInfoDate" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="booking_date" property="bookingDate" jdbcType="TIMESTAMP" />
+    <result column="depart_time" property="departTime" jdbcType="TIMESTAMP" />
+    <result column="returnboxTime" property="returnboxTime" jdbcType="TIMESTAMP" />
+    <result column="ATD" property="ATD" jdbcType="TIMESTAMP" />
+    <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
+    <result column="arrival_date" property="arrivalDate" jdbcType="TIMESTAMP" />
+    <result column="mention_ark_time" property="mentionArkTime" jdbcType="TIMESTAMP" />
+    <result column="outdate2" property="outdate2" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.szag.oms.manager.common.domain.manager.OrderWorklistStatus" extends="BaseResultMap" >
+    <result column="abnormal_remark" property="abnormalRemark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, customs_clearance_status, box_no, booking_no, worklist_no, container_plan, 
+    is_abnormal, schedule_status, score, createdate, finish_status, order_shipping_info_id, 
+    order_export_shipping_info_id, product, quantity, outdate, outdate2, is_evaluation, 
+    booking_date, release_date, depart_time, arrival_date, empty_time, ship_unload_time, 
+    type, del_flag, boxfree_period, free_demurrage, finish_time, returnboxTime, dispatchId, 
+    clearanceId, isbill, isempty,cusEmpty_time,mention_ark_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    abnormal_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_worklist_status
+    where id = #{id,jdbcType=CHAR} AND del_flag = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_worklist_status
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.OrderWorklistStatus" >
+    insert into order_worklist_status (id, order_id, customs_clearance_status, 
+      box_no, booking_no, worklist_no, 
+      container_plan, is_abnormal, schedule_status, 
+      score, createdate, finish_status, 
+      order_shipping_info_id, order_export_shipping_info_id, 
+      product, quantity, outdate, 
+      outdate2, is_evaluation, booking_date, 
+      release_date, depart_time, arrival_date, 
+      empty_time, ship_unload_time, type, 
+      del_flag, boxfree_period, free_demurrage, 
+      finish_time, returnboxTime, dispatchId, 
+      clearanceId, isbill, isempty,cusEmpty_time, mention_ark_time,isArrive,
+      abnormal_remark)
+    values (#{id,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR}, #{customsClearanceStatus,jdbcType=INTEGER}, 
+      #{boxNo,jdbcType=VARCHAR}, #{bookingNo,jdbcType=VARCHAR}, #{worklistNo,jdbcType=VARCHAR}, 
+      #{containerPlan,jdbcType=VARCHAR}, #{isAbnormal,jdbcType=VARCHAR}, #{scheduleStatus,jdbcType=VARCHAR}, 
+      #{score,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{finishStatus,jdbcType=INTEGER}, 
+      #{orderShippingInfoId,jdbcType=VARCHAR}, #{orderExportShippingInfoId,jdbcType=VARCHAR}, 
+      #{product,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, #{outdate,jdbcType=TIMESTAMP}, 
+      #{outdate2,jdbcType=TIMESTAMP}, #{isEvaluation,jdbcType=VARCHAR}, #{bookingDate,jdbcType=TIMESTAMP}, 
+      #{releaseDate,jdbcType=TIMESTAMP}, #{departTime,jdbcType=TIMESTAMP}, #{arrivalDate,jdbcType=TIMESTAMP}, 
+      #{emptyTime,jdbcType=TIMESTAMP}, #{shipUnloadTime,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER}, 
+      #{delFlag,jdbcType=INTEGER}, #{boxfreePeriod,jdbcType=VARCHAR}, #{freeDemurrage,jdbcType=VARCHAR}, 
+      #{finishTime,jdbcType=TIMESTAMP}, #{returnboxtime,jdbcType=TIMESTAMP}, #{dispatchid,jdbcType=VARCHAR}, 
+      #{clearanceid,jdbcType=VARCHAR}, #{isbill,jdbcType=INTEGER}, #{isempty,jdbcType=INTEGER}, #{cusEmptyTime,jdbcType=TIMESTAMP}, 
+      #{mentionArkTime,jdbcType=TIMESTAMP},#{isArrive,jdbcType=INTEGER},#{abnormalRemark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderWorklistStatus" >
+    insert into order_worklist_status
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="customsClearanceStatus != null" >
+        customs_clearance_status,
+      </if>
+      <if test="boxNo != null" >
+        box_no,
+      </if>
+      <if test="bookingNo != null" >
+        booking_no,
+      </if>
+      <if test="worklistNo != null" >
+        worklist_no,
+      </if>
+      <if test="containerPlan != null" >
+        container_plan,
+      </if>
+      <if test="isAbnormal != null" >
+        is_abnormal,
+      </if>
+      <if test="scheduleStatus != null" >
+        schedule_status,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="finishStatus != null" >
+        finish_status,
+      </if>
+      <if test="orderShippingInfoId != null" >
+        order_shipping_info_id,
+      </if>
+      <if test="orderExportShippingInfoId != null" >
+        order_export_shipping_info_id,
+      </if>
+      <if test="product != null" >
+        product,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="outdate != null" >
+        outdate,
+      </if>
+      <if test="outdate2 != null" >
+        outdate2,
+      </if>
+      <if test="isEvaluation != null" >
+        is_evaluation,
+      </if>
+      <if test="bookingDate != null" >
+        booking_date,
+      </if>
+      <if test="releaseDate != null" >
+        release_date,
+      </if>
+      <if test="departTime != null" >
+        depart_time,
+      </if>
+      <if test="arrivalDate != null" >
+        arrival_date,
+      </if>
+      <if test="emptyTime != null" >
+        empty_time,
+      </if>
+      <if test="shipUnloadTime != null" >
+        ship_unload_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="boxfreePeriod != null" >
+        boxfree_period,
+      </if>
+      <if test="freeDemurrage != null" >
+        free_demurrage,
+      </if>
+      <if test="finishTime != null" >
+        finish_time,
+      </if>
+      <if test="returnboxtime != null" >
+        returnboxTime,
+      </if>
+      <if test="dispatchid != null" >
+        dispatchId,
+      </if>
+      <if test="clearanceid != null" >
+        clearanceId,
+      </if>
+      <if test="isbill != null" >
+        isbill,
+      </if>
+      <if test="isempty != null" >
+        isempty,
+      </if>
+      <if test="abnormalRemark != null" >
+        abnormal_remark,
+      </if> 
+      <if test="cusEmptyTime != null" >
+        cusEmpty_time,
+      </if>
+      <if test="mentionArkTime != null" >
+        mention_ark_time,
+      </if>
+      <if test="isArrive != null" >
+        isArrive,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customsClearanceStatus != null" >
+        #{customsClearanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="boxNo != null" >
+        #{boxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingNo != null" >
+        #{bookingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="worklistNo != null" >
+        #{worklistNo,jdbcType=VARCHAR},
+      </if>
+      <if test="containerPlan != null" >
+        #{containerPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="isAbnormal != null" >
+        #{isAbnormal,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleStatus != null" >
+        #{scheduleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishStatus != null" >
+        #{finishStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderShippingInfoId != null" >
+        #{orderShippingInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderExportShippingInfoId != null" >
+        #{orderExportShippingInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null" >
+        #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="outdate != null" >
+        #{outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outdate2 != null" >
+        #{outdate2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEvaluation != null" >
+        #{isEvaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingDate != null" >
+        #{bookingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseDate != null" >
+        #{releaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departTime != null" >
+        #{departTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivalDate != null" >
+        #{arrivalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emptyTime != null" >
+        #{emptyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shipUnloadTime != null" >
+        #{shipUnloadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="boxfreePeriod != null" >
+        #{boxfreePeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="freeDemurrage != null" >
+        #{freeDemurrage,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null" >
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnboxtime != null" >
+        #{returnboxtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchid != null" >
+        #{dispatchid,jdbcType=VARCHAR},
+      </if>
+      <if test="clearanceid != null" >
+        #{clearanceid,jdbcType=VARCHAR},
+      </if>
+      <if test="isbill != null" >
+        #{isbill,jdbcType=INTEGER},
+      </if>
+      <if test="isempty != null" >
+        #{isempty,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalRemark != null" >
+        #{abnormalRemark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cusEmptyTime != null" >
+        #{cusEmptyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mentionArkTime != null" >
+         #{mentionArkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isArrive != null" >
+        #{isArrive,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderWorklistStatus" >
+    update order_worklist_status
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customsClearanceStatus != null" >
+        customs_clearance_status = #{customsClearanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="boxNo != null" >
+        box_no = #{boxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingNo != null" >
+        booking_no = #{bookingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="worklistNo != null" >
+        worklist_no = #{worklistNo,jdbcType=VARCHAR},
+      </if>
+      <if test="containerPlan != null" >
+        container_plan = #{containerPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="isAbnormal != null" >
+        is_abnormal = #{isAbnormal,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleStatus != null" >
+        schedule_status = #{scheduleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishStatus != null" >
+        finish_status = #{finishStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderShippingInfoId != null" >
+        order_shipping_info_id = #{orderShippingInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderExportShippingInfoId != null" >
+        order_export_shipping_info_id = #{orderExportShippingInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null" >
+        product = #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="outdate != null" >
+        outdate = #{outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outdate2 != null" >
+        outdate2 = #{outdate2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEvaluation != null" >
+        is_evaluation = #{isEvaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingDate != null" >
+        booking_date = #{bookingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseDate != null" >
+        release_date = #{releaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departTime != null" >
+        depart_time = #{departTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivalDate != null" >
+        arrival_date = #{arrivalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emptyTime != null" >
+        empty_time = #{emptyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shipUnloadTime != null" >
+        ship_unload_time = #{shipUnloadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="boxfreePeriod != null" >
+        boxfree_period = #{boxfreePeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="freeDemurrage != null" >
+        free_demurrage = #{freeDemurrage,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null" >
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnboxtime != null" >
+        returnboxTime = #{returnboxtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchid != null" >
+        dispatchId = #{dispatchid,jdbcType=VARCHAR},
+      </if>
+      <if test="clearanceid != null" >
+        clearanceId = #{clearanceid,jdbcType=VARCHAR},
+      </if>
+      <if test="isbill != null" >
+        isbill = #{isbill,jdbcType=INTEGER},
+      </if>
+      <if test="isempty != null" >
+        isempty = #{isempty,jdbcType=INTEGER},
+      </if>
+      <if test="abnormalRemark != null" >
+        abnormal_remark = #{abnormalRemark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cusEmptyTime != null" >
+        cusEmpty_time = #{cusEmptyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mentionArkTime != null" >
+        mention_ark_time = #{mentionArkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isArrive != null" >
+        isArrive = #{isArrive,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.szag.oms.manager.common.domain.manager.OrderWorklistStatus" >
+    update order_worklist_status
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      customs_clearance_status = #{customsClearanceStatus,jdbcType=INTEGER},
+      box_no = #{boxNo,jdbcType=VARCHAR},
+      booking_no = #{bookingNo,jdbcType=VARCHAR},
+      worklist_no = #{worklistNo,jdbcType=VARCHAR},
+      container_plan = #{containerPlan,jdbcType=VARCHAR},
+      is_abnormal = #{isAbnormal,jdbcType=VARCHAR},
+      schedule_status = #{scheduleStatus,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      finish_status = #{finishStatus,jdbcType=INTEGER},
+      order_shipping_info_id = #{orderShippingInfoId,jdbcType=VARCHAR},
+      order_export_shipping_info_id = #{orderExportShippingInfoId,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      outdate = #{outdate,jdbcType=TIMESTAMP},
+      outdate2 = #{outdate2,jdbcType=TIMESTAMP},
+      is_evaluation = #{isEvaluation,jdbcType=VARCHAR},
+      booking_date = #{bookingDate,jdbcType=TIMESTAMP},
+      release_date = #{releaseDate,jdbcType=TIMESTAMP},
+      depart_time = #{departTime,jdbcType=TIMESTAMP},
+      arrival_date = #{arrivalDate,jdbcType=TIMESTAMP},
+      empty_time = #{emptyTime,jdbcType=TIMESTAMP},
+      ship_unload_time = #{shipUnloadTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      boxfree_period = #{boxfreePeriod,jdbcType=VARCHAR},
+      free_demurrage = #{freeDemurrage,jdbcType=VARCHAR},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      returnboxTime = #{returnboxtime,jdbcType=TIMESTAMP},
+      dispatchId = #{dispatchid,jdbcType=VARCHAR},
+      clearanceId = #{clearanceid,jdbcType=VARCHAR},
+      isbill = #{isbill,jdbcType=INTEGER},
+      isempty = #{isempty,jdbcType=INTEGER},
+      cusEmpty_time = #{cusEmptyTime,jdbcType=TIMESTAMP},
+      mention_ark_time = #{mentionArkTime,jdbcType=TIMESTAMP},
+      isArrive = #{isArrive,jdbcType=INTEGER},
+      abnormal_remark = #{abnormalRemark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.OrderWorklistStatus" >
+    update order_worklist_status
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      customs_clearance_status = #{customsClearanceStatus,jdbcType=INTEGER},
+      box_no = #{boxNo,jdbcType=VARCHAR},
+      booking_no = #{bookingNo,jdbcType=VARCHAR},
+      worklist_no = #{worklistNo,jdbcType=VARCHAR},
+      container_plan = #{containerPlan,jdbcType=VARCHAR},
+      is_abnormal = #{isAbnormal,jdbcType=VARCHAR},
+      schedule_status = #{scheduleStatus,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      finish_status = #{finishStatus,jdbcType=INTEGER},
+      order_shipping_info_id = #{orderShippingInfoId,jdbcType=VARCHAR},
+      order_export_shipping_info_id = #{orderExportShippingInfoId,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      outdate = #{outdate,jdbcType=TIMESTAMP},
+      outdate2 = #{outdate2,jdbcType=TIMESTAMP},
+      is_evaluation = #{isEvaluation,jdbcType=VARCHAR},
+      booking_date = #{bookingDate,jdbcType=TIMESTAMP},
+      release_date = #{releaseDate,jdbcType=TIMESTAMP},
+      depart_time = #{departTime,jdbcType=TIMESTAMP},
+      arrival_date = #{arrivalDate,jdbcType=TIMESTAMP},
+      empty_time = #{emptyTime,jdbcType=TIMESTAMP},
+      ship_unload_time = #{shipUnloadTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      boxfree_period = #{boxfreePeriod,jdbcType=VARCHAR},
+      free_demurrage = #{freeDemurrage,jdbcType=VARCHAR},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      returnboxTime = #{returnboxtime,jdbcType=TIMESTAMP},
+      dispatchId = #{dispatchid,jdbcType=VARCHAR},
+      clearanceId = #{clearanceid,jdbcType=VARCHAR},
+      isbill = #{isbill,jdbcType=INTEGER},
+      isempty = #{isempty,jdbcType=INTEGER},
+      cusEmpty_time = #{cusEmptyTime,jdbcType=TIMESTAMP},
+      mention_ark_time = #{mentionArkTime,jdbcType=TIMESTAMP},
+      isArrive = #{isArrive,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="findByPage" resultMap="ResultMap">
+    SELECT ows.*,oi.order_no,osi.extract_order_no as extract_order_num,oi.transport_way,oi.origin_country,oa.id AS attentionId,oi.cus_advice_date AS cusAdviceDate,
+    IFNULL(oa.is_attention,0) as is_attention,oi.order_source,bc.`name` AS customerName,(ows.schedule_status*12.5) AS progressBar
+    FROM order_worklist_status ows
+	INNER JOIN order_import oi ON ows.order_id = oi.id
+	INNER JOIN order_shipping_info osi ON osi.id = ows.order_shipping_info_id
+	LEFT JOIN base_customer bc ON bc.id = oi.trueCustomerId
+	LEFT JOIN order_evaluation_score oes ON oes.order_id = oi.id
+	LEFT JOIN order_attention oa ON oa.container_id = ows.id
+	LEFT JOIN base_user bu ON bu.id = oa.user_id
+	LEFT JOIN base_port bp ON bp.id = oi.origin_country
+	WHERE ows.del_flag = 0
+		<!-- 今日到港 -->
+		<if test="ows.keyWord == 1">
+			AND to_days(osi.expect_arrive_time) = to_days(now()) AND
+			ows.schedule_status = "0"
+		</if>
+		<!-- 明日到港 -->
+		<if test="ows.keyWord == 2">
+			AND to_days(osi.expect_arrive_time) =
+			TO_DAYS(DATE_SUB(curdate(),INTERVAL -1 DAY)) AND
+			ows.schedule_status = "0"
+		</if>
+		<!-- 七天后到港 -->
+		<if test="ows.keyWord == 3">
+			AND to_days(osi.expect_arrive_time) >=
+			TO_DAYS(DATE_SUB(curdate(),INTERVAL -7 DAY)) AND
+			ows.schedule_status = "0"
+		</if>
+		<!-- 已到港未放行 -->
+		<if test="ows.keyWord == 4">
+			AND ows.schedule_status in(1,2,3)
+		</if>
+		<!-- 已抵达未报空 -->
+		<if test="ows.keyWord == 5">
+			AND ows.schedule_status in ("6") AND ows.empty_time
+			IS NULL
+		</if>
+		<!-- 未还箱 -->
+		<if test="ows.keyWord == 6">
+			AND ows.schedule_status = 7
+		</if>
+		<!-- 免舱期 24 小时即将到期 -->
+		<if test="ows.keyWord == 7">
+			AND to_days(ows.free_demurrage) = TO_DAYS(NOW()) AND
+			ows.schedule_status in ("2","3")
+		</if>
+		<!-- 免箱截止日 24 小时即将到期 -->
+		<if test="ows.keyWord == 8">
+			AND to_days(ows.boxfree_period) = TO_DAYS(NOW()) AND
+			ows.schedule_status in ("7")
+		</if>
+		<!-- 逾期未还柜 -->
+		<if test="ows.keyWord == 9">
+			AND to_days(NOW())-TO_DAYS(ows.boxfree_period) > 0 AND
+			ows.schedule_status in ("6","7")
+		</if> 
+		
+		<!-- 已到港24小时未发车 -->
+		<if test="ows.keyWord == 10">
+			AND to_days(ows.depart_time) = TO_DAYS(NOW()) AND
+			to_days(osi.arrive_time) = TO_DAYS(NOW()) AND
+			ows.schedule_status in ("1")
+		</if>
+		<!-- 最近一个月评分低于2分的订单，不包括未评分的订单 -->
+		<if test="ows.keyWord == 11">
+			AND oes.score BETWEEN 0 AND 2 AND DATE_SUB(CURDATE(),
+			INTERVAL 1 MONTH) &lt;= date(oes.createtime)
+		</if>
+		<!-- 进度状态 --> 
+		<if test="ows.scheduleStatus != null and ows.scheduleStatus != ''">
+			AND ows.schedule_status = #{ows.scheduleStatus,jdbcType=VARCHAR}
+		</if>
+		<!-- 客户名称 --> 
+		<if test="ows.customerName != null and ows.customerName != ''">
+			AND bc.`name` like  concat('%',#{ows.customerName,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 订单号 --> 
+		<if test="ows.orderNo != null and ows.orderNo != ''">
+			AND oi.order_no like  concat('%',#{ows.orderNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 提单号 --> 
+		<if test="ows.extractOrderNum != null and ows.extractOrderNum != ''">
+			AND osi.extract_order_no like concat('%',#{ows.extractOrderNum,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 运输状态 --> 
+		<if test="ows.transportWay != null and ows.transportWay != ''">
+			AND oi.transport_way = #{ows.transportWay,jdbcType=VARCHAR}
+		</if>
+		<!-- 工作单号 --> 
+		<if test="ows.worklistNo != null and ows.worklistNo != ''">
+			AND ows.worklist_no like concat('%', #{ows.worklistNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 柜号 --> 
+		<if test="ows.boxNo != null and ows.boxNo != ''">
+			AND ows.box_no like concat('%',#{ows.boxNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 完成情况 -->
+		<if test="ows.finishStatus != null">
+			AND ows.finish_status = #{ows.finishStatus,jdbcType=VARCHAR}
+		</if>
+		<!-- 原产国 --> 
+		<if test="ows.originCountry != null and ows.originCountry != ''">
+			AND oi.origin_country = #{ows.originCountry,jdbcType=VARCHAR}
+		</if>
+		<!-- 商品名称 --> 
+		<if test="ows.product != null and ows.product != ''">
+			AND ows.product like concat('%',#{ows.product,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 创建时间（始） --> 
+		<if test="ows.startTime != null and ows.startTime !=''">
+			AND ows.createdate  &gt; #{ows.startTime,jdbcType=VARCHAR}
+		</if>
+		<!-- 创建时间（终） --> 
+		<if test="ows.endTime != null and ows.endTime != ''">
+			AND ows.createdate  &lt; #{ows.endTime,jdbcType=VARCHAR}
+		</if>
+		<!-- 进口 --> 
+		<if test="ows.type !=null and 1==ows.type">
+			AND ows.order_shipping_info_id  is not NULL
+		</if>
+		<!-- 出口 --> 
+		<if test="ows.type !=null and 2==ows.type">
+			AND ows.order_export_shipping_info_id  is not NULL
+		</if>
+		<!-- 是否关注 --> 
+		<if test="ows.isAttention != null">
+			AND oa.is_attention = #{ows.isAttention,jdbcType=VARCHAR}
+		</if>
+		<!-- 查询本人-->
+		<if test="user.dataPermission == 0">
+			AND IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oi.support_staff = #{user.id,jdbcType=VARCHAR},oi.salesman = #{user.id,jdbcType=VARCHAR})
+			AND oi.order_status != 0
+		</if>
+		<!-- 查询本部门 -->
+		<if test="user.dataPermission == 1">
+			AND IF(
+			EXISTS(SELECT  * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oi.support_staff in (SELECT id FROM base_user WHERE dpname  = #{user.dpname,jdbcType=VARCHAR}),
+			oi.salesman in (SELECT id FROM base_user WHERE dpname = #{user.dpname,jdbcType=VARCHAR}))
+			AND oi.order_status != 0
+		</if>
+	GROUP BY ows.id
+	ORDER BY ows.createdate DESC
+  </select>
+  <select id="select" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_worklist_status
+    WHERE order_id = #{orderId,jdbcType=VARCHAR} AND del_flag = 0
+    ORDER BY createdate DESC
+  </select>
+  <select id="selectOrderId" resultMap="BaseStatusResultMap">
+  	SELECT 
+		ows.id AS container_id,
+		#{status,jdbcType=VARCHAR} AS schedule_status,
+		
+		oi.transport_way,
+		<if test="status == 0">
+			oi.cus_advice_date
+		</if>
+		<if test="status == 1">
+			oi.check_time
+		</if>
+		<if test="status == 2">
+			osi.arrive_time
+		</if>
+		<if test="status == 3">
+			ows.ship_unload_time
+		</if>
+		<if test="status == 4">
+			ows.outdate2
+		</if>
+		<if test="status == 5">
+			ows.outdate
+		</if>
+		<if test="status == 6">
+			ows.depart_time
+		</if>
+		<if test="status == 7">
+			ows.arrival_date
+		</if>	
+		<if test="status == 8">
+			IFNULL(ows.cusEmpty_time,ows.empty_time)
+		</if>
+		<if test="status == 9">
+			ows.returnboxTime
+		</if>
+		 AS realTime,
+		<if test="status != 0 and  status != 1 and status != 2">
+			odo.plate_no,
+			odo.driver_name,
+			odo.driver_tel,
+			odo.start_place AS hoverporttitleName,
+			odo.end_place AS containerlocationName,
+			odo.dispatcher,
+		</if>
+		bp3.`name` AS destPortName,
+		bp3.ename AS destPortEName,
+		orca.sponsor,
+		orci.returnbox_place AS returnboxPlace,
+		orci.empty_place AS emptyPlace
+		FROM order_worklist_status ows
+		INNER JOIN order_import oi ON oi.id = ows.order_id
+		<if test="status != 0 and  status != 1 and status != 2">
+			LEFT JOIN order_dispatch_order odo ON odo.container_id = ows.id
+			<if test="status==3 or status==4 or status==5">
+			LEFT JOIN order_transfer_info oti ON oti.id = odo.transferID  AND oti.plocation = odo.end_place
+			</if>
+			<if test="status!=3 and status!=4 and status!=5">
+			INNER JOIN order_transfer_info oti ON oti.id = odo.transferID  AND oti.plocation = odo.end_place
+			</if>
+		</if>
+        LEFT JOIN order_return_container_info orci ON orci.id = ows.id
+        LEFT JOIN order_shipping_info osi ON osi.id = ows.order_shipping_info_id
+        LEFT JOIN order_clearance_info oca ON oca.order_id = ows.order_id
+		LEFT JOIN base_port bp3 ON bp3.id = osi.dest_port
+		LEFT JOIN order_return_container_advice orca ON orca.container_id = ows.id
+        WHERE ows.id = #{containerId,jdbcType=VARCHAR} AND oi.id = #{orderId,jdbcType=VARCHAR} AND  ows.del_flag = 0
+        GROUP BY oi.id
+  </select>
+  <select id="findByClearanceId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from order_worklist_status
+    WHERE clearanceId = #{clearanceId,jdbcType=VARCHAR}
+    ORDER BY createdate DESC
+  </select>
+  
+  
+  <select id="selectDown" resultType="java.lang.String" >
+  	SELECT distinct 
+  		<if test="keyWord ==1">
+  			ows.box_no
+  		</if>
+  		<if test="keyWord ==2">
+  			oi.order_no
+  		</if>
+  		<if test="keyWord ==3">
+  			osi.extract_order_no as extract_order_num
+  		</if>
+  		<if test="keyWord ==4">
+  			ows.product
+  		</if>
+  		<if test="keyWord ==5">
+  			bc.`name`
+  		</if>
+  		<if test="keyWord ==6">
+  			ows.worklist_no
+  		</if>
+	    FROM order_worklist_status ows
+		INNER JOIN order_import oi ON ows.order_id = oi.id
+		INNER JOIN order_shipping_info osi ON osi.id = ows.order_shipping_info_id
+		INNER JOIN base_customer bc ON bc.id = oi.trueCustomerId
+		WHERE ows.del_flag = 0
+		<!-- 查询本人-->
+		<if test="user.dataPermission == 0">
+			AND IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oi.support_staff = #{user.id,jdbcType=VARCHAR},oi.salesman = #{user.id,jdbcType=VARCHAR})
+			AND oi.order_status != 0
+		</if>
+		<!-- 查询本部门 -->
+		<if test="user.dataPermission == 1">
+			AND IF(
+			EXISTS(SELECT  * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oi.support_staff in (SELECT id FROM base_user WHERE dpname  = #{user.dpname,jdbcType=VARCHAR}),
+			oi.salesman in (SELECT id FROM base_user WHERE dpname = #{user.dpname,jdbcType=VARCHAR}))
+			AND oi.order_status != 0
+		</if>
+  </select>
+  <select id="findByPageE" resultMap="ResultMap">
+    SELECT 
+    ows.*,
+    oe.order_no,
+    oesi.bl_no as extract_order_num,
+    oe.transport_way,
+    oe.origin_country,
+    oa.id AS attentionId,
+    oe.cus_advice_date AS cusAdviceDate,
+    IFNULL(oa.is_attention,0) as is_attention,
+    oe.order_source,
+    bc.`name` AS customerName,
+    (ows.schedule_status*12.5) AS progressBar,
+    oe.cert_status,
+    ows.type AS businessType,
+    oesi.cyDate,
+    bc2.username AS order_placer,
+    bc3.`name` AS deliveryCountryName,
+    bc3.ename AS deliveryCountryEName
+    FROM order_worklist_status ows
+	INNER JOIN order_export oe ON ows.order_id = oe.id
+	INNER JOIN order_export_shipping_info oesi ON oesi.id = ows.order_export_shipping_info_id
+	LEFT JOIN base_customer bc ON bc.id = oe.customer_name
+	LEFT JOIN base_customer_account bc2 ON bc2.id = oe.order_placer
+	LEFT JOIN order_evaluation_score oes ON oes.order_id = oe.id
+	LEFT JOIN order_attention oa ON oa.container_id = ows.id
+	LEFT JOIN base_user bu ON bu.id = oa.user_id
+	LEFT JOIN base_port bp ON bp.id = oe.origin_country
+	LEFT JOIN base_country bc3 ON bc3.id = oesi.delivery_country
+	WHERE ows.del_flag = 0
+		<!-- 未订舱 -->
+		<if test="ows.keyWord == 21">
+			AND ows.release_date is null 
+			AND ows.schedule_status = 0
+		</if>
+		<!-- 未出车-->
+		<if test="ows.keyWord == 22">
+			AND ows.schedule_status = 1
+			AND ows.depart_time is null
+		</if>
+		<!-- 已出车之后未还重-->
+		<if test="ows.keyWord == 23">
+			AND ows.schedule_status in("2","3","4")
+		</if>
+		<!-- 已还重之后未离港 -->
+		<if test="ows.keyWord == 24">
+			AND ows.schedule_status in("5","6")
+		</if>
+		<!-- 已离港之后未电放 -->
+		<if test="ows.keyWord == 25">
+			AND ows.schedule_status = 7
+		</if>
+		<!-- 截关日期24小时即将到期 -->
+		<if test="ows.keyWord == 26">
+			AND ows.schedule_status = 5
+			AND to_days(oesi.cyDate) = TO_DAYS(NOW())
+		</if>
+		<!-- 免舱日期24小时即将到期 -->
+		<if test="ows.keyWord == 27">
+			AND to_days(ows.free_demurrage) = TO_DAYS(NOW()) AND
+			ows.schedule_status in ("1","2")
+		</if>
+		<!-- 免舱日期超期 -->
+		<if test="ows.keyWord == 28">
+			AND now() &lt; ows.free_demurrage 
+			AND ows.schedule_status in ("1","2")
+		</if>
+		<!-- 未放行 -->
+		<if test="ows.keyWord == 29">
+			AND outdate2 is null
+			AND ows.schedule_status = 5 
+		</if>
+		<!-- 已离港之后未电放 -->
+		<if test="ows.keyWord == 34">
+			AND ows.schedule_status in(5,6,7)
+		</if>
+		<!-- 最近一个月评分低于两分的 -->
+		<if test="ows.keyWord == 32">
+			AND oes.score BETWEEN 0 AND 2 AND DATE_SUB(CURDATE(),
+			INTERVAL 1 MONTH) &lt;= date(oes.createtime)
+		</if>
+		<if test="ows.keyWordName != null and ows.keyWordName != ''">
+			AND (ows.box_no like concat('%',#{ows.keyWordName,jdbcType=VARCHAR},'%')
+				OR ows.booking_no like concat('%',#{ows.keyWordName,jdbcType=VARCHAR},'%'))
+		</if>
+		<!-- 进度状态 --> 
+		<if test="ows.scheduleStatus != null and ows.scheduleStatus != ''">
+			AND ows.schedule_status = #{ows.scheduleStatus,jdbcType=VARCHAR}
+		</if>
+		<!-- 客户名称 --> 
+		<if test="ows.customerName != null and ows.customerName != ''">
+			AND bc.`name` like  concat('%',#{ows.customerName,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 订单号 --> 
+		<if test="ows.orderNo != null and ows.orderNo != ''">
+			AND oe.order_no like  concat('%',#{ows.orderNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 提单号 --> 
+		<if test="ows.extractOrderNum != null and ows.extractOrderNum != ''">
+			AND oesi.bl_no like concat('%',#{ows.extractOrderNum,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 运输状态 --> 
+		<if test="ows.transportWay != null and ows.transportWay != ''">
+			AND oe.transport_way = #{ows.transportWay,jdbcType=VARCHAR}
+		</if>
+		<!-- 工作单号 --> 
+		<if test="ows.worklistNo != null and ows.worklistNo != ''">
+			AND ows.worklist_no like concat('%', #{ows.worklistNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 柜号 --> 
+		<if test="ows.boxNo != null and ows.boxNo != ''">
+			AND ows.box_no like concat('%',#{ows.boxNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 订舱号 --> 
+		<if test="ows.bookingNo != null and ows.bookingNo != ''">
+			AND ows.booking_no like concat('%',#{ows.bookingNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 完成情况 -->
+		<if test="ows.finishStatus != null">
+			AND ows.finish_status = #{ows.finishStatus,jdbcType=VARCHAR}
+		</if>
+		<!-- 原产国 --> 
+		<if test="ows.originCountry != null and ows.originCountry != ''">
+			AND oe.origin_country = #{ows.originCountry,jdbcType=VARCHAR}
+		</if>
+		<!-- 目的国 --> 
+		<if test="ows.destCountry != null and ows.destCountry != ''">
+			AND oe.dest_country = #{ows.destCountry,jdbcType=VARCHAR}
+		</if>
+		<!-- 商品名称 --> 
+		<if test="ows.product != null and ows.product != ''">
+			AND ows.product like concat('%',#{ows.product,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 创建时间（始） --> 
+		<if test="ows.startTime != null and ows.startTime !=''">
+			AND ows.createdate  &gt; #{ows.startTime,jdbcType=VARCHAR}
+		</if>
+		<!-- 创建时间（终） --> 
+		<if test="ows.endTime != null and ows.endTime != ''">
+			AND ows.createdate  &lt; #{ows.endTime,jdbcType=VARCHAR}
+		</if>
+		<!-- 截关日期（始） --> 
+		<if test="ows.cyDateStart != null and ows.cyDateStart !=''">
+			AND oesi.cyDate  &gt; #{ows.cyDateStart,jdbcType=VARCHAR}
+		</if>
+		<!-- 截关日期（终） --> 
+		<if test="ows.cyDateEnd != null and ows.cyDateEnd != ''">
+			AND oesi.cyDate  &lt; #{ows.cyDateEnd,jdbcType=VARCHAR}
+		</if>
+		<!-- 客户通知时间（始） --> 
+		<if test="ows.cusAdviceDateStart != null and ows.cusAdviceDateStart !=''">
+			AND oe.cus_advice_date  &gt; #{ows.cusAdviceDateStart,jdbcType=VARCHAR}
+		</if>
+		<!-- 客户通知时间（终） --> 
+		<if test="ows.cusAdviceDateEnd != null and ows.cusAdviceDateEnd != ''">
+			AND oe.cus_advice_date  &lt; #{ows.cusAdviceDateEnd,jdbcType=VARCHAR}
+		</if>
+		<!-- 目的港 --> 
+		<if test="ows.destPort !=null and ows.destPort != ''">
+			AND oesi.delivery_port  = #{ows.destPort,jdbcType=VARCHAR}
+		</if>
+		<!-- 是否还重 --> 
+		<if test="ows.isArrive !=null and ows.isArrive != ''">
+			AND ows.isArrive  = #{ows.isArrive,jdbcType=INTEGER} 
+		</if>
+		<!-- 船名航次 --> 
+		<if test="ows.shipInfo !=null and ows.shipInfo != ''">
+			AND CONCAT(oesi.ship,oesi.voyage_no)  = #{ows.shipInfo,jdbcType=VARCHAR} 
+		</if>
+		<!-- 进口 --> 
+		<if test="ows.type !=null and 1==ows.type">
+			AND ows.order_shipping_info_id  is not NULL
+		</if>
+		<!-- 出口 --> 
+		<if test="ows.type !=null and 2==ows.type">
+			AND ows.order_export_shipping_info_id  is not NULL
+		</if>
+		<!-- 是否关注 --> 
+		<if test="ows.isAttention != null">
+			AND oa.is_attention = #{ows.isAttention,jdbcType=VARCHAR}
+		</if>
+		<!-- 查询本人-->
+		<if test="user.dataPermission == 0">
+			AND IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oe.support_staff = #{user.id,jdbcType=VARCHAR},oe.salesman = #{user.id,jdbcType=VARCHAR})
+			AND oe.order_status != 0
+		</if>
+		<!-- 查询本部门 -->
+		<if test="user.dataPermission == 1">
+			AND IF(
+			EXISTS(SELECT  * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oe.support_staff in (SELECT id FROM base_user WHERE dpname  = #{user.dpname,jdbcType=VARCHAR}),
+			oe.salesman in (SELECT id FROM base_user WHERE dpname = #{user.dpname,jdbcType=VARCHAR}))
+			AND oe.order_status != 0
+		</if>
+	GROUP BY ows.id
+	ORDER BY ows.createdate DESC
+  </select>
+  <select id="findExportScheduleDate" resultMap="DateResultMap">
+  	SELECT 
+		ows.booking_date,
+		ows.depart_time,
+		ows.returnboxTime,
+		oesi.ATD,
+		ows.release_date,
+		ows.arrival_date,
+		ows.mention_ark_time,
+		ows.outdate2
+	FROM order_worklist_status ows
+	INNER JOIN order_export_shipping_info oesi ON oesi.id = ows.order_export_shipping_info_id
+	WHERE ows.order_id = #{orderId,jdbcType=VARCHAR} AND ows.id = #{id,jdbcType=CHAR}
+  </select>
+  <select id="selectOrderEId" resultMap="BaseStatusResultMap">
+  	SELECT 
+		ows.id AS container_id,
+		#{status,jdbcType=VARCHAR} AS schedule_status,
+		oe.transport_way,
+		<if test="status == 0">
+			oe.cus_advice_date
+		</if>
+		<if test="status == 1">
+			oe.check_time
+		</if>
+		<if test="status == 2">
+			ows.booking_date
+		</if>
+		<if test="status == 3">
+			ows.depart_time
+		</if>
+		<if test="status == 4">
+			ows.mention_ark_time
+		</if>
+		<if test="status == 5">
+			ows.arrival_date
+		</if>
+		<if test="status == 6">
+			ows.returnboxTime
+		</if>
+		<if test="status == 7">
+			ows.outdate2
+		</if>	
+		<if test="status == 8">
+			oesi.ATD
+		</if>
+		<if test="status == 9">
+			ows.release_date
+		</if>
+		 AS realTime,
+		 
+		<if test="status != 0 and status != 1 and status != 2">
+			odo.plate_no,
+			odo.driver_name,
+			odo.driver_tel,
+			odo.start_place AS hoverporttitleName,
+			odo.end_place AS containerlocationName,
+			odo.dispatcher,
+		</if>
+		bp3.`name` AS destPortName,
+		bp3.ename AS destPortEName,
+		bp4.`name` AS departurePortName,
+		bp4.ename AS departurePortEName,
+		orca.sponsor,
+		orci.returnbox_place AS returnboxPlace,
+		orci.empty_place AS emptyPlace
+		FROM order_worklist_status ows
+		INNER JOIN order_export oe ON oe.id = ows.order_id
+		<if test="status != 0 and status != 1 and status != 2">
+			LEFT JOIN order_dispatch_order odo ON odo.container_id = ows.id 
+        	INNER JOIN order_transfer_info oti ON oti.id = odo.transferID AND oti.plocation = odo.end_place
+        </if>
+        LEFT JOIN order_return_container_info orci ON orci.id = ows.id
+        LEFT JOIN order_export_shipping_info oesi ON oesi.id = ows.order_export_shipping_info_id
+        LEFT JOIN order_clearance_info oca ON oca.order_id = ows.order_id
+		LEFT JOIN base_port bp3 ON bp3.id = oesi.delivery_port
+		LEFT JOIN base_port bp4 ON bp4.id = oesi.loadingPort
+		LEFT JOIN order_return_container_advice orca ON orca.container_id = ows.id
+        WHERE ows.id = #{containerId,jdbcType=VARCHAR} AND oe.id = #{orderId,jdbcType=VARCHAR} AND  ows.del_flag = 0
+  </select>
+  <select id="findByPageMove" resultMap="ResultMap">
+    SELECT
+    oe.id,
+    ows.id AS containerId, 
+    ows.schedule_status,
+	ows.product,
+	ows.is_abnormal,
+	ows.isbill,
+	ows.is_evaluation,
+	ows.box_no,
+	ows.booking_no,
+	ows.quantity,
+    oe.order_no,
+    oesi.bl_no as extract_order_num,
+    oe.transport_way,
+    oe.origin_country,
+    oa.id AS attentionId,
+    oe.cus_advice_date AS cusAdviceDate,
+    IFNULL(oa.is_attention,0) as is_attention,
+    oe.order_source,
+    bc.`name` AS customerName,
+    (ows.schedule_status*12.5) AS progressBar,
+    oe.cert_status,
+    ows.type AS businessType,
+    oesi.cyDate,
+    bc2.username AS order_placer,
+    bc3.`name` AS deliveryCountryName,
+    bc3.ename AS deliveryCountryEName,
+    (SELECT `name` from base_customer where id=oe.domestic_shipper) as domesticShipperName,
+    (SELECT `ename` from base_customer where id=oe.domestic_shipper) as domesticShipperEName,
+    (SELECT `name` from base_customer where id=oe.overseas_consignee) as overseasConsigneeName,
+    (SELECT `ename` from base_customer where id=oe.overseas_consignee) as overseasConsigneeEName
+    FROM order_worklist_status ows
+	INNER JOIN order_export oe ON ows.order_id = oe.id
+	INNER JOIN order_export_shipping_info oesi ON oesi.id = ows.order_export_shipping_info_id
+	LEFT JOIN base_customer bc ON bc.id = oe.customer_name
+	LEFT JOIN base_customer_account bc2 ON bc2.id = oe.order_placer
+	LEFT JOIN order_evaluation_score oes ON oes.order_id = oe.id
+	LEFT JOIN order_attention oa ON oa.container_id = ows.id
+	LEFT JOIN base_user bu ON bu.id = oa.user_id
+	LEFT JOIN base_port bp ON bp.id = oe.origin_country
+	LEFT JOIN base_port bp2 ON bp2.id = oesi.delivery_port
+	LEFT JOIN base_country bc3 ON bc3.id = oesi.delivery_country
+	WHERE ows.del_flag = 0
+		<!-- 未订舱 -->
+		<if test="ows.keyWord == 21">
+			AND ows.release_date is null 
+			AND ows.schedule_status = 0
+		</if>
+		<!-- 未出车-->
+		<if test="ows.keyWord == 22">
+			AND ows.schedule_status = 1
+			AND ows.depart_time is null
+		</if>
+		<!-- 已出车之后未还重-->
+		<if test="ows.keyWord == 23">
+			AND ows.schedule_status in("2","3","4")
+		</if>
+		<!-- 已还重之后未离港 -->
+		<if test="ows.keyWord == 24">
+			AND ows.schedule_status in("5","6")
+		</if>
+		<!-- 已离港之后未电放 -->
+		<if test="ows.keyWord == 25">
+			AND ows.schedule_status = 7
+		</if>
+		<!-- 截关日期24小时即将到期 -->
+		<if test="ows.keyWord == 26">
+			AND ows.schedule_status = 5
+			AND to_days(oesi.cyDate) = TO_DAYS(NOW())
+		</if>
+		<!-- 免舱日期24小时即将到期 -->
+		<if test="ows.keyWord == 27">
+			AND to_days(ows.free_demurrage) = TO_DAYS(NOW()) AND
+			ows.schedule_status in ("1","2")
+		</if>
+		<!-- 免舱日期超期 -->
+		<if test="ows.keyWord == 28">
+			AND now() &lt; ows.free_demurrage 
+			AND ows.schedule_status in ("1","2")
+		</if>
+		<!-- 未放行 -->
+		<if test="ows.keyWord == 29">
+			AND outdate2 is null
+			AND ows.schedule_status = 5 
+		</if>
+		<!-- 已离港之后未电放 -->
+		<if test="ows.keyWord == 34">
+			AND ows.schedule_status in(5,6,7)
+		</if>
+		<!-- 最近一个月评分低于两分的 -->
+		<if test="ows.keyWord == 32">
+			AND oes.score BETWEEN 0 AND 2 AND DATE_SUB(CURDATE(),
+			INTERVAL 1 MONTH) &lt;= date(oes.createtime)
+		</if>
+		<if test="ows.keyWordName != null and ows.keyWordName != ''">
+			AND (ows.box_no like concat('%',#{ows.keyWordName,jdbcType=VARCHAR},'%')
+				OR ows.booking_no like concat('%',#{ows.keyWordName,jdbcType=VARCHAR},'%'))
+		</if>
+		<!-- 进度状态 --> 
+		<if test="ows.scheduleStatus != null and ows.scheduleStatus != ''">
+			AND ows.schedule_status = #{ows.scheduleStatus,jdbcType=VARCHAR}
+		</if>
+		<!-- 客户名称 --> 
+		<if test="ows.customerName != null and ows.customerName != ''">
+			AND bc.`name` like  concat('%',#{ows.customerName,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 订单号 --> 
+		<if test="ows.orderNo != null and ows.orderNo != ''">
+			AND oe.order_no like  concat('%',#{ows.orderNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 提单号 --> 
+		<if test="ows.extractOrderNum != null and ows.extractOrderNum != ''">
+			AND oesi.bl_no like concat('%',#{ows.extractOrderNum,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 运输状态 --> 
+		<if test="ows.transportWay != null and ows.transportWay != ''">
+			AND oe.transport_way = #{ows.transportWay,jdbcType=VARCHAR}
+		</if>
+		<!-- 工作单号 --> 
+		<if test="ows.worklistNo != null and ows.worklistNo != ''">
+			AND ows.worklist_no like concat('%', #{ows.worklistNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 柜号 --> 
+		<if test="ows.boxNo != null and ows.boxNo != ''">
+			AND ows.box_no like concat('%',#{ows.boxNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 订舱号 --> 
+		<if test="ows.bookingNo != null and ows.bookingNo != ''">
+			AND ows.booking_no like concat('%',#{ows.bookingNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 完成情况 -->
+		<if test="ows.finishStatus != null">
+			AND ows.finish_status = #{ows.finishStatus,jdbcType=VARCHAR}
+		</if>
+		<!-- 原产国 --> 
+		<if test="ows.originCountry != null and ows.originCountry != ''">
+			AND oe.origin_country = #{ows.originCountry,jdbcType=VARCHAR}
+		</if>
+		<!-- 目的国 --> 
+		<if test="ows.destCountry != null and ows.destCountry != ''">
+			AND bc3.`name` like concat('%',#{ows.destCountry,jdbcType=VARCHAR},'%') 
+		</if>
+		<!-- 商品名称 --> 
+		<if test="ows.product != null and ows.product != ''">
+			AND ows.product like concat('%',#{ows.product,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 创建时间（始） --> 
+		<if test="ows.startTime != null and ows.startTime !=''">
+			AND ows.createdate  &gt; #{ows.startTime,jdbcType=VARCHAR}
+		</if>
+		<!-- 创建时间（终） --> 
+		<if test="ows.endTime != null and ows.endTime != ''">
+			AND ows.createdate  &lt; #{ows.endTime,jdbcType=VARCHAR}
+		</if>
+		<!-- 截关日期（始） --> 
+		<if test="ows.cyDateStart != null and ows.cyDateStart !=''">
+			AND oesi.cyDate  &gt; #{ows.cyDateStart,jdbcType=VARCHAR}
+		</if>
+		<!-- 截关日期（终） --> 
+		<if test="ows.cyDateEnd != null and ows.cyDateEnd != ''">
+			AND oesi.cyDate  &lt; #{ows.cyDateEnd,jdbcType=VARCHAR}
+		</if>
+		<!-- 客户通知时间（始） --> 
+		<if test="ows.cusAdviceDateStart != null and ows.cusAdviceDateStart !=''">
+			AND oe.cus_advice_date  &gt; #{ows.cusAdviceDateStart,jdbcType=VARCHAR}
+		</if>
+		<!-- 客户通知时间（终） --> 
+		<if test="ows.cusAdviceDateEnd != null and ows.cusAdviceDateEnd != ''">
+			AND oe.cus_advice_date  &lt; #{ows.cusAdviceDateEnd,jdbcType=VARCHAR}
+		</if>
+		<!-- 目的港 --> 
+		<if test="ows.destPort !=null and ows.destPort != ''">
+			AND bp2.name like concat('%',#{ows.destPort,jdbcType=VARCHAR},'%') 
+		</if>
+		<!-- 是否还重 --> 
+		<if test="ows.isArrive ==1 or ows.isArrive == 0">
+			AND ows.isArrive  = #{ows.isArrive,jdbcType=INTEGER} 
+		</if>
+		<!-- 船名航次 --> 
+		<if test="ows.shipInfo !=null and ows.shipInfo != ''">
+			AND CONCAT(oesi.ship,oesi.voyage_no) LIKE  concat('%',#{ows.shipInfo,jdbcType=VARCHAR},'%')  
+		</if>
+		<!-- 进口 --> 
+		<if test="ows.type !=null and 1==ows.type">
+			AND ows.order_shipping_info_id  is not NULL
+		</if>
+		<!-- 出口 --> 
+		<if test="ows.type !=null and 2==ows.type">
+			AND ows.order_export_shipping_info_id  is not NULL
+		</if>
+		<!-- 是否关注 --> 
+		<if test="ows.isAttention != null">
+			AND oa.is_attention = #{ows.isAttention,jdbcType=VARCHAR}
+		</if>
+		<!-- 查询本人-->
+		<if test="user.dataPermission == 0">
+			AND IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oe.support_staff = #{user.id,jdbcType=VARCHAR},oe.salesman = #{user.id,jdbcType=VARCHAR})
+			AND oe.order_status != 0
+		</if>
+		<!-- 查询本部门 -->
+		<if test="user.dataPermission == 1">
+			AND IF(
+			EXISTS(SELECT  * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oe.support_staff in (SELECT id FROM base_user WHERE dpname  = #{user.dpname,jdbcType=VARCHAR}),
+			oe.salesman in (SELECT id FROM base_user WHERE dpname = #{user.dpname,jdbcType=VARCHAR}))
+			AND oe.order_status != 0
+		</if>
+	GROUP BY ows.id
+	ORDER BY ows.createdate DESC
+  </select>
+</mapper>

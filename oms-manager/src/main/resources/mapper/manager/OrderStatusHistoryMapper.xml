@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.szag.oms.manager.common.dao.manager.OrderStatusHistoryMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.szag.oms.manager.common.domain.manager.OrderStatusHistory">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="order_id" property="orderId" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="is_available" property="isAvailable" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="creator_id" property="creatorId" jdbcType="VARCHAR" />
+		<result column="creator" property="creator" jdbcType="VARCHAR" />
+		<result column="handling_time" property="handlingTime"
+			jdbcType="TIMESTAMP" />
+		<result column="handler" property="handler" jdbcType="VARCHAR" />
+		<result column="handler_id" property="handlerId" jdbcType="VARCHAR" />
+		<result column="phase" property="phase" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs"
+		type="cn.szag.oms.manager.common.domain.manager.OrderStatusHistory"
+		extends="BaseResultMap">
+		<result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, order_id, status, is_available, createtime, creator_id,
+		creator,
+		handling_time,
+		handler, handler_id, phase
+	</sql>
+	<sql id="Blob_Column_List">
+		remark
+	</sql>
+	<select id="selectList" resultMap="BaseResultMap"
+		parameterType="cn.szag.oms.manager.common.domain.manager.OrderStatusHistory">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from order_status_history
+		where 1=1
+		<if test="osh.orderId != null and osh.orderId != '' ">
+			and order_id = #{osh.orderId} and status in(1,4)
+		</if>
+		<!-- <if test="osh.status == '1' "> and status in(1,4) </if> -->
+		ORDER BY createtime DESC
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from order_status_history
+		where id = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		order_status_history
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="cn.szag.oms.manager.common.domain.manager.OrderStatusHistory">
+		insert into order_status_history (id, order_id, status,
+		is_available, createtime, creator_id,
+		creator, handling_time, handler,
+		handler_id, phase, remark
+		)
+		values (#{id,jdbcType=CHAR},
+		#{orderId,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{isAvailable,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+		#{creatorId,jdbcType=VARCHAR},
+		#{creator,jdbcType=VARCHAR},
+		#{handlingTime,jdbcType=TIMESTAMP},
+		#{handler,jdbcType=VARCHAR},
+		#{handlerId,jdbcType=VARCHAR}, #{phase,jdbcType=VARCHAR},
+		#{remark,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="cn.szag.oms.manager.common.domain.manager.OrderStatusHistory">
+		insert into order_status_history
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="isAvailable != null">
+				is_available,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="creatorId != null">
+				creator_id,
+			</if>
+			<if test="creator != null">
+				creator,
+			</if>
+			<if test="handlingTime != null">
+				handling_time,
+			</if>
+			<if test="handler != null">
+				handler,
+			</if>
+			<if test="handlerId != null">
+				handler_id,
+			</if>
+			<if test="phase != null">
+				phase,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="orderId != null">
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="isAvailable != null">
+				#{isAvailable,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				#{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="handlingTime != null">
+				#{handlingTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="handler != null">
+				#{handler,jdbcType=VARCHAR},
+			</if>
+			<if test="handlerId != null">
+				#{handlerId,jdbcType=VARCHAR},
+			</if>
+			<if test="phase != null">
+				#{phase,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="cn.szag.oms.manager.common.domain.manager.OrderStatusHistory">
+		update order_status_history
+		<set>
+			<if test="orderId != null">
+				order_id = #{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="isAvailable != null">
+				is_available = #{isAvailable,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				creator_id = #{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				creator = #{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="handlingTime != null">
+				handling_time = #{handlingTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="handler != null">
+				handler = #{handler,jdbcType=VARCHAR},
+			</if>
+			<if test="handlerId != null">
+				handler_id = #{handlerId,jdbcType=VARCHAR},
+			</if>
+			<if test="phase != null">
+				phase = #{phase,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs"
+		parameterType="cn.szag.oms.manager.common.domain.manager.OrderStatusHistory">
+		update order_status_history
+		set order_id =
+		#{orderId,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		is_available = #{isAvailable,jdbcType=INTEGER},
+		createtime =
+		#{createtime,jdbcType=TIMESTAMP},
+		creator_id =
+		#{creatorId,jdbcType=VARCHAR},
+		creator = #{creator,jdbcType=VARCHAR},
+		handling_time = #{handlingTime,jdbcType=TIMESTAMP},
+		handler =
+		#{handler,jdbcType=VARCHAR},
+		handler_id =
+		#{handlerId,jdbcType=VARCHAR},
+		phase = #{phase,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="cn.szag.oms.manager.common.domain.manager.OrderStatusHistory">
+		update order_status_history
+		set order_id =
+		#{orderId,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		is_available = #{isAvailable,jdbcType=INTEGER},
+		createtime =
+		#{createtime,jdbcType=TIMESTAMP},
+		creator_id =
+		#{creatorId,jdbcType=VARCHAR},
+		creator = #{creator,jdbcType=VARCHAR},
+		handling_time = #{handlingTime,jdbcType=TIMESTAMP},
+		handler =
+		#{handler,jdbcType=VARCHAR},
+		handler_id =
+		#{handlerId,jdbcType=VARCHAR},
+		phase = #{phase,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=CHAR}
+	</update>
+
+
+</mapper>

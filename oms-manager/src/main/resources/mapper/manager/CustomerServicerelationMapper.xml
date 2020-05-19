@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.CustomerServicerelationMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.CustomerServicerelation" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="salesman_id" property="salesmanId" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="service_id" property="serviceId" jdbcType="INTEGER" />
+    <result column="wltype" property="wltype" jdbcType="INTEGER" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="inport" property="inport" jdbcType="INTEGER" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="editor" property="editor" jdbcType="VARCHAR" />
+    <result column="lastupdate" property="lastupdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, salesman_id, customer_id, service_id, wltype, origin, inport, creator, create_time, 
+    editor, lastupdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_customer_servicerelation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+   <select id="findCusomerIs" resultType="int"  >
+    select 
+  	 count(id)
+    from base_customer_servicerelation
+    where customer_id = #{customerId,jdbcType=BIGINT}
+  </select>
+  <select id="findCount" resultType="int"  >
+    select 
+  	 count(id)
+    from base_customer_servicerelation
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from base_customer_servicerelation
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.CustomerServicerelation" >
+    insert into base_customer_servicerelation (id, salesman_id, customer_id, 
+      service_id, wltype, origin, 
+      inport, creator, create_time, 
+      editor, lastupdate)
+    values (#{id,jdbcType=CHAR}, #{salesmanId,jdbcType=INTEGER}, #{customerId,jdbcType=BIGINT}, 
+      #{serviceId,jdbcType=INTEGER}, #{wltype,jdbcType=INTEGER}, #{origin,jdbcType=VARCHAR}, 
+      #{inport,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{editor,jdbcType=VARCHAR}, #{lastupdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.CustomerServicerelation" >
+    insert into base_customer_servicerelation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="salesmanId != null" >
+        salesman_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="serviceId != null" >
+        service_id,
+      </if>
+      <if test="wltype != null" >
+        wltype,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="inport != null" >
+        inport,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="editor != null" >
+        editor,
+      </if>
+      <if test="lastupdate != null" >
+        lastupdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="salesmanId != null" >
+        #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="wltype != null" >
+        #{wltype,jdbcType=INTEGER},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="inport != null" >
+        #{inport,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdate != null" >
+        #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.CustomerServicerelation" >
+    update base_customer_servicerelation
+    <set >
+      <if test="salesmanId != null" >
+        salesman_id = #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceId != null" >
+        service_id = #{serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="wltype != null" >
+        wltype = #{wltype,jdbcType=INTEGER},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="inport != null" >
+        inport = #{inport,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdate != null" >
+        lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.CustomerServicerelation" >
+    update base_customer_servicerelation
+    set salesman_id = #{salesmanId,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      service_id = #{serviceId,jdbcType=INTEGER},
+      wltype = #{wltype,jdbcType=INTEGER},
+      origin = #{origin,jdbcType=VARCHAR},
+      inport = #{inport,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      editor = #{editor,jdbcType=VARCHAR},
+      lastupdate = #{lastupdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

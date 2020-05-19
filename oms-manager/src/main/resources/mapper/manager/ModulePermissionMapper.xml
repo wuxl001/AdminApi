@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.ModulePermissionMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.modulePermission" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="module_id" property="moduleId" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="target_id" property="targetId" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, module_id, type, target_id, source
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_module_permission
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_module_permission
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.modulePermission" >
+    insert into base_module_permission (id, module_id, type, 
+      target_id, source)
+    values (#{id,jdbcType=CHAR}, #{moduleId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{targetId,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.modulePermission" >
+    insert into base_module_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="moduleId != null" >
+        module_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="targetId != null" >
+        target_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="moduleId != null" >
+        #{moduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="targetId != null" >
+        #{targetId,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.modulePermission" >
+    update base_module_permission
+    <set >
+      <if test="moduleId != null" >
+        module_id = #{moduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="targetId != null" >
+        target_id = #{targetId,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.modulePermission" >
+    update base_module_permission
+    set module_id = #{moduleId,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      target_id = #{targetId,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+  <!--通过角色的id删除-->
+  <select id="deleteByRoleId"  parameterType="string">
+    delete from base_module_permission
+    where target_id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <!--通过菜单的id删除-->
+  <select id="deleteByModuleId"  parameterType="string">
+    update base_module_permission set del_flag = 1
+    where module_id = #{id,jdbcType=VARCHAR}
+  </select>
+  <!--添加用户和角色的中间表-->
+  <insert id="addModuleIds" parameterType="hashmap">
+    insert into base_module_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="moduleId != null" >
+        module_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="targetId != null" >
+        target_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="moduleId != null" >
+        #{moduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="targetId != null" >
+        #{targetId,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+	<select id="findJurisdiction" resultType="int" parameterType="java.lang.String">
+		SELECT count(bmp.id) FROM base_module_permission bmp
+		INNER JOIN base_role br ON br.id = bmp.target_id
+		INNER JOIN base_rolemember brm ON brm.role_id = br.id
+		INNER JOIN base_module bm ON bm.id = bmp.module_id
+		WHERE brm.user_id = #{userId,jdbcType=VARCHAR}
+		<if test="moduleId == '008'">
+			 AND bm.`name` = "进口订单查询"
+		</if>
+		<if test="moduleId == '009'">
+			 AND bm.`name` = "出口订单查询"
+		</if>
+	</select>
+
+	
+
+
+
+
+</mapper>

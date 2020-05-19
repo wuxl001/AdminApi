@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.OrderExportMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderExport" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="transport_way" property="transportWay" jdbcType="VARCHAR" />
+    <result column="domestic_shipper" property="domesticShipper" jdbcType="VARCHAR" />
+    <result column="overseas_consignee" property="overseasConsignee" jdbcType="VARCHAR" />
+    <result column="extract_order_num" property="extractOrderNum" jdbcType="VARCHAR" />
+    <result column="origin_country" property="originCountry" jdbcType="VARCHAR" />
+    <result column="dest_country" property="destCountry" jdbcType="VARCHAR" />
+    <result column="departure_port" property="departurePort" jdbcType="VARCHAR" />
+    <result column="dest_port" property="destPort" jdbcType="VARCHAR" />
+    <result column="product" property="product" jdbcType="VARCHAR" />
+    <result column="entry_port" property="entryPort" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="creator_id" property="creatorId" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="creator_tel" property="creatorTel" jdbcType="VARCHAR" />
+    <result column="support_staff" property="supportStaff" jdbcType="VARCHAR" />
+    <result column="support_staff_tel" property="supportStaffTel" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="cert_status" property="certStatus" jdbcType="INTEGER" />
+    <result column="schedule_status" property="scheduleStatus" jdbcType="INTEGER" />
+    <result column="customs_clearance_status" property="customsClearanceStatus" jdbcType="INTEGER" />
+    <result column="inspect_need" property="inspectNeed" jdbcType="INTEGER" />
+    <result column="clearance_need" property="clearanceNeed" jdbcType="INTEGER" />
+    <result column="transport_need" property="transportNeed" jdbcType="INTEGER" />
+    <result column="payment_need" property="paymentNeed" jdbcType="INTEGER" />
+    <result column="advance_need" property="advanceNeed" jdbcType="INTEGER" />
+    <result column="producer_org" property="producerOrg" jdbcType="VARCHAR" />
+    <result column="afffirm_date" property="afffirmDate" jdbcType="TIMESTAMP" />
+    <result column="cus_advice_date" property="cusAdviceDate" jdbcType="TIMESTAMP" />
+    <result column="order_source" property="orderSource" jdbcType="VARCHAR" />
+    <result column="order_placer" property="orderPlacer" jdbcType="VARCHAR" />
+    <result column="booking_no" property="bookingNo" jdbcType="VARCHAR" />
+    <result column="salesman" property="salesman" jdbcType="VARCHAR" />
+    <result column="salesman_tel" property="salesmanTel" jdbcType="VARCHAR" />
+    <result column="handling_suggestion" property="handlingSuggestion" jdbcType="VARCHAR" />
+    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="supplement_time" property="supplementTime" jdbcType="TIMESTAMP" />
+    <result column="extend_type" property="extendType" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="goods_type" property="goodsType" jdbcType="VARCHAR" />
+    <result column="worklist_no" property="worklistNo" jdbcType="VARCHAR" />
+    <result column="handling_result" property="handlingResult" jdbcType="VARCHAR" />
+    <result column="dock" property="dock" jdbcType="VARCHAR" />
+    <result column="update_id" property="updateId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="closing_per" property="closingPer" jdbcType="VARCHAR" />
+    <result column="closing_date" property="closingDate" jdbcType="TIMESTAMP" />
+    <result column="disposeStatus" property="disposeStatus" jdbcType="INTEGER"/>
+    <result column="loadingTime" jdbcType="TIMESTAMP" property="loadingTime" />
+    <result column="loadingLocation" jdbcType="VARCHAR" property="loadingLocation" />
+    <result column="temperature" jdbcType="VARCHAR" property="temperature" />
+    <result column="vent" jdbcType="VARCHAR" property="vent" />
+    <result column="packages" jdbcType="VARCHAR" property="packages" />
+    <result column="netWeight" jdbcType="VARCHAR" property="netWeight" />
+    <result column="grossWeight" jdbcType="VARCHAR" property="grossWeight" />
+    <result column="customsUnitPrice" jdbcType="VARCHAR" property="customsUnitPrice" />
+    <result column="formOfCommerce" jdbcType="VARCHAR" property="formOfCommerce" />
+    <result column="domesticResources" jdbcType="VARCHAR" property="domesticResources" />
+    <result column="contractNo" jdbcType="VARCHAR" property="contractNo" />
+    <result column="Hoe" jdbcType="VARCHAR" property="hoe" />
+    <result column="quantity" jdbcType="VARCHAR" property="quantity" />
+    <result column="agent" jdbcType="VARCHAR" property="agent" />
+  </resultMap>
+  <resultMap id="ExtendResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderExport" extends="BaseResultMap">
+	  <result column="customerName" property="customerName" jdbcType="VARCHAR" />
+	  <result column="customerEName" property="customerEName" jdbcType="VARCHAR" />
+	  <result column="productName" property="productName" jdbcType="VARCHAR" />
+	  <result column="productEName" property="productEName" jdbcType="VARCHAR" />
+	  <result column="originCountryName" property="originCountryName" jdbcType="VARCHAR" />
+	  <result column="originCountryEName" property="originCountryEName" jdbcType="VARCHAR" />
+	  <result column="destCountryName" property="destCountryName" jdbcType="VARCHAR" />
+	  <result column="destCountryEName" property="destCountryEName" jdbcType="VARCHAR" />
+	  <result column="domesticShipperName" property="domesticShipperName" jdbcType="VARCHAR" />
+	  <result column="domesticShipperEName" property="domesticShipperEName" jdbcType="VARCHAR" />
+	  <result column="overseasConsigneeName" property="overseasConsigneeName" jdbcType="VARCHAR" />
+	  <result column="overseasConsigneeEName" property="overseasConsigneeEName" jdbcType="VARCHAR" />
+	  <result column="producerOrgName" property="producerOrgName" jdbcType="VARCHAR" />
+	  <result column="producerOrgEName" property="producerOrgEName" jdbcType="VARCHAR" />
+	  <result column="departurePortName" property="departurePortName" jdbcType="VARCHAR" />
+	  <result column="departurePortEName" property="departurePortEName" jdbcType="VARCHAR" />
+	  <result column="destPortName" property="destPortName" jdbcType="VARCHAR" />
+	  <result column="destPortEName" property="destPortEName" jdbcType="VARCHAR" />
+	  <result column="supportStaffName" property="supportStaffName" jdbcType="VARCHAR" />
+	  <result column="salesmanName" property="salesmanName" jdbcType="VARCHAR" />
+	  <result column="orderPlacerName" property="orderPlacerName" jdbcType="VARCHAR" />
+	  <result column="loadingTime" jdbcType="TIMESTAMP" property="loadingTime" />
+      <result column="loadingLocation" jdbcType="VARCHAR" property="loadingLocation" />
+	  <result column="temperature" jdbcType="VARCHAR" property="temperature" />
+	  <result column="vent" jdbcType="VARCHAR" property="vent" />
+	  <result column="packages" jdbcType="VARCHAR" property="packages" />
+	  <result column="netWeight" jdbcType="VARCHAR" property="netWeight" />
+	  <result column="grossWeight" jdbcType="VARCHAR" property="grossWeight" />
+	  <result column="customsUnitPrice" jdbcType="VARCHAR" property="customsUnitPrice" />
+	  <result column="formOfCommerce" jdbcType="VARCHAR" property="formOfCommerce" />
+	  <result column="domesticResources" jdbcType="VARCHAR" property="domesticResources" />
+	  <result column="contractNo" jdbcType="VARCHAR" property="contractNo" />
+	  <result column="Hoe" jdbcType="VARCHAR" property="hoe" />
+	  <result column="quantity" jdbcType="VARCHAR" property="quantity" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.szag.oms.manager.common.domain.manager.OrderExport" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, customer_name, transport_way, domestic_shipper, overseas_consignee, 
+    extract_order_num, origin_country, dest_country, departure_port, dest_port, product, 
+    entry_port, createtime, creator_id, creator, creator_tel, support_staff, support_staff_tel, 
+    del_flag, order_status, cert_status, schedule_status, customs_clearance_status, inspect_need, 
+    clearance_need, transport_need, payment_need, advance_need, producer_org, afffirm_date, 
+    cus_advice_date, order_source, order_placer, booking_no, salesman, salesman_tel, 
+    handling_suggestion, check_time, supplement_time, extend_type, company_id, goods_type, 
+    worklist_no, handling_result, dock, update_id, update_time, closing_per, closing_date, 
+    disposeStatus, loadingTime, loadingLocation, temperature, vent, packages, netWeight, 
+    grossWeight, customsUnitPrice, formOfCommerce, domesticResources, contractNo, Hoe, 
+    quantity,agent
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_export
+    where id = #{id,jdbcType=CHAR} AND del_flag = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_export
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.OrderExport" >
+   insert into order_export (id, order_no, customer_name, 
+      transport_way, domestic_shipper, overseas_consignee, 
+      extract_order_num, origin_country, dest_country, 
+      departure_port, dest_port, product, 
+      entry_port, createtime, creator_id, 
+      creator, creator_tel, support_staff, 
+      support_staff_tel, del_flag, order_status, 
+      cert_status, schedule_status, customs_clearance_status, 
+      inspect_need, clearance_need, transport_need, 
+      payment_need, advance_need, producer_org, 
+      afffirm_date, cus_advice_date, order_source, 
+      order_placer, booking_no, salesman, 
+      salesman_tel, handling_suggestion, check_time, 
+      supplement_time, extend_type, company_id, 
+      goods_type, worklist_no, handling_result, 
+      dock, update_id, update_time, 
+      closing_per, closing_date,
+      remark)
+    values (#{id,jdbcType=CHAR}, #{orderNo,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{transportWay,jdbcType=VARCHAR}, #{domesticShipper,jdbcType=VARCHAR}, #{overseasConsignee,jdbcType=VARCHAR}, 
+      #{extractOrderNum,jdbcType=VARCHAR}, #{originCountry,jdbcType=VARCHAR}, #{destCountry,jdbcType=VARCHAR}, 
+      #{departurePort,jdbcType=VARCHAR}, #{destPort,jdbcType=VARCHAR}, #{product,jdbcType=VARCHAR}, 
+      #{entryPort,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{creatorTel,jdbcType=VARCHAR}, #{supportStaff,jdbcType=VARCHAR}, 
+      #{supportStaffTel,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, 
+      #{certStatus,jdbcType=INTEGER}, #{scheduleStatus,jdbcType=INTEGER}, #{customsClearanceStatus,jdbcType=INTEGER}, 
+      #{inspectNeed,jdbcType=INTEGER}, #{clearanceNeed,jdbcType=INTEGER}, #{transportNeed,jdbcType=INTEGER}, 
+      #{paymentNeed,jdbcType=INTEGER}, #{advanceNeed,jdbcType=INTEGER}, #{producerOrg,jdbcType=VARCHAR}, 
+      #{afffirmDate,jdbcType=TIMESTAMP}, #{cusAdviceDate,jdbcType=TIMESTAMP}, #{orderSource,jdbcType=VARCHAR}, 
+      #{orderPlacer,jdbcType=VARCHAR}, #{bookingNo,jdbcType=VARCHAR}, #{salesman,jdbcType=VARCHAR}, 
+      #{salesmanTel,jdbcType=VARCHAR}, #{handlingSuggestion,jdbcType=VARCHAR}, #{checkTime,jdbcType=TIMESTAMP}, 
+      #{supplementTime,jdbcType=TIMESTAMP}, #{extendType,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, 
+      #{goodsType,jdbcType=VARCHAR}, #{worklistNo,jdbcType=VARCHAR}, #{handlingResult,jdbcType=VARCHAR}, 
+      #{dock,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{closingPer,jdbcType=VARCHAR}, #{closingDate,jdbcType=TIMESTAMP},
+      #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderExport" >
+    insert into order_export
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="transportWay != null">
+        transport_way,
+      </if>
+      <if test="domesticShipper != null">
+        domestic_shipper,
+      </if>
+      <if test="overseasConsignee != null">
+        overseas_consignee,
+      </if>
+      <if test="extractOrderNum != null">
+        extract_order_num,
+      </if>
+      <if test="originCountry != null">
+        origin_country,
+      </if>
+      <if test="destCountry != null">
+        dest_country,
+      </if>
+      <if test="departurePort != null">
+        departure_port,
+      </if>
+      <if test="destPort != null">
+        dest_port,
+      </if>
+      <if test="product != null">
+        product,
+      </if>
+      <if test="entryPort != null">
+        entry_port,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="creatorTel != null">
+        creator_tel,
+      </if>
+      <if test="supportStaff != null">
+        support_staff,
+      </if>
+      <if test="supportStaffTel != null">
+        support_staff_tel,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="certStatus != null">
+        cert_status,
+      </if>
+      <if test="scheduleStatus != null">
+        schedule_status,
+      </if>
+      <if test="customsClearanceStatus != null">
+        customs_clearance_status,
+      </if>
+      <if test="inspectNeed != null">
+        inspect_need,
+      </if>
+      <if test="clearanceNeed != null">
+        clearance_need,
+      </if>
+      <if test="transportNeed != null">
+        transport_need,
+      </if>
+      <if test="paymentNeed != null">
+        payment_need,
+      </if>
+      <if test="advanceNeed != null">
+        advance_need,
+      </if>
+      <if test="producerOrg != null">
+        producer_org,
+      </if>
+      <if test="afffirmDate != null">
+        afffirm_date,
+      </if>
+      <if test="cusAdviceDate != null">
+        cus_advice_date,
+      </if>
+      <if test="orderSource != null">
+        order_source,
+      </if>
+      <if test="orderPlacer != null">
+        order_placer,
+      </if>
+      <if test="bookingNo != null">
+        booking_no,
+      </if>
+      <if test="salesman != null">
+        salesman,
+      </if>
+      <if test="salesmanTel != null">
+        salesman_tel,
+      </if>
+      <if test="handlingSuggestion != null">
+        handling_suggestion,
+      </if>
+      <if test="checkTime != null">
+        check_time,
+      </if>
+      <if test="supplementTime != null">
+        supplement_time,
+      </if>
+      <if test="extendType != null">
+        extend_type,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="goodsType != null">
+        goods_type,
+      </if>
+      <if test="worklistNo != null">
+        worklist_no,
+      </if>
+      <if test="handlingResult != null">
+        handling_result,
+      </if>
+      <if test="dock != null">
+        dock,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="closingPer != null">
+        closing_per,
+      </if>
+      <if test="closingDate != null">
+        closing_date,
+      </if>
+      <if test="disposeStatus != null">
+        disposeStatus,
+      </if>
+      <if test="loadingTime != null">
+        loadingTime,
+      </if>
+      <if test="loadingLocation != null">
+        loadingLocation,
+      </if>
+      <if test="temperature != null">
+        temperature,
+      </if>
+      <if test="vent != null">
+        vent,
+      </if>
+      <if test="packages != null">
+        packages,
+      </if>
+      <if test="netWeight != null">
+        netWeight,
+      </if>
+      <if test="grossWeight != null">
+        grossWeight,
+      </if>
+      <if test="customsUnitPrice != null">
+        customsUnitPrice,
+      </if>
+      <if test="formOfCommerce != null">
+        formOfCommerce,
+      </if>
+      <if test="domesticResources != null">
+        domesticResources,
+      </if>
+      <if test="contractNo != null">
+        contractNo,
+      </if>
+      <if test="hoe != null">
+        Hoe,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+       <if test="agent != null">
+        agent,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="transportWay != null">
+        #{transportWay,jdbcType=VARCHAR},
+      </if>
+      <if test="domesticShipper != null">
+        #{domesticShipper,jdbcType=VARCHAR},
+      </if>
+      <if test="overseasConsignee != null">
+        #{overseasConsignee,jdbcType=VARCHAR},
+      </if>
+      <if test="extractOrderNum != null">
+        #{extractOrderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="originCountry != null">
+        #{originCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="destCountry != null">
+        #{destCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="departurePort != null">
+        #{departurePort,jdbcType=VARCHAR},
+      </if>
+      <if test="destPort != null">
+        #{destPort,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null">
+        #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="entryPort != null">
+        #{entryPort,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorTel != null">
+        #{creatorTel,jdbcType=VARCHAR},
+      </if>
+      <if test="supportStaff != null">
+        #{supportStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="supportStaffTel != null">
+        #{supportStaffTel,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="certStatus != null">
+        #{certStatus,jdbcType=INTEGER},
+      </if>
+      <if test="scheduleStatus != null">
+        #{scheduleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="customsClearanceStatus != null">
+        #{customsClearanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="inspectNeed != null">
+        #{inspectNeed,jdbcType=INTEGER},
+      </if>
+      <if test="clearanceNeed != null">
+        #{clearanceNeed,jdbcType=INTEGER},
+      </if>
+      <if test="transportNeed != null">
+        #{transportNeed,jdbcType=INTEGER},
+      </if>
+      <if test="paymentNeed != null">
+        #{paymentNeed,jdbcType=INTEGER},
+      </if>
+      <if test="advanceNeed != null">
+        #{advanceNeed,jdbcType=INTEGER},
+      </if>
+      <if test="producerOrg != null">
+        #{producerOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="afffirmDate != null">
+        #{afffirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cusAdviceDate != null">
+        #{cusAdviceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSource != null">
+        #{orderSource,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPlacer != null">
+        #{orderPlacer,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingNo != null">
+        #{bookingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="salesman != null">
+        #{salesman,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanTel != null">
+        #{salesmanTel,jdbcType=VARCHAR},
+      </if>
+      <if test="handlingSuggestion != null">
+        #{handlingSuggestion,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplementTime != null">
+        #{supplementTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extendType != null">
+        #{extendType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null">
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="worklistNo != null">
+        #{worklistNo,jdbcType=VARCHAR},
+      </if>
+      <if test="handlingResult != null">
+        #{handlingResult,jdbcType=VARCHAR},
+      </if>
+      <if test="dock != null">
+        #{dock,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closingPer != null">
+        #{closingPer,jdbcType=VARCHAR},
+      </if>
+      <if test="closingDate != null">
+        #{closingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disposeStatus != null">
+        #{disposeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="loadingTime != null">
+        #{loadingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loadingLocation != null">
+        #{loadingLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null">
+        #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="vent != null">
+        #{vent,jdbcType=VARCHAR},
+      </if>
+      <if test="packages != null">
+        #{packages,jdbcType=VARCHAR},
+      </if>
+      <if test="netWeight != null">
+        #{netWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="grossWeight != null">
+        #{grossWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="customsUnitPrice != null">
+        #{customsUnitPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="formOfCommerce != null">
+        #{formOfCommerce,jdbcType=VARCHAR},
+      </if>
+      <if test="domesticResources != null">
+        #{domesticResources,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNo != null">
+        #{contractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hoe != null">
+        #{hoe,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=VARCHAR},
+      </if>
+      <if test="agent != null">
+        #{agent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+   <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderExport">
+    update order_export
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="transportWay != null">
+        transport_way = #{transportWay,jdbcType=VARCHAR},
+      </if>
+      <if test="domesticShipper != null">
+        domestic_shipper = #{domesticShipper,jdbcType=VARCHAR},
+      </if>
+      <if test="overseasConsignee != null">
+        overseas_consignee = #{overseasConsignee,jdbcType=VARCHAR},
+      </if>
+      <if test="extractOrderNum != null">
+        extract_order_num = #{extractOrderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="originCountry != null">
+        origin_country = #{originCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="destCountry != null">
+        dest_country = #{destCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="departurePort != null">
+        departure_port = #{departurePort,jdbcType=VARCHAR},
+      </if>
+      <if test="destPort != null">
+        dest_port = #{destPort,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null">
+        product = #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="entryPort != null">
+        entry_port = #{entryPort,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorTel != null">
+        creator_tel = #{creatorTel,jdbcType=VARCHAR},
+      </if>
+      <if test="supportStaff != null">
+        support_staff = #{supportStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="supportStaffTel != null">
+        support_staff_tel = #{supportStaffTel,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="certStatus != null">
+        cert_status = #{certStatus,jdbcType=INTEGER},
+      </if>
+      <if test="scheduleStatus != null">
+        schedule_status = #{scheduleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="customsClearanceStatus != null">
+        customs_clearance_status = #{customsClearanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="inspectNeed != null">
+        inspect_need = #{inspectNeed,jdbcType=INTEGER},
+      </if>
+      <if test="clearanceNeed != null">
+        clearance_need = #{clearanceNeed,jdbcType=INTEGER},
+      </if>
+      <if test="transportNeed != null">
+        transport_need = #{transportNeed,jdbcType=INTEGER},
+      </if>
+      <if test="paymentNeed != null">
+        payment_need = #{paymentNeed,jdbcType=INTEGER},
+      </if>
+      <if test="advanceNeed != null">
+        advance_need = #{advanceNeed,jdbcType=INTEGER},
+      </if>
+      <if test="producerOrg != null">
+        producer_org = #{producerOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="afffirmDate != null">
+        afffirm_date = #{afffirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cusAdviceDate != null">
+        cus_advice_date = #{cusAdviceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSource != null">
+        order_source = #{orderSource,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPlacer != null">
+        order_placer = #{orderPlacer,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingNo != null">
+        booking_no = #{bookingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="salesman != null">
+        salesman = #{salesman,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanTel != null">
+        salesman_tel = #{salesmanTel,jdbcType=VARCHAR},
+      </if>
+      <if test="handlingSuggestion != null">
+        handling_suggestion = #{handlingSuggestion,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null">
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplementTime != null">
+        supplement_time = #{supplementTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extendType != null">
+        extend_type = #{extendType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null">
+        goods_type = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="worklistNo != null">
+        worklist_no = #{worklistNo,jdbcType=VARCHAR},
+      </if>
+      <if test="handlingResult != null">
+        handling_result = #{handlingResult,jdbcType=VARCHAR},
+      </if>
+      <if test="dock != null">
+        dock = #{dock,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closingPer != null">
+        closing_per = #{closingPer,jdbcType=VARCHAR},
+      </if>
+      <if test="closingDate != null">
+        closing_date = #{closingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disposeStatus != null">
+        disposeStatus = #{disposeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="loadingTime != null">
+        loadingTime = #{loadingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loadingLocation != null">
+        loadingLocation = #{loadingLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null">
+        temperature = #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="vent != null">
+        vent = #{vent,jdbcType=VARCHAR},
+      </if>
+      <if test="packages != null">
+        packages = #{packages,jdbcType=VARCHAR},
+      </if>
+      <if test="netWeight != null">
+        netWeight = #{netWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="grossWeight != null">
+        grossWeight = #{grossWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="customsUnitPrice != null">
+        customsUnitPrice = #{customsUnitPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="formOfCommerce != null">
+        formOfCommerce = #{formOfCommerce,jdbcType=VARCHAR},
+      </if>
+      <if test="domesticResources != null">
+        domesticResources = #{domesticResources,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNo != null">
+        contractNo = #{contractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hoe != null">
+        Hoe = #{hoe,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=VARCHAR},
+      </if>
+      <if test="agent != null">
+        agent = #{agent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+   <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.szag.oms.manager.common.domain.manager.OrderExport">
+    update order_export
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      transport_way = #{transportWay,jdbcType=VARCHAR},
+      domestic_shipper = #{domesticShipper,jdbcType=VARCHAR},
+      overseas_consignee = #{overseasConsignee,jdbcType=VARCHAR},
+      extract_order_num = #{extractOrderNum,jdbcType=VARCHAR},
+      origin_country = #{originCountry,jdbcType=VARCHAR},
+      dest_country = #{destCountry,jdbcType=VARCHAR},
+      departure_port = #{departurePort,jdbcType=VARCHAR},
+      dest_port = #{destPort,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      entry_port = #{entryPort,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      creator_id = #{creatorId,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      creator_tel = #{creatorTel,jdbcType=VARCHAR},
+      support_staff = #{supportStaff,jdbcType=VARCHAR},
+      support_staff_tel = #{supportStaffTel,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      cert_status = #{certStatus,jdbcType=INTEGER},
+      schedule_status = #{scheduleStatus,jdbcType=INTEGER},
+      customs_clearance_status = #{customsClearanceStatus,jdbcType=INTEGER},
+      inspect_need = #{inspectNeed,jdbcType=INTEGER},
+      clearance_need = #{clearanceNeed,jdbcType=INTEGER},
+      transport_need = #{transportNeed,jdbcType=INTEGER},
+      payment_need = #{paymentNeed,jdbcType=INTEGER},
+      advance_need = #{advanceNeed,jdbcType=INTEGER},
+      producer_org = #{producerOrg,jdbcType=VARCHAR},
+      afffirm_date = #{afffirmDate,jdbcType=TIMESTAMP},
+      cus_advice_date = #{cusAdviceDate,jdbcType=TIMESTAMP},
+      order_source = #{orderSource,jdbcType=VARCHAR},
+      order_placer = #{orderPlacer,jdbcType=VARCHAR},
+      booking_no = #{bookingNo,jdbcType=VARCHAR},
+      salesman = #{salesman,jdbcType=VARCHAR},
+      salesman_tel = #{salesmanTel,jdbcType=VARCHAR},
+      handling_suggestion = #{handlingSuggestion,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      supplement_time = #{supplementTime,jdbcType=TIMESTAMP},
+      extend_type = #{extendType,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      goods_type = #{goodsType,jdbcType=VARCHAR},
+      worklist_no = #{worklistNo,jdbcType=VARCHAR},
+      handling_result = #{handlingResult,jdbcType=VARCHAR},
+      dock = #{dock,jdbcType=VARCHAR},
+      update_id = #{updateId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      closing_per = #{closingPer,jdbcType=VARCHAR},
+      closing_date = #{closingDate,jdbcType=TIMESTAMP},
+      disposeStatus = #{disposeStatus,jdbcType=INTEGER},
+      loadingTime = #{loadingTime,jdbcType=TIMESTAMP},
+      loadingLocation = #{loadingLocation,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=VARCHAR},
+      vent = #{vent,jdbcType=VARCHAR},
+      packages = #{packages,jdbcType=VARCHAR},
+      netWeight = #{netWeight,jdbcType=VARCHAR},
+      grossWeight = #{grossWeight,jdbcType=VARCHAR},
+      customsUnitPrice = #{customsUnitPrice,jdbcType=VARCHAR},
+      formOfCommerce = #{formOfCommerce,jdbcType=VARCHAR},
+      domesticResources = #{domesticResources,jdbcType=VARCHAR},
+      contractNo = #{contractNo,jdbcType=VARCHAR},
+      Hoe = #{hoe,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=VARCHAR},
+      agent = #{agent,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.OrderExport">
+    update order_export
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      transport_way = #{transportWay,jdbcType=VARCHAR},
+      domestic_shipper = #{domesticShipper,jdbcType=VARCHAR},
+      overseas_consignee = #{overseasConsignee,jdbcType=VARCHAR},
+      extract_order_num = #{extractOrderNum,jdbcType=VARCHAR},
+      origin_country = #{originCountry,jdbcType=VARCHAR},
+      dest_country = #{destCountry,jdbcType=VARCHAR},
+      departure_port = #{departurePort,jdbcType=VARCHAR},
+      dest_port = #{destPort,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      entry_port = #{entryPort,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      creator_id = #{creatorId,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      creator_tel = #{creatorTel,jdbcType=VARCHAR},
+      support_staff = #{supportStaff,jdbcType=VARCHAR},
+      support_staff_tel = #{supportStaffTel,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      cert_status = #{certStatus,jdbcType=INTEGER},
+      schedule_status = #{scheduleStatus,jdbcType=INTEGER},
+      customs_clearance_status = #{customsClearanceStatus,jdbcType=INTEGER},
+      inspect_need = #{inspectNeed,jdbcType=INTEGER},
+      clearance_need = #{clearanceNeed,jdbcType=INTEGER},
+      transport_need = #{transportNeed,jdbcType=INTEGER},
+      payment_need = #{paymentNeed,jdbcType=INTEGER},
+      advance_need = #{advanceNeed,jdbcType=INTEGER},
+      producer_org = #{producerOrg,jdbcType=VARCHAR},
+      afffirm_date = #{afffirmDate,jdbcType=TIMESTAMP},
+      cus_advice_date = #{cusAdviceDate,jdbcType=TIMESTAMP},
+      order_source = #{orderSource,jdbcType=VARCHAR},
+      order_placer = #{orderPlacer,jdbcType=VARCHAR},
+      booking_no = #{bookingNo,jdbcType=VARCHAR},
+      salesman = #{salesman,jdbcType=VARCHAR},
+      salesman_tel = #{salesmanTel,jdbcType=VARCHAR},
+      handling_suggestion = #{handlingSuggestion,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      supplement_time = #{supplementTime,jdbcType=TIMESTAMP},
+      extend_type = #{extendType,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      goods_type = #{goodsType,jdbcType=VARCHAR},
+      worklist_no = #{worklistNo,jdbcType=VARCHAR},
+      handling_result = #{handlingResult,jdbcType=VARCHAR},
+      dock = #{dock,jdbcType=VARCHAR},
+      update_id = #{updateId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      closing_per = #{closingPer,jdbcType=VARCHAR},
+      closing_date = #{closingDate,jdbcType=TIMESTAMP},
+      disposeStatus = #{disposeStatus,jdbcType=INTEGER},
+      loadingTime = #{loadingTime,jdbcType=TIMESTAMP},
+      loadingLocation = #{loadingLocation,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=VARCHAR},
+      vent = #{vent,jdbcType=VARCHAR},
+      packages = #{packages,jdbcType=VARCHAR},
+      netWeight = #{netWeight,jdbcType=VARCHAR},
+      grossWeight = #{grossWeight,jdbcType=VARCHAR},
+      customsUnitPrice = #{customsUnitPrice,jdbcType=VARCHAR},
+      formOfCommerce = #{formOfCommerce,jdbcType=VARCHAR},
+      domesticResources = #{domesticResources,jdbcType=VARCHAR},
+      contractNo = #{contractNo,jdbcType=VARCHAR},
+      Hoe = #{hoe,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=VARCHAR},
+      agent = #{agent,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="findCount" resultType="int">
+		SELECT COUNT(id) FROM(SELECT o_w_s.id FROM order_worklist_status  o_w_s
+		INNER JOIN
+		order_export o_e  ON o_e.id = o_w_s.order_id
+		INNER JOIN
+		order_export_shipping_info o_e_s_i ON  o_e_s_i.order_id= o_w_s.order_id
+		LEFT JOIN
+		order_transfer_info o_t_i ON o_t_i.order_id = o_w_s.order_id
+		LEFT JOIN
+		order_return_container_info o_r_c_i ON o_r_c_i.order_id = o_w_s.order_id
+		LEFT
+		JOIN order_payment_info o_p_i ON o_p_i.order_id = o_w_s.order_id
+		LEFT JOIN
+		order_evaluation_score o_e_s ON o_e_s.order_id = o_w_s.order_id
+		LEFT JOIN 
+		order_clearance_info o_c_i ON o_c_i.order_id = o_w_s.order_id
+		WHERE
+		o_w_s.del_flag = 0
+		<!-- 未订舱 -->
+		<if test="keyWord == 1">
+			AND o_w_s.release_date is null 
+			AND o_w_s.schedule_status = 0
+		</if>
+		<!-- 已订舱未出车 -->
+		<if test="keyWord == 9">
+			AND o_w_s.schedule_status = 1
+		</if>
+		<!-- 已出车之后未还重-->
+		<if test="keyWord == 2">
+			AND o_w_s.schedule_status in (2,3,4)
+		</if>
+		<!-- 已还重之后未离港 -->
+		<if test="keyWord == 3">
+			AND o_w_s.schedule_status in (5,6)
+		</if>
+		<!-- 已离港之后未电放 -->
+		<if test="keyWord == 4">
+			AND o_w_s.schedule_status = 7
+		</if>
+		<!-- 截关日期24小时即将到期 -->
+		<if test="keyWord == 5">
+			AND o_w_s.schedule_status = 3
+			AND HOUR(timediff(now(), o_e_s_i.cyDate)) = 24
+		</if>
+		<!-- 免舱日期24小时即将到期 -->
+		<if test="keyWord == 6">
+			AND HOUR(timediff(now(), o_w_s.free_demurrage)) = 24 AND
+			o_w_s.schedule_status in ("1","2")
+		</if>
+		<!-- 免舱日期超期 -->
+		<if test="keyWord == 7">
+			AND now() &lt; o_w_s.free_demurrage 
+			AND o_w_s.schedule_status in ("1","2")
+		</if>
+		<!-- 最近一个月评分低于两分的 -->
+		<if test="keyWord == 8">
+			AND o_e_s.score BETWEEN 0 AND 2 AND DATE_SUB(CURDATE(),
+			INTERVAL 1 MONTH) &lt;= date(o_e_s.createtime)
+		</if>
+		<!-- 未放行 -->
+		<if test="keyWord == 10">
+			AND o_w_s.outdate2 is null
+			AND o_w_s.schedule_status = 5 
+		</if>
+		<!-- 查询本人 -->
+		<if test="user.dataPermission == 0">
+			AND
+			IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			o_e.support_staff = #{user.id,jdbcType=VARCHAR},
+			o_e.id = #{user.username,jdbcType=VARCHAR})
+		</if>
+		<!-- 查询本部门 -->
+		<if test="user.dataPermission == 1">
+			AND IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			o_e.support_staff in (SELECT id FROM base_user WHERE dpname =#{user.dpname,jdbcType=VARCHAR}),
+			o_e.salesman in (SELECT id FROM base_user WHERE dpname = #{user.dpname,jdbcType=VARCHAR}))
+		</if>
+		GROUP BY o_w_s.id
+		ORDER BY o_w_s.createdate Desc) as count
+	</select>
+	<select id="findByBookingNo" resultType="int" parameterType="string">
+		SELECT COUNT(*) FROM order_export WHERE booking_no = #{bookingNo,jdbcType=VARCHAR} AND del_flag = 0
+		<if test="id != null and id != ''">
+			and id !=#{id}
+		</if>
+	</select>
+	<select id="findOrderCount" resultType="int">
+		SELECT count(*) FROM order_export
+		WHERE del_flag = 0
+		<!-- 未审核 --> 
+		<if test="keyWord == 1">
+			and order_status in ("0")
+		</if>
+		<!-- 单证资料未齐 --> 
+		<if test="keyWord == 2">
+			and cert_status = 0
+			and order_status = 4
+		</if>
+		<!-- 24小时未审核 --> 
+		<if test="keyWord == 3">
+			AND createtime &lt; (NOW() - interval 24 hour) 
+			AND order_status = 1
+		</if>
+		<!-- 未审核 --> 
+		<if test="keyWord == 4">
+			and order_status in ("0","1","6")
+		</if>
+		<!-- 查询本人 -->
+		<if test="user.dataPermission == 0">
+			AND
+			IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			support_staff = #{user.id,jdbcType=VARCHAR},
+			id = #{user.username,jdbcType=VARCHAR})
+		</if>
+		<!-- 查询本部门 -->
+		<if test="user.dataPermission == 1">
+			AND IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			support_staff in (SELECT id FROM base_user WHERE dpname =#{user.dpname,jdbcType=VARCHAR}),
+			salesman in (SELECT id FROM base_user WHERE dpname = #{user.dpname,jdbcType=VARCHAR}))
+		</if>
+	</select>
+	<select id="findByPage" resultMap="ExtendResultMap">
+		SELECT 
+			oe.id,
+			oe.order_status,
+			oe.order_no,
+			oe.cert_status,
+			IFNULL((SELECT `name` FROM base_customer where id = oe.company_id limit 1),oe.customer_name) AS customerName,
+			oe.transport_way,
+			IFNULL(oe.booking_no,(SELECT booking_no from order_worklist_status where order_id = oe.id LIMIT 1)) as bookingNo,
+			IFNULL((SELECT product from order_worklist_status where order_id = oe.id LIMIT 1),oe.product)  AS product,
+			bc6.`name` AS originCountryName,
+			bc6.ename AS originCountryEName,
+			bc2.`name` AS destCountryName,
+			bc2.ename AS destCountryEName,
+			oe.extract_order_num,
+			oe.goods_type,
+			oe.order_source,
+			oe.cus_advice_date,
+			oe.createtime,
+			oe.creator,
+			oe.check_time,
+			oe.supplement_time,
+			oe.handling_suggestion,
+			bc3.`name` AS domesticShipperName,
+			bc3.ename AS domesticShipperEName,
+			bc4.`name` AS overseasConsigneeName,
+			bc4.ename AS overseasConsigneeEName,
+			bc5.`name` AS producerOrgName,
+			bc5.ename AS producerOrgEName,
+			bp.`name` AS departurePortName,
+			bp.ename AS departurePortEName,
+			bp2.`name` AS destPortName,
+			bp2.ename AS destPortEName,
+			oe.remark,
+			oe.inspect_need,
+			oe.clearance_need,
+			oe.transport_need,
+			oe.payment_need,
+			oe.advance_need,
+			oe.order_placer,
+			oe.handling_result,
+			oe.worklist_no,
+			oe.closing_per,
+			oe.closing_date,
+			bu.username as support_staff,
+			oe.loadingTime,
+			oe.loadingLocation,
+			oe.temperature,
+			oe.vent,
+			oe.packages,
+			oe.netWeight,
+			oe.grossWeight,
+			oe.customsUnitPrice,
+			oe.formOfCommerce,
+			oe.domesticResources,
+			oe.contractNo,
+			oe.Hoe,
+			oe.quantity
+		 FROM order_export oe
+		LEFT JOIN base_port bp ON bp.id = oe.departure_port
+		LEFT JOIN base_port bp2 ON bp2.id = oe.dest_port
+		LEFT JOIN base_customer bc ON bc.id = oe.customer_name
+		LEFT JOIN base_country bc2 ON bc2.id = oe.dest_country
+		LEFT JOIN base_customer bc3 ON bc3.id = oe.domestic_shipper
+		LEFT JOIN base_customer bc4 ON bc4.id = oe.overseas_consignee
+		LEFT JOIN base_customer bc5 ON bc5.id = oe.producer_org
+		LEFT JOIN base_country bc6 ON bc6.id = oe.origin_country
+		LEFT JOIN base_user bu ON bu.id = oe.support_staff
+		WHERE oe.del_flag = 0
+		<!-- 未审核 --> 
+		<if test="orderExport.keyWord == 1">
+			and oe.order_status in ("0")
+		</if>
+		<!-- 单证资料未齐 --> 
+		<if test="orderExport.keyWord == 2">
+			and oe.cert_status = 0
+			and oe.order_status = 4
+		</if>
+		<!-- 24小时未审核 --> 
+		<if test="orderExport.keyWord == 3">
+			AND oe.createtime &lt; (NOW() - interval 24 hour) 
+			AND oe.order_status = 1
+		</if>
+		<!-- 未审核 --> 
+		<if test="orderExport.keyWord == 4">
+			and oe.order_status in ("0","1","6")
+		</if>
+		<!-- 订单号 --> 
+		<if test="orderExport.orderNo != null">
+			AND oe.order_no like  concat('%',#{orderExport.orderNo,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="orderExport.orderStatus == 0">
+			AND oe.order_status in(0,6)
+		</if>
+		<if test="orderExport.orderStatus != null and orderExport.orderStatus!=0">
+			AND oe.order_status = #{orderExport.orderStatus,jdbcType=INTEGER}
+		</if>
+		<if test="orderExport.certStatus == 0">
+			AND oe.cert_status = #{orderExport.certStatus,jdbcType=INTEGER}
+		</if>
+		<if test="orderExport.certStatus == 1">
+			AND oe.cert_status = #{orderExport.certStatus,jdbcType=INTEGER}
+		</if>
+		<!-- 运输方式 --> 
+		<if test="orderExport.transportWay != null">
+			AND oe.transport_way like  concat('%',#{orderExport.transportWay,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 订舱号 --> 
+		<if test="orderExport.bookingNo != null">
+			AND oe.booking_no like  concat('%',#{orderExport.bookingNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 商品名称 --> 
+		<if test="orderExport.product != null">
+			AND oe.product like  concat('%',#{orderExport.product,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 提单号 --> 
+		<if test="orderExport.extractOrderNum != null">
+			AND oe.extract_order_num like  concat('%',#{orderExport.extractOrderNum,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 工作单号 --> 
+		<if test="orderExport.worklistNo != null">
+			AND oe.worklist_no like  concat('%',#{orderExport.worklistNo,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 创建时间（始） -->
+		<if test="orderExport.createStartTime != null">
+			AND oe.createtime  > #{orderExport.createStartTime,jdbcType=TIMESTAMP}
+		</if>
+		<!-- 创建时间（终） -->
+		<if test="orderExport.createEndTime !=null">
+			AND oe.createtime &lt; #{orderExport.createEndTime,jdbcType=TIMESTAMP} 
+		</if>
+		<!-- 查询本人 -->
+		<if test="user.dataPermission == 0">
+			AND
+			IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oe.support_staff = #{user.id,jdbcType=VARCHAR},
+			oe.id = #{user.username,jdbcType=VARCHAR})
+		</if>
+		<!-- 查询本部门 -->
+		<if test="user.dataPermission == 1">
+			AND IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oe.support_staff in (SELECT id FROM base_user WHERE dpname =#{user.dpname,jdbcType=VARCHAR}),
+			oe.salesman in (SELECT id FROM base_user WHERE dpname = #{user.dpname,jdbcType=VARCHAR}))
+		</if>
+		GROUP BY oe.id
+		ORDER BY oe.createtime DESC
+	</select>
+	<select id="findOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT * FROM order_export WHERE order_no = #{orderNo,jdbcType=VARCHAR}
+	</select>
+	<select id="find" resultMap="ExtendResultMap" parameterType="java.lang.String">
+		SELECT 
+			oe.id,
+			oe.order_no,
+			oe.order_status,
+			bc.`name` AS customerName,
+			bc2.`name` AS company,
+			oe.transport_way,
+			oe.booking_no,
+			oe.product,
+			oe.extract_order_num,
+			oe.goods_type,
+			oe.order_source,
+			oe.createtime,
+			oe.creator,
+			oe.company_id,
+			oe.dock,
+			oe.cus_advice_date,
+			oe.origin_country,
+			oe.dest_country,
+			oe.support_staff,
+			oe.salesman,
+			oe.check_time,
+			oe.supplement_time,
+			oe.handling_suggestion,
+			IFNULL((SELECT `name` FROM base_customer where id =  oe.customer_name  limit 1), oe.customer_name ) AS customer,
+			oe.domestic_shipper,
+			bc3.`name` AS domesticShipperName,
+			bc3.ename AS domesticShipperEName,
+			oe.overseas_consignee,
+			bc4.`name` AS overseasConsigneeName,
+			bc4.ename AS overseasConsigneeEName,
+			oe.producer_org,
+			bc5.`name` AS producerOrgName,
+			oe.departure_port,
+			bp.`name` AS departurePortName,
+			oe.dest_port,
+			bp2.`name` AS destPortName,
+			oe.remark,
+			oe.inspect_need,
+			oe.clearance_need,
+			oe.transport_need,
+			oe.payment_need,
+			oe.advance_need,
+			oe.order_placer,
+			oe.handling_result,
+			bc6.username AS supportStaffName,
+			bc7.username AS salesmanName,
+			bc8.username AS orderPlacerName,
+			oe.loadingTime,
+			oe.loadingLocation,
+			oe.temperature,
+			oe.vent,
+			oe.packages,
+			oe.netWeight,
+			oe.grossWeight,
+			oe.customsUnitPrice,
+			oe.formOfCommerce,
+			oe.domesticResources,
+			oe.contractNo,
+			oe.Hoe,
+			oe.quantity,
+			IFNULL((SELECT `name` FROM base_customer where id =  oe.agent  limit 1), oe.agent ) as agent,
+			oe.order_source as orderSource
+		 FROM order_export oe
+		LEFT JOIN base_port bp ON bp.id = oe.departure_port
+		LEFT JOIN base_port bp2 ON bp2.id = oe.dest_port
+		LEFT JOIN base_customer bc ON bc.id = oe.customer_name
+		LEFT JOIN base_customer bc2 ON bc2.id = oe.company_id
+		LEFT JOIN base_customer bc3 ON bc3.id = oe.domestic_shipper
+		LEFT JOIN base_customer bc4 ON bc4.id = oe.overseas_consignee
+		LEFT JOIN base_customer bc5 ON bc5.id = oe.producer_org
+		LEFT JOIN base_user bc6 ON bc6.id = oe.support_staff
+		LEFT JOIN base_user bc7 ON bc7.id = oe.salesman
+		LEFT JOIN base_user bc8 ON bc8.id = oe.order_placer
+		WHERE oe.del_flag = 0 AND oe.id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="findOrder" resultType="int">
+		SELECT count(*) FROM order_export oe where del_flag = 0
+		<!-- 未审核 -->
+		<if test="keyWord == 30">
+			AND oe.order_status in ("0")
+		</if>
+		<!-- 单证未齐 -->
+		<if test="keyWord == 31">
+			AND oe.cert_status = 0
+			AND oe.order_status = 4
+		</if>
+		<!-- 24小时未审核 -->
+		<if test="keyWord == 33">
+			AND (NOW() - interval 24 hour) > oe.createtime
+		</if>
+		<!-- 查询本人 -->
+		<if test="user.dataPermission == 0">
+			AND
+			IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oe.support_staff = #{user.id,jdbcType=VARCHAR},
+			oe.id = #{user.username,jdbcType=VARCHAR})
+		</if>
+		<!-- 查询本部门 -->
+		<if test="user.dataPermission == 1">
+			AND IF(
+			EXISTS(SELECT * FROM base_role br INNER JOIN base_rolemember brm ON br.id = brm.role_id WHERE brm.user_id=#{user.id,jdbcType=VARCHAR} AND br.name like "%客服%"),
+			oe.support_staff in (SELECT id FROM base_user WHERE dpname =#{user.dpname,jdbcType=VARCHAR}),
+			oe.salesman in (SELECT id FROM base_user WHERE dpname = #{user.dpname,jdbcType=VARCHAR}))
+		</if>
+	</select>
+
+
+  <select id="findOrderNoCount" resultType="int">
+      SELECT COUNT(*) FROM order_export WHERE del_flag = 0 AND worklist_no = #{no,jdbcType=VARCHAR}
+  </select>
+</mapper>

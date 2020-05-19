@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.PortMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.Port" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ename" property="ename" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="lastupdate" property="lastupdate" jdbcType="TIMESTAMP" />
+    <result column="editor" property="editor" jdbcType="VARCHAR" />
+    <result column="in_port_id" property="inPortId" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="country_id" property="countryId" jdbcType="VARCHAR" />
+    <result column="domestic" property="domestic" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.szag.oms.manager.common.domain.manager.Port" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, ename, country, contact, telephone, address, createdate, creator, 
+    lastupdate, editor, in_port_id, del_flag,country_id,domestic
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from base_port
+    where id = #{id,jdbcType=CHAR} AND del_flag = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_port
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.Port" >
+    insert into base_port (id, code, name, 
+      ename, country, contact, 
+      telephone, address, createdate, 
+      creator, lastupdate, editor, 
+      in_port_id, del_flag, remark,,country_id,domestic
+      )
+    values (#{id,jdbcType=CHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{ename,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{lastupdate,jdbcType=TIMESTAMP}, #{editor,jdbcType=VARCHAR}, 
+      #{inPortId,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, #{remark,jdbcType=LONGVARCHAR},
+       #{countryId,jdbcType=VARCHAR}, #{domestic,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.Port" >
+    insert into base_port
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="ename != null" >
+        ename,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="lastupdate != null" >
+        lastupdate,
+      </if>
+      <if test="editor != null" >
+        editor,
+      </if>
+      <if test="inPortId != null" >
+        in_port_id,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="domestic != null" >
+        domestic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null" >
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdate != null" >
+        #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="inPortId != null" >
+        #{inPortId,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="countryId != null" >
+       #{countryId,jdbcType=VARCHAR},
+      </if>
+      <if test="domestic != null" >
+        #{domestic,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.Port" >
+    update base_port
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null" >
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdate != null" >
+        lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="inPortId != null" >
+        in_port_id = #{inPortId,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=VARCHAR},
+      </if>
+      <if test="domestic != null" >
+        domestic = #{domestic,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.szag.oms.manager.common.domain.manager.Port" >
+    update base_port
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      ename = #{ename,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+      editor = #{editor,jdbcType=VARCHAR},
+      in_port_id = #{inPortId,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      country_id = #{countryId,jdbcType=VARCHAR},
+      domestic = #{domestic,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.Port" >
+    update base_port
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      ename = #{ename,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+      editor = #{editor,jdbcType=VARCHAR},
+      in_port_id = #{inPortId,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      country_id = #{countryId,jdbcType=VARCHAR},
+      domestic = #{domestic,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="findByPage" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from base_port
+    where del_flag = 0
+    <if test="port.keyword !=null and port.keyword != ''">
+    	AND (code LIKE concat('%',#{port.keyword,jdbcType=VARCHAR},'%') OR
+    		 name LIKE concat('%',#{port.keyword,jdbcType=VARCHAR},'%') OR
+    		 ename LIKE concat('%', #{port.keyword,jdbcType=VARCHAR},'%'))
+    </if>
+    <if test="port.code !=null and port.code != ''">
+    	AND code LIKE concat('%',#{port.code,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="port.name !=null and port.name != ''">
+    	AND name LIKE concat('%',#{port.name,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="port.ename !=null and port.ename != ''">
+    	AND ename LIKE concat('%', #{port.ename,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="port.country !=null and port.country != ''">
+    	AND country LIKE concat('%',#{port.country,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="port.inPortId !=null and port.inPortId != ''">
+    	AND in_port_id LIKE concat('%',#{port.inPortId,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="port.domestic !=null and port.domestic != ''">
+    	AND domestic = #{port.domestic,jdbcType=INTEGER}
+    </if>
+    ORDER BY createdate Desc
+  </select>
+</mapper>

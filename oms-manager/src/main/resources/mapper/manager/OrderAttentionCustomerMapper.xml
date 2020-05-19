@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.OrderAttentionCustomerMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderAttentionCustomer" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="box_no" property="boxNo" jdbcType="VARCHAR" />
+    <result column="booking_no" property="bookingNo" jdbcType="VARCHAR" />
+    <result column="attention_date" property="attentionDate" jdbcType="TIMESTAMP" />
+    <result column="is_attention" property="isAttention" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="container_id" property="containerId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, box_no, booking_no, attention_date, is_attention, user_id, container_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_attention_customer
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_attention_customer
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.OrderAttentionCustomer" >
+    insert into order_attention_customer (id, order_id, box_no, 
+      booking_no, attention_date, is_attention, 
+      user_id, container_id)
+    values (#{id,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR}, #{boxNo,jdbcType=VARCHAR}, 
+      #{bookingNo,jdbcType=VARCHAR}, #{attentionDate,jdbcType=TIMESTAMP}, #{isAttention,jdbcType=INTEGER}, 
+      #{userId,jdbcType=VARCHAR}, #{containerId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderAttentionCustomer" >
+    insert into order_attention_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="boxNo != null" >
+        box_no,
+      </if>
+      <if test="bookingNo != null" >
+        booking_no,
+      </if>
+      <if test="attentionDate != null" >
+        attention_date,
+      </if>
+      <if test="isAttention != null" >
+        is_attention,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="containerId != null" >
+        container_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="boxNo != null" >
+        #{boxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingNo != null" >
+        #{bookingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionDate != null" >
+        #{attentionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAttention != null" >
+        #{isAttention,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="containerId != null" >
+        #{containerId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderAttentionCustomer" >
+    update order_attention_customer
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="boxNo != null" >
+        box_no = #{boxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingNo != null" >
+        booking_no = #{bookingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionDate != null" >
+        attention_date = #{attentionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAttention != null" >
+        is_attention = #{isAttention,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="containerId != null" >
+        container_id = #{containerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.OrderAttentionCustomer" >
+    update order_attention_customer
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      box_no = #{boxNo,jdbcType=VARCHAR},
+      booking_no = #{bookingNo,jdbcType=VARCHAR},
+      attention_date = #{attentionDate,jdbcType=TIMESTAMP},
+      is_attention = #{isAttention,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
+      container_id = #{containerId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

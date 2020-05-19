@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.szag.oms.manager.common.dao.manager.OrderExportShippingInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderExportShippingInfo" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="loadingPort" property="loadingport" jdbcType="VARCHAR" />
+    <result column="delivery_port" property="deliveryPort" jdbcType="VARCHAR" />
+    <result column="stop_port" property="stopPort" jdbcType="VARCHAR" />
+    <result column="loading_country" property="loadingCountry" jdbcType="VARCHAR" />
+    <result column="delivery_country" property="deliveryCountry" jdbcType="VARCHAR" />
+    <result column="ship" property="ship" jdbcType="VARCHAR" />
+    <result column="bl_no" property="blNo" jdbcType="VARCHAR" />
+    <result column="voyage_no" property="voyageNo" jdbcType="VARCHAR" />
+    <result column="shipping_company" property="shippingCompany" jdbcType="VARCHAR" />
+    <result column="consignor" property="consignor" jdbcType="VARCHAR" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="notifier" property="notifier" jdbcType="VARCHAR" />
+    <result column="dock" property="dock" jdbcType="VARCHAR" />
+    <result column="ETA" property="eta" jdbcType="TIMESTAMP" />
+    <result column="ETD" property="etd" jdbcType="TIMESTAMP" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="lastupdate" property="lastupdate" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="editor" property="editor" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="transfer_ship_info" property="transferShipInfo" jdbcType="VARCHAR" />
+    <result column="productionID" property="productionid" jdbcType="VARCHAR" />
+    <result column="cyDate" property="cydate" jdbcType="TIMESTAMP" />
+    <result column="ATD" property="atd" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ExtendBaseResultMap" type="cn.szag.oms.manager.common.domain.manager.OrderExportShippingInfo" extends="BaseResultMap">
+  	<result column="box_no" property="boxNo" jdbcType="VARCHAR" />
+  	<result column="booking_no" property="bookingNo" jdbcType="VARCHAR" />
+  	<result column="containerId" property="containerId" jdbcType="VARCHAR" />
+  	<result column="quantity" property="quantity" jdbcType="VARCHAR" />
+  	<result column="product" property="product" jdbcType="VARCHAR" />
+  	<result column="departurePortName" property="departurePortName" jdbcType="VARCHAR" />
+  	<result column="departurePortEName" property="departurePortEName" jdbcType="VARCHAR" />
+  	<result column="destPortName" property="destPortName" jdbcType="VARCHAR" />
+  	<result column="destPortEName" property="destPortEName" jdbcType="VARCHAR" />
+  	<result column="loadingCountryName" property="loadingCountryName" jdbcType="VARCHAR" />
+  	<result column="loadingCountryEName" property="loadingCountryEName" jdbcType="VARCHAR" />
+  	<result column="deliveryCountryName" property="deliveryCountryName" jdbcType="VARCHAR" />
+  	<result column="deliveryCountryEname" property="deliveryCountryEname" jdbcType="VARCHAR" />
+  	<result column="shipowningCompanyName" property="shipowningCompanyName" jdbcType="VARCHAR" />
+  	<result column="shipowningCompanyEName" property="shipowningCompanyEName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, loadingPort, delivery_port, stop_port, loading_country, delivery_country, 
+    ship, bl_no, voyage_no, shipping_company, consignor, consignee, notifier, dock, ETA, 
+    ETD, createdate, lastupdate, creator, editor, del_flag, transfer_ship_info, productionID, 
+    cyDate, ATD
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_export_shipping_info
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_export_shipping_info
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.szag.oms.manager.common.domain.manager.OrderExportShippingInfo" >
+    insert into order_export_shipping_info (id, order_id, loadingPort, 
+      delivery_port, stop_port, loading_country, 
+      delivery_country, ship, bl_no, 
+      voyage_no, shipping_company, consignor, 
+      consignee, notifier, dock, 
+      ETA, ETD, createdate, 
+      lastupdate, creator, editor, 
+      del_flag, transfer_ship_info, productionID, 
+      cyDate, ATD)
+    values (#{id,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR}, #{loadingport,jdbcType=VARCHAR}, 
+      #{deliveryPort,jdbcType=VARCHAR}, #{stopPort,jdbcType=VARCHAR}, #{loadingCountry,jdbcType=VARCHAR}, 
+      #{deliveryCountry,jdbcType=VARCHAR}, #{ship,jdbcType=VARCHAR}, #{blNo,jdbcType=VARCHAR}, 
+      #{voyageNo,jdbcType=VARCHAR}, #{shippingCompany,jdbcType=VARCHAR}, #{consignor,jdbcType=VARCHAR}, 
+      #{consignee,jdbcType=VARCHAR}, #{notifier,jdbcType=VARCHAR}, #{dock,jdbcType=VARCHAR}, 
+      #{eta,jdbcType=TIMESTAMP}, #{etd,jdbcType=TIMESTAMP}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{lastupdate,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, #{editor,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=INTEGER}, #{transferShipInfo,jdbcType=VARCHAR}, #{productionid,jdbcType=VARCHAR}, 
+      #{cydate,jdbcType=TIMESTAMP}, #{atd,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderExportShippingInfo" >
+    insert into order_export_shipping_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="loadingport != null" >
+        loadingPort,
+      </if>
+      <if test="deliveryPort != null" >
+        delivery_port,
+      </if>
+      <if test="stopPort != null" >
+        stop_port,
+      </if>
+      <if test="loadingCountry != null" >
+        loading_country,
+      </if>
+      <if test="deliveryCountry != null" >
+        delivery_country,
+      </if>
+      <if test="ship != null" >
+        ship,
+      </if>
+      <if test="blNo != null" >
+        bl_no,
+      </if>
+      <if test="voyageNo != null" >
+        voyage_no,
+      </if>
+      <if test="shippingCompany != null" >
+        shipping_company,
+      </if>
+      <if test="consignor != null" >
+        consignor,
+      </if>
+      <if test="consignee != null" >
+        consignee,
+      </if>
+      <if test="notifier != null" >
+        notifier,
+      </if>
+      <if test="dock != null" >
+        dock,
+      </if>
+      <if test="eta != null" >
+        ETA,
+      </if>
+      <if test="etd != null" >
+        ETD,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="lastupdate != null" >
+        lastupdate,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="editor != null" >
+        editor,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="transferShipInfo != null" >
+        transfer_ship_info,
+      </if>
+      <if test="productionid != null" >
+        productionID,
+      </if>
+      <if test="cydate != null" >
+        cyDate,
+      </if>
+      <if test="atd != null" >
+        ATD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="loadingport != null" >
+        #{loadingport,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryPort != null" >
+        #{deliveryPort,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPort != null" >
+        #{stopPort,jdbcType=VARCHAR},
+      </if>
+      <if test="loadingCountry != null" >
+        #{loadingCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCountry != null" >
+        #{deliveryCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="ship != null" >
+        #{ship,jdbcType=VARCHAR},
+      </if>
+      <if test="blNo != null" >
+        #{blNo,jdbcType=VARCHAR},
+      </if>
+      <if test="voyageNo != null" >
+        #{voyageNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCompany != null" >
+        #{shippingCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="consignor != null" >
+        #{consignor,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="notifier != null" >
+        #{notifier,jdbcType=VARCHAR},
+      </if>
+      <if test="dock != null" >
+        #{dock,jdbcType=VARCHAR},
+      </if>
+      <if test="eta != null" >
+        #{eta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="etd != null" >
+        #{etd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdate != null" >
+        #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="editor != null" >
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="transferShipInfo != null" >
+        #{transferShipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="productionid != null" >
+        #{productionid,jdbcType=VARCHAR},
+      </if>
+      <if test="cydate != null" >
+        #{cydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="atd != null" >
+        #{atd,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.szag.oms.manager.common.domain.manager.OrderExportShippingInfo" >
+    update order_export_shipping_info
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="loadingport != null" >
+        loadingPort = #{loadingport,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryPort != null" >
+        delivery_port = #{deliveryPort,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPort != null" >
+        stop_port = #{stopPort,jdbcType=VARCHAR},
+      </if>
+      <if test="loadingCountry != null" >
+        loading_country = #{loadingCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCountry != null" >
+        delivery_country = #{deliveryCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="ship != null" >
+        ship = #{ship,jdbcType=VARCHAR},
+      </if>
+      <if test="blNo != null" >
+        bl_no = #{blNo,jdbcType=VARCHAR},
+      </if>
+      <if test="voyageNo != null" >
+        voyage_no = #{voyageNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCompany != null" >
+        shipping_company = #{shippingCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="consignor != null" >
+        consignor = #{consignor,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="notifier != null" >
+        notifier = #{notifier,jdbcType=VARCHAR},
+      </if>
+      <if test="dock != null" >
+        dock = #{dock,jdbcType=VARCHAR},
+      </if>
+      <if test="eta != null" >
+        ETA = #{eta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="etd != null" >
+        ETD = #{etd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdate != null" >
+        lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="editor != null" >
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="transferShipInfo != null" >
+        transfer_ship_info = #{transferShipInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="productionid != null" >
+        productionID = #{productionid,jdbcType=VARCHAR},
+      </if>
+      <if test="cydate != null" >
+        cyDate = #{cydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="atd != null" >
+        ATD = #{atd,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.szag.oms.manager.common.domain.manager.OrderExportShippingInfo" >
+    update order_export_shipping_info
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      loadingPort = #{loadingport,jdbcType=VARCHAR},
+      delivery_port = #{deliveryPort,jdbcType=VARCHAR},
+      stop_port = #{stopPort,jdbcType=VARCHAR},
+      loading_country = #{loadingCountry,jdbcType=VARCHAR},
+      delivery_country = #{deliveryCountry,jdbcType=VARCHAR},
+      ship = #{ship,jdbcType=VARCHAR},
+      bl_no = #{blNo,jdbcType=VARCHAR},
+      voyage_no = #{voyageNo,jdbcType=VARCHAR},
+      shipping_company = #{shippingCompany,jdbcType=VARCHAR},
+      consignor = #{consignor,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      notifier = #{notifier,jdbcType=VARCHAR},
+      dock = #{dock,jdbcType=VARCHAR},
+      ETA = #{eta,jdbcType=TIMESTAMP},
+      ETD = #{etd,jdbcType=TIMESTAMP},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      editor = #{editor,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      transfer_ship_info = #{transferShipInfo,jdbcType=VARCHAR},
+      productionID = #{productionid,jdbcType=VARCHAR},
+      cyDate = #{cydate,jdbcType=TIMESTAMP},
+      ATD = #{atd,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="find" resultMap="ExtendBaseResultMap">
+  	SELECT 
+		ows.id AS containerId,
+		ows.box_no,
+		ows.booking_no,
+		oesi.dock,
+		oesi.cyDate,
+		oesi.bl_no ,
+		ows.quantity,
+		ows.product,
+		oesi.ETA,
+		CONCAT(oesi.ship,oesi.voyage_no) AS shipInfo,
+		bp.`name` AS departurePortName,
+		bp.`ename` AS departurePortEName,
+		bp2.`name` AS destPortName,
+		bp2.`ename` AS destPortEName,
+		bcn.`name` AS loadingCountryName,
+		bcn.`ename` AS loadingCountryEName,
+		bc.`name` AS deliveryCountryName,
+		bc.ename AS deliveryCountryEname,
+		bc3.`name` AS shipowningCompanyName,
+		bc3.ename AS shipowningCompanyEName
+	FROM order_export_shipping_info oesi
+	INNER JOIN order_worklist_status ows ON oesi.id = ows.order_export_shipping_info_id
+	LEFT JOIN base_port bp ON bp.id = oesi.loadingPort
+	LEFT JOIN base_port bp2 ON bp2.id = oesi.delivery_port
+	LEFT JOIN base_customer bc3 ON bc3.id = oesi.shipping_company
+	LEFT JOIN base_country bcn ON bcn.id = oesi.loading_country
+	LEFT JOIN base_country bc ON bc.id = oesi.delivery_country
+	WHERE ows.del_flag = 0 AND oesi.order_id = #{orderId,jdbcType=VARCHAR} AND ows.id = #{containerId,jdbcType=VARCHAR}
+	GROUP BY oesi.id
+  </select>
+</mapper>
