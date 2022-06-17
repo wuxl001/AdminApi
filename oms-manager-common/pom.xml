@@ -60,7 +60,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.38</version>
+			<version>1.2.83</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -148,7 +148,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.38</version>
+			<version>1.2.83</version>
 		</dependency>
 		<!-- 基于极光推送 -->
 		<dependency>
